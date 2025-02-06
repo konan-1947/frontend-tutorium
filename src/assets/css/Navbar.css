@@ -1,0 +1,55 @@
+/*đây là CSS cho Navbar*/
+
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: top 0.3s ease-in-out; /* Hiệu ứng mượt khi ẩn/hiện */
+    z-index: 1000; /* Đảm bảo navbar luôn nằm trên */
+  }
+  
+.chu-goc-ben-trai-navbar {
+    color: #6568A0;
+    font-family: 'EBGaramond', serif;
+    font-weight: bold;
+}
+
+.chu-goc-ben-phai-navbar {
+    font-family: 'EBGaramond', serif;
+}
+
+.nut-dang-nhap {
+    color: #6568A0;
+    background-color: transparent;
+}
+
+.nut-dang-nhap:hover {
+    color: #e9eaf7;
+    background-color: #6568A0;
+}
+
+.mau-nen-navbar {
+    background-color: transparent;
+}
+
+.navbar-hidden {
+    top: 100px;
+    transition: top 3s ease-in-out;
+}
+
+.avt-tron{
+    
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    text-align: center !important;
+    line-height: 0rem;
+    i{
+        margin: 0 !important;
+    }
+    
+}
+.avt-tron:hover{
+        border: 1px solid black !important;
+    }

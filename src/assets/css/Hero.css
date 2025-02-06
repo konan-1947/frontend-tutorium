@@ -1,0 +1,9 @@
+/*phần trang home đầu tiên (hero)*/
+#hero-section{
+    background-image: url('/assets/img/hero.png');
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.5;
+    overflow: hidden;
+}

@@ -1,0 +1,78 @@
+/*Đây là định nghĩa Font */
+@font-face {
+    font-family: 'EBGaramond';
+    src: url('/assets/fonts/EBGaramond-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    /* Regular weight */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'EBGaramond';
+    src: url('/assets/fonts/EBGaramond-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    /* Italic style */
+}
+@font-face {
+    font-family: 'EBGaramond';
+    src: url('/assets/fonts/EBGaramond-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'EBGaramond';
+    src: url('/assets/fonts/EBGaramond-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'EBGaramond';
+    src: url('/assets/fonts/EBGaramond-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'EBGaramond';
+    src: url('/assets/fonts/EBGaramond-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'EBGaramond';
+    src: url('/assets/fonts/EBGaramond-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'EBGaramond';
+    src: url('/assets/fonts/EBGaramond-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'EBGaramond';
+    src: url('/assets/fonts/EBGaramond-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'EBGaramond';
+    src: url('/assets/fonts/EBGaramond-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'EBGaramond';
+    src: url('/assets/fonts/EBGaramond-SemiBoldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
