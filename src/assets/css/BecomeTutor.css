@@ -1,0 +1,83 @@
+/* Phần nền màu xanh lá và nội dung */
+.become-tutor-section {
+   
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-color: #65ad8d;
+
+    color: white;
+    text-align: left;
+  }
+  
+  .become-tutor-image {
+    padding-left: 4rem;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .become-tutor-image img {
+    width: 40rem;
+    border-radius: 10px;
+  }
+  
+  .become-tutor-content {
+    flex: 2;
+    padding-left: 30px;
+  }
+  
+  .become-tutor-content h1 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .become-tutor-content p {
+    font-size: 18px;
+   
+  }
+  
+  .become-tutor-content ul {
+    list-style: decimal;
+    padding-left: 1rem;
+ 
+  }
+  
+  .become-tutor-content li {
+    font-size: 18px;
+    margin-bottom: 10px;
+   
+  }
+  
+  .become-tutor-button {
+    background-color: #fff;
+    color: #65ad8d;
+    padding: 10px 20px;
+    border: 4px solid #Fff;
+    border-radius: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .become-tutor-button:hover {
+    background-color: #65ad8d;
+    color: #fff
+  }
+  
+  .platform-info {
+    margin-top: 20px;
+  }
+  
+  .platform-info a {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  .platform-info a:hover {
+    color: #000;
+  }
+  
