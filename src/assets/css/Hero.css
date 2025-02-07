@@ -1,9 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
 /*phần trang home đầu tiên (hero)*/
-#hero-section{
-    background-image: url('/assets/img/hero.png');
+.hero-section {
+
     background-size: cover;
     width: 100vw;
     height: 100vh;
-    opacity: 0.5;
+
     overflow: hidden;
+}
+
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #9ac2f8;
+    /* Màu hồng như trong hình */
+    padding: 50px;
+    color: white;
+}
+
+.hero-content {
+    max-width: 50%;
+
+}
+.btnHero{
+    font-size: 50rem;
+}
+
+
+.hero-content h1 {
+    font-family: "Anton", serif;
+    font-size: 4rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-shadow:  0px 3px 5px rgba(0, 0, 0, 0.5);
+}
+.hero-content p {
+    font-style: italic;
+    font-size: 1.5rem;
+    padding-right: 2rem;
+
+    
+}
+.hero-content  span {
+    color: #5271ff;
+}
+
+
+.hero-image img {
+    animation: fadeIn 0.5s ease-out;
+    width: 100%;
+    max-width: 60rem;
+    /* Đảm bảo hình ảnh không quá lớn */
+    border-radius: 10px;
+    box-shadow:  0px 3px 5px rgba(0, 0, 0, 0.5);
+}
+.btn-get-started {
+    background-color: #5271ff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .btn-get-started:hover {
+    background-color: #879dff;
 }
