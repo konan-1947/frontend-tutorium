@@ -1,6 +1,6 @@
 import React from 'react';
 import '../assets/css/Hero.css'; // Thêm CSS để định dạng hero section
-import tur from '/assets/img/tur.jpg';
+import tur from '../assets/img/tur.jpg';
 import 'animate.css';
 
 const HeroSection = () => {

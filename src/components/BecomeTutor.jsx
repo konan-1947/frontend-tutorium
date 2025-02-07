@@ -1,5 +1,5 @@
 import React from 'react';
-import Tur from '../../public/assets/img/tur.jpg';
+import Tur from '../assets/img/tur.jpg';
 import '../assets/css/becometutor.css';
 const BecomeTutorSection = () => {
   return (

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import Tur from '../../public/assets/img/tur.jpg';
-import Tutor1 from '../../public/assets/img/tutor1.jpg';
-import Tutor2 from '../../public/assets/img/tutor2.jpg';
+import Tur from '../assets/img/tur.jpg';
+import Tutor1 from '../assets/img/tutor1.jpg';
+import Tutor2 from '../assets/img/tutor2.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/Carousel.css';
 
