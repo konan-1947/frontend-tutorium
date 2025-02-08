@@ -10,7 +10,9 @@ const BootstrapCarousel = () => {
     return (
         <div>
             <div className='caro-section '>
-                <h1 className='d-flex justify-content-center fw-bold' >Find the right tutor <span className="text-black">for you.</span></h1>
+                <div className='title-text'>
+                <h1 className='' >Find the <span className="text-effect"> right tutor </span> for you.</h1>
+                </div>
                 <p className='d-flex justify-content-center lead ' >With over 30,000 tutors and 1M+ learners, we know language learning.</p>
             </div>
             <div className='carousel-section'>

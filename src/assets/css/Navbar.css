@@ -1,5 +1,5 @@
 /*đây là CSS cho Navbar*/
-
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Liter&display=swap');
 #navbar {
     position: fixed;
     top: 0;
@@ -14,17 +14,19 @@
 
 .chu-goc-ben-trai-navbar {
     color: #5271ff;
-    font-family: 'EBGaramond', serif;
-    font-weight: bold;
-}
+    font-family: 'Liter', serif;
+    font-size: 1;
 
+}
 .chu-goc-ben-phai-navbar {
-    font-family: 'EBGaramond', serif;
+    font-family: 'Liter', serif;
+    
 }
 
 .nut-dang-nhap {
     color: #5271ff;
     background-color: transparent;
+    border-radius: 8px;
 }
 
 .nut-dang-nhap:hover {
@@ -47,8 +49,7 @@
 .avt-tron {
 
     border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
+    width: 1,2rem;
     text-align: center !important;
     line-height: 0rem;
 
@@ -60,4 +61,48 @@
 
 .avt-tron:hover {
     border: 1px solid black !important;
+}
+.user-menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+.user-icon {
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+
+
+.user-dropdown {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 180px;
+    z-index: 1000;
+}
+
+.user-dropdown a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.3s ease;
+}
+
+.user-dropdown a:hover {
+    background: #f0f0f0;
+}
+
+.user-dropdown hr {
+    margin: 5px 0;
+    border: none;
+    border-top: 1px solid #ddd;
 }

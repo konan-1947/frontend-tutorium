@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Liter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Anton+SC&family=Liter&display=swap');
 .caro-section{
     padding-top: 3rem;
     justify-content: center;
     align-items: center;
+    font-family: "Liter", serif;
 }
 .carousel-section {
     padding-top: 2rem;
@@ -22,7 +25,28 @@
 .image-container {
     flex: 1;
 }
+.text-effect{
+   
+    font-weight: bold;
+    background: linear-gradient(90deg, #0bff8d, #5eff01,#ffe819,#ff987e,#eb3c3c,#ff246d,#2c06ff,#13bcff);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientAnimation 5s linear infinite;
 
+}
+@keyframes gradientAnimation {
+    from { background-position: 0% 200%; }
+    to { background-position: 200% 0%; } /* Tiếp tục đẩy gradient ra khỏi màn hình */
+}
+.title-text{
+    font-family: Anton,serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    text-align: center; /* Đảm bảo chữ nằm giữa */
+}
 .carousel-image {
     width: 100%;
     height: 400px; /* Đảm bảo tất cả ảnh cùng kích thước */
