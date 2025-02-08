@@ -1,0 +1,126 @@
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    width: 400px; /* Giảm kích thước cửa sổ */
+    max-height: 90vh; /* Hạn chế chiều cao để tránh tràn */
+    overflow-y: auto; /* Thêm thanh cuộn nếu nội dung quá dài */
+    position: relative;
+    text-align: left;
+    z-index: 1051; /* Đảm bảo popup không bị chìm dưới overlay */
+    scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
+}
+
+.popup-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.popup-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.popup-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.popup-subtitle {
+    font-size: 0.85rem;
+    color: #555;
+    margin: 0;
+}
+
+.popup-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.popup-arrow {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.popup-timeslots {
+    margin-top: 10px;
+    text-align: left;
+}
+
+.timeslot-section {
+    margin-bottom: 15px;
+}
+
+.timeslot-section h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.timeslot-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+.timeslot-buttons button {
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+    background: #f9f9f9;
+}
+
+.timeslot-buttons button:hover {
+    background: #ececec;
+    border-color: #999;
+}
+
+.timeslot-buttons button:focus {
+    background: #007bff;
+    color: white;
+    border-color: #0056b3;
+}
+.timeslot-buttons button {
+    padding: 4px 6px; /* Giảm kích thước ô thời gian */
+    font-size: 0.75rem; /* Giảm kích thước chữ */
+}

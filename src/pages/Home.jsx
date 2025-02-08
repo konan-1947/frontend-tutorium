@@ -8,15 +8,13 @@ import Footer from '../components/Footer'
 import '../assets/css/home.css'
 const Home = () => {
     return (
-        <div className='home-overflow'>
-            <BrowserRouter>
-                <Navbar />
+        <div className='home-overflow'>        
                 <Hero />
                 <Carousel />
                 <BecomeTutor />
                 <Lessons />
                 <Footer />
-            </BrowserRouter>
+          
         </div>
     )
 }

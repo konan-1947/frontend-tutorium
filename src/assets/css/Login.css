@@ -1,0 +1,108 @@
+body {
+    padding-top: 7rem;
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+
+}
+
+h2 {
+    font-weight: bold;
+}
+
+p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+.social-login button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.social-login button:hover {
+    background-color: #f8f9fa;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.separator hr {
+    flex-grow: 1;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group-text {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+.form-control {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.form-check-input {
+    margin-right: 8px;
+}
+
+.btn-primary {
+    background-color: #ff66a3 !important;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #ff3385 !important;
+}
+
+.small {
+    font-size: 12px;
+}
+.text-login{
+    font-size: 0.9rem;
+   
+}
+.small a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.password-toggle{
+    background: transparent;
+}
+.small a:hover {
+    text-decoration: underline;
+}

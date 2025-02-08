@@ -2,7 +2,7 @@
 
 /*phần trang home đầu tiên (hero)*/
 .hero-section {
-
+  
     background-size: cover;
     width: 100vw;
     height: 100vh;
@@ -44,9 +44,15 @@
     
 }
 .hero-content  span {
+    font-weight: bold;
     color: #5271ff;
 }
 
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
 .hero-image img {
     animation: fadeIn 0.5s ease-out;
