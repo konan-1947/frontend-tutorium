@@ -8,9 +8,9 @@ const Home = () => {
     return (
         <div className='home-overflow'>
           
-                <Navbar />
+           
                 <Login/>
-                <Signup/>
+             
                 <Footer />
           
         </div>

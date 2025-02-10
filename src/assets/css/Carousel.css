@@ -22,13 +22,14 @@
     display: flex;
 }
 
+
 .image-container {
     flex: 1;
 }
 .text-effect{
    
     font-weight: bold;
-    background: linear-gradient(90deg, #0bff8d, #5eff01,#ffe819,#ff987e,#eb3c3c,#ff246d,#2c06ff,#13bcff);
+    background: linear-gradient( 90deg, #61c5ff, hsl(293, 100%, 72%),#f7beff,#1975ff,#61c5ff);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

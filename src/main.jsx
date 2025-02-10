@@ -11,7 +11,7 @@ import User from './routes/User';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
  
-    <User/>
+    <User />
    
   </StrictMode>,
 )

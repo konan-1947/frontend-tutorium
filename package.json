@@ -12,6 +12,7 @@
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.6",
     "animate.css": "^4.1.1",
+    "aos": "^2.3.4",
     "bootstrap": "^5.3.3",
     "font-awesome": "^4.7.0",
     "lucide-react": "^0.475.0",

@@ -1,108 +1,150 @@
-body {
-    padding-top: 7rem;
-    background-color: #ffffff;
-    font-family: Arial, sans-serif;
-    font-size: 0.9rem;
-}
-
+/* ======== Container chính ======== */
 .login-container {
-    max-width: 400px;
-    margin: auto;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    text-align: center;
-
+    margin: 70px auto;
+    display: flex;
+    position: relative;
+    width: 800px;
+    height: 500px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    background: #fff;
 }
 
-h2 {
-    font-weight: bold;
+/* ======== Form Wrapper (chứa Sign In & Sign Up) ======== */
+.form-wrapper {
+    display: flex;
+    width: 200%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
 }
 
-p a {
-    color: #007bff;
-    text-decoration: none;
+/* Khi active, dịch chuyển form-wrapper sang trái */
+.right-panel-active .form-wrapper {
+    transform: translateX(-50%);
 }
 
-p a:hover {
-    text-decoration: underline;
-}
-
-.social-login button {
+/* Form Sign In & Sign Up */
+.sign-in-container,
+.sign-up-container {
+    width: 50%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #000;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 16px;
+    padding: 50px;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    background: #fff;
 }
 
-.social-login button:hover {
-    background-color: #f8f9fa;
+/* Mặc định Sign Up ẩn đi */
+.sign-up-container {
+    opacity: 0;
+    transform: translateX(50px);
+    pointer-events: none;
 }
 
-.separator {
-    display: flex;
-    align-items: center;
+/* Khi active, Sign Up xuất hiện */
+.right-panel-active .sign-up-container {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* Sign In ban đầu hiển thị */
+.sign-in-container {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* Khi active, Sign In biến mất */
+.right-panel-active .sign-in-container {
+    opacity: 0;
+    transform: translateX(-50px);
+    pointer-events: none;
+}
+
+/* ======== Overlay Layer ======== */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, #ff4b2b, #ff416c);
+    color: white;
     text-align: center;
-}
-
-.separator hr {
-    flex-grow: 1;
-    border: none;
-    border-top: 1px solid #ccc;
-}
-
-.input-group {
+    transition: transform 0.5s ease-in-out, background 1s ease-in-out;
     display: flex;
+    justify-content: center;
     align-items: center;
+    padding: 50px;
+    z-index: 10;
 }
 
-.input-group-text {
-    cursor: pointer;
-    background: transparent;
-    border: none;
+/* Khi active, overlay trượt sang trái */
+.right-panel-active .overlay-container {
+    transform: translateX(-100%);
 }
 
-.form-control {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.form-check-input {
-    margin-right: 8px;
-}
-
-.btn-primary {
-    background-color: #ff66a3 !important;
-    border: none;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-}
-
-.btn-primary:hover {
-    background-color: #ff3385 !important;
-}
-
-.small {
-    font-size: 12px;
-}
-.text-login{
-    font-size: 0.9rem;
+/* Hiệu ứng đổi màu overlay khi click */
+.overlay-container.overlay-active {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
    
 }
-.small a {
-    color: #007bff;
-    text-decoration: none;
+
+
+/* Nội dung trong overlay */
+.overlay {
+    text-align: center;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
-.password-toggle{
-    background: transparent;
+/* Hiệu ứng hover cho button */
+button {
+    transition: 0.3s;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
 }
-.small a:hover {
-    text-decoration: underline;
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 }
+
+/* Hiệu ứng fade-in/fade-out cho text */
+.fade-text {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeText 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeText {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Thêm hiệu ứng fade cho overlay */
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+  
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Cải thiện responsive */
+
