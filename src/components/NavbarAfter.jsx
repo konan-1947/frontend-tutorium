@@ -1,58 +1,44 @@
-import { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
+import { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import "../assets/css/NavBar.css";
+import "../assets/css/NavBarAfter.css";
 import "../assets/css/fonts.css";
 import 'font-awesome/css/font-awesome.min.css';
-import { useNavigate } from "react-router-dom";
-
+import Tur from '../assets/img/tur.jpg';
 function NavBar() {
   const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null); // Tạo ref cho dropdown
 
-  const Navigate = useNavigate();
-
+  // Đóng dropdown khi click ra ngoài
   useEffect(() => {
-
-    let prevScrollPos = window.scrollY;
-    const navbar = document.getElementById("navbar");
-
-    const handleScroll = () => {
-      let currentScrollPos = window.scrollY;
-      if (prevScrollPos > currentScrollPos) {
-        navbar.style.top = "0";
-      } else {
-        navbar.style.top = "-80px";
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
       }
-      prevScrollPos = currentScrollPos;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
+    }
+    
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   return (
     <Navbar id="navbar" expand="lg" className="mau-nen-navbar">
       <Container fluid className="mau-nen-navbar">
+        {/* Logo + Tên */}
         <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
           <img src="/assets/img/logo.png" alt="logo" width="50" height="50" className="me-2 rounded-circle border border-dark" />
           <h3 className="m-1 chu-goc-ben-trai-navbar">Tutorium</h3>
         </Navbar.Brand>
+        
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" navbarScroll>
-            <div className="d-flex align-items-center text-ben-trai">
             <Nav.Link as={Link} to="/find" className="chu-goc-ben-trai-navbar">Tìm gia sư</Nav.Link>
-            <Nav.Link  href="#becometutor" className="chu-goc-ben-trai-navbar">
-              Trở thành gia sư
-            </Nav.Link></div>
             <NavDropdown title="More" id="navbarScrollingDropdown" className="chu-goc-ben-trai-navbar">
               <NavDropdown.Item as={Link} to="/services">Diễn đàn</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/contact">Liên hệ với chúng tôi</NavDropdown.Item>
@@ -61,17 +47,29 @@ function NavBar() {
             </NavDropdown>
           </Nav>
 
-          <Nav className="ms-auto chu-goc-ben-phai-navbar nut-dang-nhap">
-            <Button onClick={() => Navigate("/login")} size="lg" className="nut-dang-nhap" variant="none">
-              <i className="fa fa-sign-in me-3"></i> Sign in
-            </Button>
-          </Nav>
-          <Nav className="user-menu-container">
+          {/* Các icon bên phải */}
+          <Nav className="ms-auto user-menu-container">
+            <Link to="/messages" className="nav-icon">
+              <i className="fa fa-commenting-o"></i>
+            </Link>
+            <Link to="/help" className="nav-icon">
+              <i className="fa fa-question-circle"></i>
+            </Link>
+            <Link to="/favorites" className="nav-icon">
+              <i className="fa fa-heart-o"></i>
+            </Link>
+            <Link to="/notifications" className="nav-icon">
+              <i className="fa fa-bell-o"></i>
+            </Link>
+
+            {/* Avatar + Dropdown */}
             <div className="user-icon" onClick={() => setShowDropdown(!showDropdown)}>
-              <i className="fa fa-user me-2"></i>
+              <img src={Tur} alt="User" className="user-avatar" />
             </div>
+
+            {/* Dropdown menu */}
             {showDropdown && (
-              <div className="user-dropdown">
+              <div className="user-dropdown" ref={dropdownRef}>
                 <Link to="/">Home</Link>
                 <Link to="/messages">Messages</Link>
                 <Link to="/lessons">My lessons</Link>

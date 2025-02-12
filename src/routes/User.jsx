@@ -4,11 +4,12 @@ import HomePage from "../pages/Home";
 import Login from "../pages/Auth";
 import Navbar from "../components/Navbar";
 import Find from "../pages/FindTutor";
-
+import NavBarAfter from "../components/NavbarAfter";
 function User() {
   return (
     <Router>
-      <Navbar />
+
+
       <Routes>
         <Route path="/find" element={<Find />} />
         <Route path="/" element={<HomePage />} />

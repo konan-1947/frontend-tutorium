@@ -1,78 +1,80 @@
 /* Cấu trúc chính của phần Language Lessons */
+@import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Anton&family=Anton+SC&family=Liter&display=swap');
+
 .language-lessons-section {
-    padding: 50px;
-    background-color: #f9f9f9;
-    color: #333;
-  }
-  
-  .section-title h2 {
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 30px;
-  }
-  
-  /* Định dạng các nhóm course-category */
-  .courses-section {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 30px;
-  }
-  
-  .course-category {
-    width: 23%;
-  }
-  
-  .course-category h3 {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .course-category ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  .course-category ul li {
-    margin-bottom: 10px;
-  }
-  
-  /* Định dạng các nhóm tutor-category */
-  .tutor-categories {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 50px;
-  }
-  
-  .tutor-category {
-    width: 30%;
-  }
-  
-  .tutor-category h3 {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .tutor-category ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  .tutor-category ul li {
-    margin-bottom: 10px;
-  }
-  
-  .tutor-category a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .tutor-category a:hover {
-    text-decoration: underline;
-  }
-  
-  
+  font-family: "Aleo", serif;
+  padding: 50px;
+  background-color: #f9f9f9;
+  color: #333;
+
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+/* Định dạng các nhóm course-category */
+.courses-section {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.course-category {
+  width: 23%;
+}
+
+.course-category h3 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.course-category ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.course-category ul li {
+  margin-bottom: 10px;
+}
+
+/* Định dạng các nhóm tutor-category */
+.tutor-categories {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.tutor-category {
+  width: 30%;
+}
+
+.tutor-category h3 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.tutor-category ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.tutor-category ul li {
+  margin-bottom: 10px;
+}
+
+.tutor-category a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.tutor-category a:hover {
+  text-decoration: underline;
+}

@@ -1,5 +1,6 @@
 /*đây là CSS cho Navbar*/
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Liter&display=swap');
+
 #navbar {
     position: fixed;
     top: 0;
@@ -10,19 +11,34 @@
     z-index: 1000;
     /* Đảm bảo navbar luôn nằm trên */
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
-    background: rgba(255, 255, 255, 0.2); /* Màu nền trắng trong suốt 20% */
+    background: rgba(255, 255, 255, 0.2);
+    /* Màu nền trắng trong suốt 20% */
     backdrop-filter: blur(10px);
 }
-
-.chu-goc-ben-trai-navbar {
-    color: #5271ff;
-    font-family: 'Liter', serif;
-    font-size: 1;
-
+.text-ben-trai{
+    font-size: 1rem;
+    color: #333;
 }
+.chu-goc-ben-trai-navbar {
+   
+    font-family: "Aleo", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+    color: #000000 !important;
+    text-align: center;
+    justify-self: center;
+}
+
 .chu-goc-ben-phai-navbar {
-    font-family: 'Liter', serif;
-    
+
+    font-family: "Aleo", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+
+
 }
 
 .nut-dang-nhap {
@@ -39,7 +55,7 @@
 
 .mau-nen-navbar {
     background: linear-gradient(to bottom #9ac2f8);
-  
+
 }
 
 .navbar-hidden {
@@ -50,7 +66,7 @@
 .avt-tron {
 
     border-radius: 50%;
-    width: 1,2rem;
+    width: 1, 2rem;
     text-align: center !important;
     line-height: 0rem;
 
@@ -63,6 +79,7 @@
 .avt-tron:hover {
     border: 1px solid black !important;
 }
+
 .user-menu-container {
     position: relative;
     display: inline-block;

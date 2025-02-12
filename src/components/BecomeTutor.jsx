@@ -3,29 +3,29 @@ import Tur from '../assets/img/tur.jpg';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import CSS của AOS
 import '../assets/css/becometutor.css';
-
+import { useNavigate } from "react-router-dom";
 const BecomeTutorSection = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
-
+  const Navigate = useNavigate();
   return (
-    <section className="become-tutor-section">
+    <section id='becometutor' className="become-tutor-section">
       <div className="become-tutor-image" data-aos="fade-right">
-        <img src={Tur} alt="Tutor" />
+        <img src='https://i.ytimg.com/vi/H0qcbjjmreg/hqdefault.jpg' alt="Tutor" />
       </div>
       <div className="become-tutor-content">
-        <h1 data-aos="fade-up" data-aos-delay="200">Become a tutor</h1>
-        <p data-aos="fade-up" data-aos-delay="400">Earn money sharing your expert knowledge with students.</p>
-        <p data-aos="fade-up" data-aos-delay="600">Sign up to start tutoring online with Preply.</p>
+        <h1 data-aos="fade-up" data-aos-delay="200">Trở thành gia sư</h1>
+        <p data-aos="fade-up" data-aos-delay="400">Kiếm tiền bằng cách chia sẻ kiến ​​thức chuyên môn của bạn với học sinh.</p>
+        <p data-aos="fade-up" data-aos-delay="600">Đăng ký để bắt đầu học kèm trực tuyến với Preply.</p>
         <ul>
-          <li data-aos="fade-up" data-aos-delay="800">Find new students</li>
-          <li data-aos="fade-up" data-aos-delay="1000">Grow your business</li>
-          <li data-aos="fade-up" data-aos-delay="1200">Get paid securely</li>
+          <li data-aos="fade-up" data-aos-delay="800">Tìm học viên mới </li>
+          <li data-aos="fade-up" data-aos-delay="1000">Phát triển doanh nghiệp của bạn</li>
+          <li data-aos="fade-up" data-aos-delay="1200">Nhận thanh toán an toàn</li>
         </ul>
-        <button className="become-tutor-button" data-aos="fade-up" data-aos-delay="1400">Become a tutor &rarr;</button>
+        <button onClick={() => Navigate ("/login")} className="become-tutor-button" data-aos="fade-up" data-aos-delay="1400">Trở thành gia sư&rarr;</button>
         <div className="platform-info" data-aos="fade-up" data-aos-delay="1600">
-          <a href="#">How our platform works</a>
+          <a href="#">Nền tảng của chúng tôi hoạt động như thế nào</a>
         </div>
       </div>
     </section>

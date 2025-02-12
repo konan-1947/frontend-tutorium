@@ -5,95 +5,94 @@ const LanguageLessonsSection = () => {
   return (
     <section className="language-lessons-section">
       <div className="section-title">
-        <h2>Online tutoring & Language lessons and classes</h2>
+        <h2>Dạy kèm trực tuyến & Các bài học và lớp học ngôn ngữ</h2>
       </div>
 
       <div className="courses-section">
         <div className="course-category">
-          <h3>Popular online language courses</h3>
+          <h3>Dạy các lớp học lớp 1-5</h3>
           <ul>
-            <li>Online English classes</li>
-            <li>Online Spanish classes</li>
-            <li>Online German classes</li>
-            <li>Online French classes</li>
-            <li>Online Business English courses</li>
+            <li>Lớp học tiếng Anh trực tuyến</li>
+            <li>Lớp học Ngữ Văn trực tuyến</li>
+            <li>Lớp học Toán trực tuyến</li>
+            <li>Lớp học Tin học trực tuyến</li>
+           
           </ul>
         </div>
         <div className="course-category">
-          <h3>Learn a language online</h3>
+          <h3>Dạy chương trình ôn thi Cấp 3</h3>
           <ul>
-            <li>Learn English online</li>
-            <li>Learn Spanish online</li>
-            <li>Learn French online</li>
-            <li>Learn Japanese online</li>
-            <li>Learn German online</li>
+            <li>Luyện đề nâng cao các môn Toán, Văn, Anh</li>
+            <li>Tổng hợp kiến thức trọng tâm và luyện đề</li>
+            <li>Hệ thống kiến thức, giải đề sát với đề thi thật</li>
+           
           </ul>
         </div>
         <div className="course-category">
-          <h3>Tutors for different learning needs</h3>
+          <h3>Gia sư cho các nhu cầu học tập khác nhau</h3>
           <ul>
-            <li>English classes for kids</li>
-            <li>IELTS tutors</li>
-            <li>Native English speakers online</li>
-            <li>Online English courses for adults</li>
-            <li>Spanish tutors for high school students</li>
-            <li>Online Spanish courses for adults</li>
+            <li>Lớp học tiếng Anh cho trẻ em</li>
+            <li>Gia sư luyện thi IELTS</li>
+            <li>Gia sư Toán học nâng cao</li>
+            <li>Khóa học tiếng Anh trực tuyến cho người lớn</li>
+            <li>Khóa học Vật lí, Hoá học, Sinh học</li>
+       
           </ul>
         </div>
         <div className="course-category">
-          <h3>Other popular courses</h3>
+          <h3>Các khóa học phổ biến khác</h3>
           <ul>
-            <li>English conversational classes</li>
-            <li>English classes for Spanish speakers</li>
-            <li>Business English lessons</li>
-            <li>Canadian English tutors</li>
-            <li>Intensive Spanish classes</li>
+            <li>Lớp học tiếng Anh giao tiếp</li>
+            <li>Lớp học tiếng Anh cho người nói tiếng Tây Ban Nha</li>
+            <li>Bài học tiếng Anh thương mại</li>
+            <li>Gia sư tiếng Anh Canada</li>
+            <li>Lớp học tiếng Tây Ban Nha chuyên sâu</li>
           </ul>
         </div>
       </div>
 
       <div className="section-title">
-        <h2>Find a language tutor near you</h2>
+        <h2>Tìm gia sư ngôn ngữ gần bạn</h2>
       </div>
 
       <div className="tutor-categories">
         <div className="tutor-category">
-          <h3>Tutors from top cities around the globe</h3>
+          <h3>Gia sư từ các thành phố hàng đầu trên thế giới</h3>
           <ul>
-            <li>English classes in NYC</li>
-            <li>Spanish classes in NYC</li>
-            <li>English classes in Los Angeles</li>
-            <li>Spanish classes in Los Angeles</li>
-            <li>English classes in Miami</li>
-            <li>Spanish classes in Miami</li>
-            <li>English classes in Toronto</li>
-            <li>French classes in Toronto</li>
-            <li>Spanish classes in London</li>
-            <li>English classes in London</li>
+            <li>Lớp học tiếng Anh ở NYC</li>
+            <li>Lớp học tiếng Tây Ban Nha ở NYC</li>
+            <li>Lớp học tiếng Anh ở Los Angeles</li>
+            <li>Lớp học tiếng Tây Ban Nha ở Los Angeles</li>
+            <li>Lớp học tiếng Anh ở Miami</li>
+            <li>Lớp học tiếng Tây Ban Nha ở Miami</li>
+            <li>Lớp học tiếng Anh ở Toronto</li>
+            <li>Lớp học tiếng Pháp ở Toronto</li>
+            <li>Lớp học tiếng Tây Ban Nha ở London</li>
+            <li>Lớp học tiếng Anh ở London</li>
           </ul>
         </div>
 
         <div className="tutor-category">
-          <h3>Tutors from English speaking countries around the globe</h3>
+          <h3>Gia sư từ các quốc gia nói tiếng Anh trên toàn thế giới</h3>
           <ul>
-            <li>Spanish tutors near me in the USA</li>
-            <li>Spanish tutors near me in the United Kingdom</li>
-            <li>French tutors near me in Canada</li>
-            <li>Spanish tutors near me in Australia</li>
+            <li>Gia sư tiếng Tây Ban Nha gần tôi ở Hoa Kỳ</li>
+            <li>Gia sư tiếng Tây Ban Nha gần tôi ở Vương quốc Anh</li>
+            <li>Gia sư tiếng Pháp gần tôi ở Canada</li>
+            <li>Gia sư tiếng Tây Ban Nha gần tôi ở Úc</li>
           </ul>
         </div>
 
         <div className="tutor-category">
-          <h3>Preply global</h3>
+          <h3>Preply toàn cầu</h3>
           <ul>
-            <li>Español</li>
-            <li>Français</li>
-            <li>Deutsch</li>
-            <li>Italiano</li>
-            <li>Русский</li>
-            <li>Português</li>
-            <li>Polski</li>
-            <li>Nederlands</li>
+            <li>Tiếng Tây Ban Nha</li>
+            <li>Tiếng Pháp</li>
+            <li>Tiếng Đức</li>
+            <li>Tiếng Ý</li>
+            <li>Tiếng Nga</li>
+            <li>Tiếng Bồ Đào Nha</li>
+            <li>Tiếng Ba Lan</li>
+            <li>Tiếng Hà Lan</li>
           </ul>
         </div>
       </div>

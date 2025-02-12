@@ -1,83 +1,137 @@
-/* Phần nền màu xanh lá và nội dung */
+@import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Anton&family=Anton+SC&family=Liter&display=swap');
+
 .become-tutor-section {
-   
+    font-family: "Aleo", serif;
     margin-top: 4rem;
     display: flex;
+    flex-wrap: wrap; /* Giúp tự động xuống dòng trên màn hình nhỏ */
     justify-content: center;
     align-items: center;
-    padding: 50px;
+    padding: 5vw; /* Sử dụng vw để phù hợp với kích thước màn hình */
     background-color: #65ad8d;
-
     color: white;
     text-align: left;
-  }
-  
-  .become-tutor-image {
-    padding-left: 4rem;
+}
+
+/* Ảnh bên phải */
+.become-tutor-image {
     flex: 1;
     display: flex;
     justify-content: center;
-  }
-  
-  .become-tutor-image img {
-    width: 40rem;
+    padding-left: 2vw;
+    padding-right: 0;
+ 
+}
+
+.become-tutor-image img {
+    width: 100%;
+    max-width: 40rem;
     border-radius: 10px;
-  }
-  
-  .become-tutor-content {
+    
+}
+
+/* Nội dung bên trái */
+.become-tutor-content {
     flex: 2;
-    padding-left: 30px;
-  }
-  
-  .become-tutor-content h1 {
-    font-size: 40px;
-    font-weight: bold;
+    padding-left: 2vw;
+
+    max-width: 700px;
+}
+
+.become-tutor-content h1 {
+    font-family: "Anton", serif;
+    text-transform: uppercase;
+    font-size: 3rem; /* Điều chỉnh kích thước phù hợp */
     margin-bottom: 20px;
-  }
-  
-  .become-tutor-content p {
-    font-size: 18px;
-   
-  }
-  
-  .become-tutor-content ul {
+}
+
+.become-tutor-content p,
+.become-tutor-content li {
+    font-size: 1.1rem;
+}
+
+.become-tutor-content ul {
     list-style: decimal;
     padding-left: 1rem;
- 
-  }
-  
-  .become-tutor-content li {
-    font-size: 18px;
-    margin-bottom: 10px;
-   
-  }
-  
-  .become-tutor-button {
+}
+
+.become-tutor-button {
     background-color: #fff;
     color: #65ad8d;
     padding: 10px 20px;
-    border: 4px solid #Fff;
+    border: 4px solid #fff;
     border-radius: 15px;
-    font-size: 18px;
+    font-size: 1.1rem;
     cursor: pointer;
     margin-top: 20px;
-  }
-  
-  .become-tutor-button:hover {
+    transition: 0.3s;
+}
+
+.become-tutor-button:hover {
     background-color: #65ad8d;
-    color: #fff
-  }
-  
-  .platform-info {
+    color: #fff;
+}
+
+/* Link */
+.platform-info {
     margin-top: 20px;
-  }
-  
-  .platform-info a {
+}
+
+.platform-info a {
     color: white;
     text-decoration: underline;
-  }
-  
-  .platform-info a:hover {
+}
+
+.platform-info a:hover {
     color: #000;
-  }
-  
+}
+
+/* Responsive - Tablet */
+@media (max-width: 1024px) {
+    .become-tutor-section {
+        flex-direction: column-reverse; /* Đảo ngược hình ảnh xuống dưới */
+        align-items: center;
+        text-align: left;
+    }
+    .become-tutor-image {
+        padding-left: 0;
+    }
+    .become-tutor-content {
+        padding-left: 0;
+    }
+    .become-tutor-content h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    .become-tutor-content h1 {
+        font-size: 2rem;
+    }
+    .become-tutor-content p,
+    .become-tutor-content li {
+        font-size: 1rem;
+    }
+    .become-tutor-button {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+    .become-tutor-image img {
+        max-width: 80%;
+    }
+}
+
+/* Responsive - Small Mobile */
+@media (max-width: 480px) {
+    .become-tutor-content h1 {
+        font-size: 1.8rem;
+    }
+    .become-tutor-button {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+    .become-tutor-image img {
+        max-width: 90%;
+    }
+}
