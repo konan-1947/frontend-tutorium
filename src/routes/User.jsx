@@ -14,6 +14,7 @@ function User() {
         <Route path="/find" element={<Find />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
+        
       </Routes>
     </Router>
   );

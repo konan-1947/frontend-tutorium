@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Anton&family=Anton+SC&family=Liter&display=swap');
+
 /*Đây là định nghĩa Font */
 @font-face {
     font-family: 'EBGaramond';
@@ -35,7 +37,6 @@
     font-style: normal;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Anton&family=Anton+SC&family=Liter&display=swap');
 
 @font-face {
     font-family: 'EBGaramond';
