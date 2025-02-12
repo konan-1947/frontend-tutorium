@@ -16,13 +16,13 @@ const LoginPage = () => {
         console.log("Toggle clicked");
         setTimeout(() => {
             setFadeClass("fade-in");
-           
+
         }, 300); // Delay phù hợp với transition trong CSS
         setTimeout(() => {
             setIsSignUpActive((prev) => !prev);
-        },200);  
+        }, 200);
     }
-        
+
 
     const toggleOverlayColor = () => {
         setOverlayActive(prev => !prev); // Toggle class overlay-active
@@ -35,7 +35,7 @@ const LoginPage = () => {
                 <div className="form">
                     <h2 className="text-center fw-bold">Log in</h2>
                     <p className="text-center">
-                        <a href="#">Sign up as a student</a> or <a href="#">Sign up as a tutor</a>
+
                     </p>
                     <div className="social-login">
                         <button className="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center">
@@ -123,16 +123,23 @@ const LoginPage = () => {
 
             {/* Overlay Panel */}
             <div className={`overlay-container ${overlayActive ? "overlay-active" : ""}`} >
-                <div className={`overlay ${fadeClass}`}>
-                    <div className="text-wrapper">
-                        <h2 className="fade-text">{isSignUpActive ? "Welcome Back!" : "Hello, Friend!"}</h2>
-                        <p className="fade-text">
-                            {isSignUpActive ? "If you already have an account, log in now." : "Enter your details and start your journey with us"}
-                        </p>
-                        <button className="btn btn-outline-light"  onClick={() => { handleToggle(); toggleOverlayColor(); }}>
-                            {isSignUpActive ? "Sign In" : "Sign Up"}
-                        </button>
+               
+                    <div className={`overlay ${fadeClass}`}>
+                 
+                        <div className="text-wrapper ">
+                            
+                            <h2 className="fade-text">{isSignUpActive ? "Welcome Back!" : "Hello, Friend!"}</h2>
+                            <p className="fade-text">
+                                {isSignUpActive ? "If you already have an account, log in now." : "Enter your details and start your journey with us"}
+                            </p>
+                            <button className="btn btn-outline-light" onClick={() => { handleToggle(); toggleOverlayColor(); }}>
+                                {isSignUpActive ? "Sign In" : "Sign Up"}
+                            </button>
+
+                        </div>
                     </div>
+               
+                <div className='overlay-fade'>
                 </div>
             </div>
         </div>

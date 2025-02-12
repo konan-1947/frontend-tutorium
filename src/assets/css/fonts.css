@@ -35,6 +35,8 @@
     font-style: normal;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Anton&family=Anton+SC&family=Liter&display=swap');
+
 @font-face {
     font-family: 'EBGaramond';
     src: url('/assets/fonts/EBGaramond-ExtraBoldItalic.ttf') format('truetype');
