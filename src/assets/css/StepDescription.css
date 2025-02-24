@@ -1,0 +1,92 @@
+.step-description {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.section {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.section:hover {
+  background: #f1f1f1;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+
+
+.checkmark {
+  color: green;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.note {
+  background: #eef4ff;
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+
+.summary-text:hover {
+  background: #eef4ff;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.back-button {
+  background: #ddd;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.back-button:hover {
+  background: #bbb;
+}
+
+.next-button {
+  background: #ff4081;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.next-button:hover {
+  background: #d0356c;
+}

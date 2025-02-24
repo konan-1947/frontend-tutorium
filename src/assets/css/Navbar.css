@@ -20,7 +20,7 @@
     color: #333;
 }
 .chu-goc-ben-trai-navbar {
-   
+    background-color: transparent;
     font-family: "Aleo", serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -64,9 +64,8 @@
 }
 
 .avt-tron {
-
-    border-radius: 50%;
-    width: 1, 2rem;
+    width: 80%;
+    width: 0.5, 1rem;
     text-align: center !important;
     line-height: 0rem;
 
@@ -77,7 +76,7 @@
 }
 
 .avt-tron:hover {
-    border: 1px solid black !important;
+
 }
 
 .user-menu-container {
@@ -123,4 +122,7 @@
     margin: 5px 0;
     border: none;
     border-top: 1px solid #ddd;
+}
+#navbarScrollingDropdown{
+    background-color: transparent !important;
 }

@@ -1,0 +1,29 @@
+.step-availability {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .step-availability h2 {
+    font-size: 24px;
+  }
+  
+  .availability-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .availability-row label {
+    font-weight: bold;
+    width: 100px;
+    text-align: left;
+  }
+  
+  .availability-row input {
+    padding: 5px;
+    width: 45%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  

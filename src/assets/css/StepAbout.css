@@ -1,0 +1,39 @@
+.step-about {
+    padding: 20px;
+  }
+  
+  .step-about h2 {
+    font-size: 24px;
+  }
+  
+  .step-about form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .step-about label {
+    margin-top: 10px;
+  }
+  
+  .step-about input,
+  .step-about select {
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .step-about button {
+    margin-top: 20px;
+    padding: 10px;
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .step-about button:hover {
+    background: #ff1e4d;
+  }
+  

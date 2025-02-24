@@ -1,0 +1,14 @@
+.nav-right{
+    display: flex;
+    align-items: right;
+    margin-left: auto;
+}
+.body-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: white;
+    width: 100%;
+    
+}

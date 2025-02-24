@@ -1,0 +1,38 @@
+.step-video {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .step-video h2 {
+    font-size: 24px;
+  }
+  
+  .step-video label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  
+  .step-video input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .upload-button {
+    display: inline-block;
+    background: none;
+    border: 2px solid black;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .upload-button:hover {
+    background: #eee;
+  }
+  

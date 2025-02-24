@@ -1,0 +1,82 @@
+.progress-column {
+  
+
+
+  height: 120vh; /* Đảm bảo chiều cao full */
+  display: flex;
+  padding-top: 2rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.progress-bar {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+/* Mỗi bước (step) */
+.step2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  width: 80px; /* Giảm kích thước */
+  /* Đồng bộ chiều cao */
+  background: #f1f1f1;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+
+  transition: all 0.3s ease-in-out;
+}
+
+/* Bước hoàn thành */
+.step.completed {
+  background: black;
+  color: white;
+}
+
+/* Icon số bước */
+.step-circle {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  background: white;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  margin-bottom: 5px;
+}
+
+/* Đường nối giữa các bước */
+.step::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 3px;
+  height: 15px; /* Ngắn hơn */
+  background: #ddd;
+  transform: translateX(-50%);
+}
+
+.step:last-child::after {
+  display: none;
+}
+
+/* Tên bước */
+.step-label {
+  font-size: 12px; /* Nhỏ hơn */
+  font-weight: bold;
+}
+.step2.completed {
+  background: black;
+  color: white;
+}

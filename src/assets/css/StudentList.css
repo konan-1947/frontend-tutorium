@@ -1,0 +1,74 @@
+/* Student List Table Styling */
+.student-list-container {
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .student-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .student-table thead {
+    background-color: #f0f0f0;
+    color: #333;
+    text-transform: uppercase;
+  }
+  
+  .student-table th, .student-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+  }
+  
+  .student-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .student-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+  }
+  
+  .student-table tbody tr:hover {
+    background-color: #f9f9f9;
+    transition: background 0.3s ease;
+  }
+  
+  .student-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .student-table td span {
+    color: #777;
+    font-size: 12px;
+  }
+  
+  .student-table th {
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .student-table tbody tr:nth-child(even) {
+    background-color: #f7f7f7;
+  }
+  
+  .student-table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+  

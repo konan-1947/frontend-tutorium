@@ -1,0 +1,36 @@
+.step-pricing {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .step-pricing h2 {
+    font-size: 24px;
+  }
+  
+  .step-pricing label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  
+  .step-pricing input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .finish-button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  
+  .finish-button:hover {
+    background: #218838;
+  }
+  

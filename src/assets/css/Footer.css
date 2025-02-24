@@ -1,6 +1,7 @@
 /* Cấu trúc của Footer */
 @import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Anton&family=Anton+SC&family=Liter&display=swap');
 .footer {
+
   font-family: "Aleo", serif;
   margin-top: 5rem;
   background-color: #181818;
@@ -9,6 +10,7 @@
 }
 
 .footer-content {
+  padding-left: 1.4rem;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

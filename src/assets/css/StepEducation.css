@@ -1,0 +1,23 @@
+.step-education {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .step-education h2 {
+    font-size: 24px;
+  }
+  
+  .step-education label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  
+  .step-education input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  

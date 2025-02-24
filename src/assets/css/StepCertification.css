@@ -1,0 +1,111 @@
+.step-certification {
+  text-align: center;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.step-certification h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.step-certification label {
+  display: block;
+  font-weight: bold;
+  margin-top: 15px;
+  text-align: left;
+  font-size: 16px;
+  color: #555;
+}
+
+.step-certification select,
+.step-certification input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background: #f9f9f9;
+  outline: none;
+  transition: border 0.3s ease-in-out;
+}
+
+.step-certification input:focus,
+.step-certification select:focus {
+  border: 1px solid #007bff;
+}
+
+.cv-input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.remove-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.remove-button:hover {
+  background-color: #c82333;
+}
+
+.add-more-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.add-more-button:hover {
+  background-color: #0056b3;
+}
+
+.navigation-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.back-button, .next-button {
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.back-button {
+  background-color: #ccc;
+  color: #333;
+}
+
+.back-button:hover {
+  background-color: #bbb;
+}
+
+.next-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.next-button:hover {
+  background-color: #218838;
+}
