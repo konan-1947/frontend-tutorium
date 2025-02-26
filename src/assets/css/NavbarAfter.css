@@ -3,6 +3,10 @@
     transition: top 0.3s;
   }
   
+  .mau-nen-navbar{
+    background-color: hite;
+  }
+
   /* Căn chỉnh icon */
   .user-menu-container {
     display: flex;
