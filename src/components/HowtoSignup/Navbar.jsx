@@ -55,11 +55,11 @@ function NavBar() {
             {/* Dropdown menu */}
             {showDropdown && (
               <div className="user-dropdown" ref={dropdownRef}>
-                <Link to="/">Home</Link>
-                <Link to="/messages">Messages</Link>
-                <Link to="/help">Help</Link>
+                <Link to="/">Trang chủ</Link>
+                <Link to="/messages">Nhắn tin</Link>
+                <Link to="/help">Trợ giúp</Link>
                 <hr />
-                <Link to="/">Log out</Link>
+                <Link to="/">Đăng xuat</Link>
               </div>
             )}
           </Nav>

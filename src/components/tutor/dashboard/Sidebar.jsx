@@ -35,7 +35,7 @@ const Sidebar = ({ setActiveComponent }) => {
                 {/* Dashboard Dropdown */}
                 <ListGroup.Item className="dropdown-toggle" onClick={() => toggleDropdown("dashboard")}>
 
-                    <h4>Dashboard</h4>
+                   
                 </ListGroup.Item>
                 <ListGroup.Item action href="#">
                   
@@ -45,23 +45,23 @@ const Sidebar = ({ setActiveComponent }) => {
                     <div className="submenu">
                                  
                         <ListGroup.Item onClick={() => setActiveComponent("all")}>    
-                            <House className="me-2" /> Home
+                            <House className="me-2" /> Trang chủ
                         </ListGroup.Item>
                         <ListGroup.Item action href="#">
-                            <Person className="me-2" /> My Profile
+                            <Person className="me-2" /> Hồ sơ của tôi
                         </ListGroup.Item>
 
                         <ListGroup.Item action href="#">
-                            <Star className="me-2" /> Reviews
+                            <Star className="me-2" /> Đánh giá
                         </ListGroup.Item>
                         <ListGroup.Item onClick={() => setActiveComponent("schedule")}>
-                            <Calendar className="me-2" /> Calendar
+                            <Calendar className="me-2" /> Lịch
                         </ListGroup.Item>
                         <ListGroup.Item onClick={() => setActiveComponent("studentslist")}>
-                            <People className="me-2" /> StudentList
+                            <People className="me-2" /> Danh sách
                         </ListGroup.Item>
                         <ListGroup.Item onClick={() => setActiveComponent("coursetList")}>
-                            <CreditCard className="me-2" /> Purchase History
+                            <CreditCard className="me-2" /> Lịch sử giao dịch
                         </ListGroup.Item>
                     </div>
                 )}

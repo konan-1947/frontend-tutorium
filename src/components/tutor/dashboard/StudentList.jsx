@@ -2,11 +2,11 @@ import React from "react";
 import "../../../assets/css/StudentList.css";
 
 const students = [
-  { name: "Arnol James", email: "jessica.hanson@example.com", date: "20 July, 2020", subject: "Toán", image: "https://randomuser.me/api/portraits/women/1.jpg" },
-  { name: "Esther Howard", email: "deanna.curtis@example.com", date: "20 July, 2020", subject: "Văn", image: "https://randomuser.me/api/portraits/women/2.jpg" },
-  { name: "Kathryn Murphy", email: "debbie.baker@example.com", date: "20 July, 2020", subject: "Văn", image: "https://randomuser.me/api/portraits/women/3.jpg" },
-  { name: "Ralph Edwards", email: "tim.jennings@example.com", date: "20 July, 2020", subject: "Văn", image: "https://randomuser.me/api/portraits/men/1.jpg" },
-  { name: "Darlene Robertson", email: "curtis.weaver@example.com", date: "20 July, 2020", subject: "Văn", image: "https://randomuser.me/api/portraits/women/4.jpg" }
+  { name: "Arnol James", email: "jessica.hanson@example.com", date: "20 Tháng 7, 2020", subject: "Toán", image: "https://randomuser.me/api/portraits/women/1.jpg" },
+  { name: "Esther Howard", email: "deanna.curtis@example.com", date: "20 Tháng 7, 2020", subject: "Văn", image: "https://randomuser.me/api/portraits/women/2.jpg" },
+  { name: "Kathryn Murphy", email: "debbie.baker@example.com", date: "20 Tháng 7, 2020", subject: "Văn", image: "https://randomuser.me/api/portraits/women/3.jpg" },
+  { name: "Ralph Edwards", email: "tim.jennings@example.com", date: "20 Tháng 7, 2020", subject: "Văn", image: "https://randomuser.me/api/portraits/men/1.jpg" },
+  { name: "Darlene Robertson", email: "curtis.weaver@example.com", date: "20 Tháng 7, 2020", subject: "Văn", image: "https://randomuser.me/api/portraits/women/4.jpg" }
 ];
 
 const StudentList = () => {
@@ -15,9 +15,9 @@ const StudentList = () => {
       <table className="student-table">
         <thead>
           <tr>
-            <th>Student</th>
-            <th>Registration Date</th>
-            <th>Subject</th>
+            <th>Học viên</th>
+            <th>Ngày đăng ký</th>
+            <th>Môn học</th>
           </tr>
         </thead>
         <tbody>

@@ -13,7 +13,7 @@ const StepEducation = ({ nextStep, prevStep }) => {
       <label>Bằng cấp</label>
       <input type="text" placeholder="Ví dụ: Cử nhân Ngôn ngữ Anh" />
 
-      <button className="upload-button">Tải lên bằng cấp</button>
+      <input type="file" className="upload-button" placeholder="Tải lên url CV"> </input>
 
       <div className="navigation-buttons">
         <button onClick={prevStep} className="back-button">Quay lại</button>

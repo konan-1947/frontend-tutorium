@@ -10,13 +10,13 @@ const courses = [
 const CourseList = () => {
   return (
     <div className="mt-4">
-      <h4>My Courses</h4>
+      <h4>Khoá học của tôi</h4>
       <Table striped bordered hover className="shadow-sm">
         <thead>
           <tr>
-            <th>Course Name</th>
-            <th>Total Enrolled</th>
-            <th>Rating</th>
+            <th>Tên khoá học</th>
+            <th>Tổng đã tham gia</th>
+            <th>Đánh giá</th>
           </tr>
         </thead>
         <tbody>

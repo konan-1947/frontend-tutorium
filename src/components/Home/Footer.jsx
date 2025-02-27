@@ -17,9 +17,7 @@ const Footer = () => {
             <li><a href="#">Cách hoạt động</a></li>
             <li><a href="#">Đánh giá từ người dùng</a></li>
             <li><a href="#">Ứng dụng của chúng tôi</a></li>
-            <li><a href="#">Trạng thái</a></li>
-            <li><a href="#">Chúng tôi đồng hành cùng Ukraine</a></li>
-            <li><a href="#">Chương trình liên kết</a></li>
+
           </ul>
         </div>
 
@@ -39,30 +37,24 @@ const Footer = () => {
           <h3>DÀNH CHO GIÁO VIÊN</h3>
           <ul>
             <li><a href="#">Trở thành giáo viên trực tuyến</a></li>
-            <li><a href="#">Dạy tiếng Anh trực tuyến</a></li>
-            <li><a href="#">Dạy tiếng Pháp trực tuyến</a></li>
-            <li><a href="#">Dạy tiếng Tây Ban Nha trực tuyến</a></li>
-            <li><a href="#">Dạy tiếng Đức trực tuyến</a></li>
-            <li><a href="#">Xem tất cả công việc dạy học trực tuyến</a></li>
+            <li><a href="#">Dạy môn 1-5 trực tuyến</a></li>
+            <li><a href="#">Dạy môn 1-5 trực tuyến</a></li>
+            <li><a href="#">Dạy môn 1-5 trực tuyến</a></li>
+            <li><a href="#">Dạy môn 1-5 trực tuyến</a></li>
+            <li><a href="#">Dạy môn 1-5 trực tuyến</a></li>
           </ul>
         </div>
 
         <div className="footer-column">
-          <h3>LIÊN HỆ</h3>
-          <ul>
-            <li><a href="#">Mỹ</a></li>
-            <li><a href="#">1309 Beacon Street, Suite 300, Brookline, MA, 02446</a></li>
-          </ul>
+        
         </div>
       </div>
 
       <div className="footer-bottom">
         <div className="footer-social">
           <a href="#">Facebook</a>
-          <a href="#">Instagram</a>
-          <a href="#">YouTube</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">TikTok</a>
+          <p> Liên hệ: 0123456789,ABC tại ABC,CDE</p>
+
         </div>
         <button className="scroll-to-top" onClick={scrollToTop}>
           <FaArrowUp className='iconup'/>

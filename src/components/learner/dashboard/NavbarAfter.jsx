@@ -39,7 +39,7 @@ function NavBar() {
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" navbarScroll>
    
-            <NavDropdown title="More" id="navbarScrollingDropdown" className="chu-goc-ben-trai-navbar">
+            <NavDropdown title="Thêm" id="navbarScrollingDropdown" className="chu-goc-ben-trai-navbar">
               <NavDropdown.Item as={Link} to="/services">Diễn đàn</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/contact">Liên hệ với chúng tôi</NavDropdown.Item>
               <NavDropdown.Divider />
@@ -70,15 +70,12 @@ function NavBar() {
             {/* Dropdown menu */}
             {showDropdown && (
               <div className="user-dropdown" ref={dropdownRef}>
-                <Link to="/">Home</Link>
-                <Link to="/messages">Messages</Link>
-                <Link to="/lessons">My lessons</Link>
-                <Link to="/saved-tutors">Saved tutors</Link>
-                <Link to="/refer">Refer a friend</Link>
-                <Link to="/settings">Settings</Link>
-                <Link to="/help">Help</Link>
+                <Link to="/">Trang chủ</Link>
+                <Link to="/messages">Nhắn tin</Link>
+                <Link to="/lessons">Hồ sơ</Link>
+
                 <hr />
-                <Link to="/">Log out</Link>
+                <Link to="/">Đăng xuất</Link>
               </div>
             )}
           </Nav>

@@ -49,24 +49,24 @@ const TutorListing = () => {
                 </Select>
 
                 <Select sx={{ flex: 1 }} displayEmpty value={filters.country} name="country" onChange={handleFilterChange}>
-                    <MenuItem value="" disabled>Country of birth</MenuItem>
-                    <MenuItem value="usa">USA</MenuItem>
-                    <MenuItem value="uk">UK</MenuItem>
+                    <MenuItem value="" disabled>Địa điểm</MenuItem>
+                    <MenuItem value="usa">Địa điểm 1</MenuItem>
+                    <MenuItem value="uk">Địa điểm 2</MenuItem>
                 </Select>
 
                 <Select sx={{ flex: 1 }} displayEmpty value={filters.availability} name="availability" onChange={handleFilterChange}>
-                    <MenuItem value="" disabled>I'm available</MenuItem>
-                    <MenuItem value="morning">Morning</MenuItem>
-                    <MenuItem value="evening">Evening</MenuItem>
+                    <MenuItem value="" disabled>Lịch dạy</MenuItem>
+                    <MenuItem value="morning">Sáng</MenuItem>
+                    <MenuItem value="evening">Tối</MenuItem>
                 </Select>
             </Box>
 
             {/* Hàng thứ hai: Sort và Search */}
             <Box sx={{ display: 'flex', gap: 2, justifyContent: 'space-between' }}>
                 <Select sx={{ flex: 1 }} displayEmpty value={filters.sortBy} name="sortBy" onChange={handleFilterChange}>
-                    <MenuItem value="" disabled>Sort by: Our top picks</MenuItem>
-                    <MenuItem value="low-high">Price: Low to High</MenuItem>
-                    <MenuItem value="high-low">Price: High to Low</MenuItem>
+                    <MenuItem value="" disabled>Sắp xếp:giá</MenuItem>
+                    <MenuItem value="low-high">Thấp đến lớn</MenuItem>
+                    <MenuItem value="high-low">Lớn đến thấp</MenuItem>
                 </Select>
 
                 <TextField 

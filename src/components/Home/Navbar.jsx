@@ -54,7 +54,7 @@ function NavBar() {
             <Nav.Link  href="#becometutor" className="chu-goc-ben-trai-navbar">
               Trở thành gia sư
             </Nav.Link></div>
-            <NavDropdown title="More" id="navbarScrollingDropdown" className="chu-goc-ben-trai-navbar">
+            <NavDropdown title="Thêm" id="navbarScrollingDropdown" className="chu-goc-ben-trai-navbar">
               <NavDropdown.Item as={Link} to="/services">Diễn đàn</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/contact">Liên hệ với chúng tôi</NavDropdown.Item>
               <NavDropdown.Divider />
@@ -64,7 +64,7 @@ function NavBar() {
 
           <Nav className="ms-auto chu-goc-ben-phai-navbar nut-dang-nhap-1">
             <Button onClick={() => Navigate("/login")} size="lg" className="nut-dang-nhap-1" variant="none">
-              <i className="fa fa-sign-in me-3"></i> Sign in
+              <i className="fa fa-sign-in me-3"></i> Đăng nhập
             </Button>
           </Nav>
           <Nav className="user-menu-container">
@@ -73,12 +73,12 @@ function NavBar() {
             </div>
             {showDropdown && (
               <div className="user-dropdown">
-                <Link to="/">Home</Link>
-                <Link to="/messages">Messages</Link>
-                <Link to="/profilelearner">Profile</Link>
-                <Link to="/help">Help</Link>
+                <Link to="/">Trang chủ</Link>
+                <Link to="/messages">Nhắn tin</Link>
+                <Link to="/profilelearner">Hồ sơ</Link>
+                <Link to="/help">Giúp đỡ</Link>
                 <hr />
-                <Link to="/">Log out</Link>
+                <Link to="/">Đăng xuất</Link>
               </div>
             )}
           </Nav>

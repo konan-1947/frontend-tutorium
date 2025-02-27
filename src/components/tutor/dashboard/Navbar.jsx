@@ -7,7 +7,7 @@ const TutorNavbar = () => {
     <Navbar bg="white" expand="lg" className="shadow-sm">
       <div className="body-nav">
         <img src="/assets/img/logo.png" alt="logo" width="40" height="40" className="me-1 rounded-circle border border-dark" />
-        <Navbar.Brand href="#">Tutor Name</Navbar.Brand>
+        <Navbar.Brand href="#">Tên gia sư</Navbar.Brand>
         <Nav className="ms-auto align-items-center  nav-right">
           <Nav.Link href="#">
             <Bell size={20} />
@@ -17,7 +17,7 @@ const TutorNavbar = () => {
           </Nav.Link>
           <Button variant="primary" className="ms-1">
             <Plus size={20} className="me-2" />
-            Create a new course
+           Tạo khoá học mới
           </Button>
         </Nav>
         </div>

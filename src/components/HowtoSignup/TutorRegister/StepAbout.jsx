@@ -5,38 +5,32 @@ import Form from 'react-bootstrap/Form';
 const StepAbout = ({ nextStep }) => {
     return (
         <div className="step-about">
-            <h2>About</h2>
-            <p>Start creating your public tutor profile.</p>
+            <h2>Thông tin cá nhân</h2>
+            <p>Bắt đầu tạo hồ sơ gia sư công khai của bạn.</p>
             <form>
-                <label>First Name</label>
-                <input type="text" placeholder="Your first name" />
+                <label>Họ</label>
+                <input type="text" placeholder="Họ của bạn" />
 
-                <label>Last Name</label>
-                <input type="text" placeholder="Your last name" />
+                <label>Tên</label>
+                <input type="text" placeholder="Tên của bạn" />
 
                 <label>Email</label>
-                <input type="email" placeholder="Your email" />
+                <input type="email" placeholder="Email của bạn" />
 
-                <label>Country of Birth</label>
+                <label>Quốc gia sinh</label>
                 <select>
-                    <option>Aland Islands</option>
-                    <option>Vietnam</option>
+                    <option>Quần đảo Aland</option>
+                    <option>Việt Nam</option>
                 </select>
 
-                <label>Subject you teach</label>
+                <label>Môn học bạn dạy</label>
                 <select>
-                    <option>English</option>
-                    <option>Math</option>
+                    <option>Tiếng Anh</option>
+                    <option>Toán</option>
                 </select>
-                <Form.Label htmlFor="exampleColorInput">Chọn màu da của bạn</Form.Label>
-                <Form.Control
-                    type="color"
-                    id="exampleColorInput"
-                    defaultValue="#563d7c"
-                    title="Choose your color"
-                />
+              
                 <button type="button" onClick={nextStep}>
-                    Save and Continue
+                    Lưu và Tiếp tục
                 </button>
             </form>
         </div>

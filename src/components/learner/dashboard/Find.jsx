@@ -105,8 +105,8 @@ const TutorCard = () => {
                     </div>
                     <div className="row mt-3">
                         <div className="col-md-12 text-end">
-                            <Button className="btn btn-pink me-2" onClick={() => setOpen(true)}>Book trial lesson</Button>
-                            <button className="btn btn-outline-secondary">Send message</button>
+                            <Button className="btn btn-pink me-2" onClick={() => setOpen(true)}>Xem chi tiết</Button>
+                            <button className="btn btn-outline-secondary">nhắn tin </button>
                         </div>
                     </div>
                 </div>

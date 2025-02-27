@@ -37,7 +37,7 @@ const Calendar = () => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [taskInput, setTaskInput] = useState("");
 
-  const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const daysOfWeek = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
   const weeks = generateCalendar(currentMonth, currentYear);
 
   const handlePrevMonth = () => {
@@ -76,9 +76,9 @@ const Calendar = () => {
     <main className="calendar-contain">
       <section className="calendar__sidebar">
         <div className="sidebar__header">
-          <span className="sidebar__title">Schedule Tutor</span>
+          <span className="sidebar__title">Lịch dạy gia sư</span>
           <h2 className="sidebar__heading">
-            {selectedDate ? `Công việc ${selectedDate}/${currentMonth + 1}/${currentYear}` : "Select a Date"}
+            {selectedDate ? `Công việc ${selectedDate}/${currentMonth + 1}/${currentYear}` : "Chọn ngày"}
           </h2>
         </div>
         
@@ -88,7 +88,7 @@ const Calendar = () => {
               <li key={index} className="sidebar__list-item">{task}</li>
             ))
           ) : (
-            <li className="sidebar__list-item">No tasks</li>
+            <li className="sidebar__list-item">Không có công việc</li>
           )}
         </ul>
 

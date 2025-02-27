@@ -3,10 +3,10 @@ import "../../../assets/css/StepDescription.css";
 
 const StepDescription = ({ nextStep, prevStep }) => {
   const [sections, setSections] = useState([
-    { id: 1, title: "Introduce yourself", content: "", isCollapsed: false },
-    { id: 2, title: "Teaching experience", content: "", isCollapsed: false },
-    { id: 3, title: "Motivate potential students", content: "", isCollapsed: false },
-    { id: 4, title: "Write a catchy headline", content: "", isCollapsed: false },
+    { id: 1, title: "Giới thiệu bản thân", content: "", isCollapsed: false },
+    { id: 2, title: "Kinh nghiệm giảng dạy", content: "", isCollapsed: false },
+    { id: 3, title: "Động viên học sinh tiềm năng", content: "", isCollapsed: false },
+    { id: 4, title: "Viết tiêu đề hấp dẫn", content: "", isCollapsed: false },
   ]);
 
   // Cập nhật nội dung khi nhập liệu
@@ -40,8 +40,8 @@ const StepDescription = ({ nextStep, prevStep }) => {
 
   return (
     <div className="step-description">
-      <h2>Profile description</h2>
-      <p>This info will go on your public profile.</p>
+      <h2>Mô tả hồ sơ</h2>
+      <p>Thông tin này sẽ xuất hiện trên hồ sơ công khai của bạn.</p>
 
       {sections.map((section) => (
         <div
@@ -57,16 +57,16 @@ const StepDescription = ({ nextStep, prevStep }) => {
 
           {!section.isCollapsed ? (
             <>
-              <p>Provide details about: {section.title.toLowerCase()}.</p>
+              <p>Nhập chi tiết về: {section.title.toLowerCase()}.</p>
               <textarea
                 rows="5"
-                placeholder={`Enter your ${section.title.toLowerCase()} here...`}
+                placeholder={`Nhập thông tin về ${section.title.toLowerCase()} của bạn...`}
                 value={section.content}
                 onChange={(e) => handleChange(section.id, e.target.value)}
                 onBlur={() => handleBlur(section.id)}
               />
               <p className="note">
-                ⚠ Don’t include your last name or present your information in a CV format.
+                ⚠ Không bao gồm họ của bạn và không trình bày thông tin như một sơ yếu lý lịch.
               </p>
             </>
           ) : (
@@ -79,8 +79,8 @@ const StepDescription = ({ nextStep, prevStep }) => {
 
       {/* Điều hướng */}
       <div className="navigation-buttons">
-        <button onClick={prevStep} className="back-button">Back</button>
-        <button onClick={nextStep} className="next-button">Save and continue</button>
+        <button onClick={prevStep} className="back-button">Quay lại</button>
+        <button onClick={nextStep} className="next-button">Lưu và tiếp tục</button>
       </div>
     </div>
   );
