@@ -8,7 +8,9 @@ const Home = () => {
     return (
         <div className='home-overflow'>
                 <NavbarAfter />
+                <div className='sort-container'>
                 <Sort/>
+                </div>
                 <Find/>
                 <Footer /> 
         </div>

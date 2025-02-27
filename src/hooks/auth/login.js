@@ -21,7 +21,7 @@ export const useLogin = () => {
     },
     onSuccess: (data) => {
       localStorage.setItem('authToken', data.token);
-      navigate('/dashboard');
+      navigate('/find');
     },
     onError: (error) => {
       console.error('Login failed:', error);

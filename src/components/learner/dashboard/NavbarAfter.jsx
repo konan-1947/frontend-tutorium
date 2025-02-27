@@ -38,7 +38,7 @@ function NavBar() {
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" navbarScroll>
-            <Nav.Link as={Link} to="/find" className="chu-goc-ben-trai-navbar">Tìm gia sư</Nav.Link>
+   
             <NavDropdown title="More" id="navbarScrollingDropdown" className="chu-goc-ben-trai-navbar">
               <NavDropdown.Item as={Link} to="/services">Diễn đàn</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/contact">Liên hệ với chúng tôi</NavDropdown.Item>

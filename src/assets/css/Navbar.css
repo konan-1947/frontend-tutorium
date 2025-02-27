@@ -41,14 +41,9 @@
 
 }
 
-.nut-dang-nhap {
-    color: #5271ff;
-    background-color: transparent;
-    border-radius: 10px;
-    border: 1px solid #000000;
-}
 
-.nut-dang-nhap:hover {
+
+.nut-dang-nhap-1:hover {
     color: #e9eaf7;
     background-color: #5271ff;
 }

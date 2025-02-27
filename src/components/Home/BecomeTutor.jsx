@@ -4,6 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import CSS của AOS
 import '../../assets/css/becometutor.css';
 import { useNavigate } from "react-router-dom";
+import Img from '../../assets/img/imgbecometutor.jpg';
 const BecomeTutorSection = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -12,7 +13,7 @@ const BecomeTutorSection = () => {
   return (
     <section id='becometutor' className="become-tutor-section">
       <div className="become-tutor-image" data-aos="fade-right">
-        <img src='https://i.ytimg.com/vi/H0qcbjjmreg/hqdefault.jpg' alt="Tutor" />
+        <img src={Img} alt="Tutor" />
       </div>
       <div className="become-tutor-content">
         <h1 data-aos="fade-up" data-aos-delay="200">Trở thành gia sư</h1>

@@ -62,8 +62,8 @@ function NavBar() {
             </NavDropdown>
           </Nav>
 
-          <Nav className="ms-auto chu-goc-ben-phai-navbar nut-dang-nhap">
-            <Button onClick={() => Navigate("/login")} size="lg" className="nut-dang-nhap" variant="none">
+          <Nav className="ms-auto chu-goc-ben-phai-navbar nut-dang-nhap-1">
+            <Button onClick={() => Navigate("/login")} size="lg" className="nut-dang-nhap-1" variant="none">
               <i className="fa fa-sign-in me-3"></i> Sign in
             </Button>
           </Nav>
@@ -75,10 +75,7 @@ function NavBar() {
               <div className="user-dropdown">
                 <Link to="/">Home</Link>
                 <Link to="/messages">Messages</Link>
-                <Link to="/lessons">My lessons</Link>
-                <Link to="/saved-tutors">Saved tutors</Link>
-                <Link to="/refer">Refer a friend</Link>
-                <Link to="/settings">Settings</Link>
+                <Link to="/profilelearner">Profile</Link>
                 <Link to="/help">Help</Link>
                 <hr />
                 <Link to="/">Log out</Link>

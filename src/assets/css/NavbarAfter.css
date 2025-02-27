@@ -2,9 +2,10 @@
 #navbar {
     transition: top 0.3s;
   }
-  
-  .mau-nen-navbar{
-    background-color: hite;
+.mau-nen-navbar-1 {
+   background-color: rgb(255, 255, 255) !important;
+   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+
   }
 
   /* Căn chỉnh icon */
