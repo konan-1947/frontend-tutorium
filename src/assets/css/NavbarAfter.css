@@ -27,7 +27,7 @@
   
  /* Avatar */
 .user-icon {
-    width: 3.6rem;   
+    width: 3.2rem;   
     height: 3.4rem;  /* Đặt chiều cao bằng với chiều rộng để tạo hình vuông */
     border-radius: 10px; /* Nếu muốn viền bo nhẹ, có thể dùng 5px - 10px */
     overflow: hidden;

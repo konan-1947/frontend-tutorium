@@ -6,13 +6,13 @@ import Sidebar from "../components/tutor/dashboard/Sidebar";
 import DashboardStats from "../components/tutor/dashboard/Stats";
 import CourseList from "../components/tutor/dashboard/CourseList";
 import StudentList from "../components/tutor/dashboard/StudentList";
-import Schedule from "../components/tutor/schedules/schedules";
+import Schedule from "../components/tutor/schedules/Schedules";
 import TutorProfile from "../components/tutor/dashboard/Profile";
 const TutorDashboard = () => {
   const [activeComponent, setActiveComponent] = useState("all");
   const navigate = useNavigate(); // Khởi tạo navigate
   const location = useLocation(); // Lấy thông tin về URL hiện tại
-
+  
   useEffect(() => {
     // Cập nhật activeComponent khi URL thay đổi
     const path = location.pathname.split("/").pop();
