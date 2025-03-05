@@ -15,6 +15,13 @@ function NavBar() {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const Navigate = useNavigate();
+  const handleScrollToTop = () => {
+    // Cuộn lên đầu trang
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
+  };
 
   useEffect(() => {
 
@@ -50,7 +57,7 @@ function NavBar() {
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" navbarScroll>
             <div className="d-flex align-items-center text-ben-trai">
-            <Nav.Link as={Link} to="/find" className="chu-goc-ben-trai-navbar">Tìm gia sư</Nav.Link>
+            <Nav.Link as={Link} to="/find" onClick={handleScrollToTop}  className="chu-goc-ben-trai-navbar">Tìm gia sư</Nav.Link>
             <Nav.Link  href="#becometutor" className="chu-goc-ben-trai-navbar">
               Trở thành gia sư
             </Nav.Link></div>

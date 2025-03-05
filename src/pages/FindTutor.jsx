@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import NavbarAfter from '../components/learner/dashboard/NavbarAfter'
 import Footer from '../components/Home/Footer'
 import '../assets/css/home.css'
-import Find from '../components/learner/dashboard/Find'
+import Find from '../components/learner/dashboard/TutorCard'
 import Sort from '../components/learner/dashboard/Sort'
 const Home = () => {
     return (

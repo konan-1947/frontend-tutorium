@@ -29,25 +29,20 @@ const Sidebar = ({ setActiveComponent }) => {
 
     return (
         <div className="sidebar p-3 bg-light vh-100" ref={sidebarRef}>
-            <h5 className="mb-3">Tutorium</h5>
+     
             <ListGroup variant="flush">
 
                 {/* Dashboard Dropdown */}
-                <ListGroup.Item className="dropdown-toggle" onClick={() => toggleDropdown("dashboard")}>
-
+             
                    
-                </ListGroup.Item>
+        
                 <ListGroup.Item action href="#">
                   
-                </ListGroup.Item>
-
-                {openDropdown === "dashboard" && (
-                    <div className="submenu">
-                                 
+                </ListGroup.Item>                        
                         <ListGroup.Item onClick={() => setActiveComponent("all")}>    
                             <House className="me-2" /> Trang chủ
                         </ListGroup.Item>
-                        <ListGroup.Item action href="#">
+                        <ListGroup.Item onClick={() => setActiveComponent("profile")}>
                             <Person className="me-2" /> Hồ sơ của tôi
                         </ListGroup.Item>
 
@@ -63,8 +58,8 @@ const Sidebar = ({ setActiveComponent }) => {
                         <ListGroup.Item onClick={() => setActiveComponent("coursetList")}>
                             <CreditCard className="me-2" /> Lịch sử giao dịch
                         </ListGroup.Item>
-                    </div>
-                )}
+                   
+               
 
                 {/* My Profile */}
 

@@ -1,17 +1,36 @@
 .tutor-card {
-  
+    margin: 2rem auto;
     max-width: 1100px;
-    margin: auto;
+    
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
     padding: 20px;
     transition: all 0.3s ease-in-out;
 }
-
+.tutorSearch-body{
+    padding-top: 6rem
+}
+.Container-card li{
+    list-style: none;
+    display: block;
+}
 .tutor-card:hover {
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
 }
+.custom-btn:hover {
+    background-color: inherit !important;  /* Giữ màu nền nguyên bản */
+    border-color: inherit !important;      /* Giữ màu viền nguyên bản */
+    box-shadow: none !important;    
+    color: black;      
+    transform: none !important;   /* Tắt hiệu ứng bóng đổ */
+  }
+  
+  /* Tùy chỉnh padding và khoảng cách giữa các nút */
+  .custom-btn {
+    padding: 10px 20px !important; /* Điều chỉnh padding */
+    margin-top: 10px; /* Khoảng cách giữa các nút */
+  }
 
 .tutor-image img {
     width: 100%;
@@ -115,8 +134,8 @@
     color: #ff3385;
 }
 .Container-card {
-    display: flex;
+    
     flex-wrap: wrap;
     justify-content: center;
-    gap:20px;
+    
 }
