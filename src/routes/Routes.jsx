@@ -16,11 +16,12 @@ import SearchTutor from "../pages/SearchTutor";
 import ChooseCustomLearnerInfo from "../pages/ChooseCustomLearnerInfo";
 // Import Admin (trang `App.js` của bạn)
 import Admin from "../pages/Admin"; 
-
+import Test from "../pages/test";
 const AppRoutes = () => {
   return (
     <Routes>
       {/* Routes dành cho User */}
+      <Route path="/test" element={<Test />} />
       <Route path="/learner/choosecustominfo" element={<ChooseCustomLearnerInfo />} />
       <Route path="/learner/booking" element={<Booking />} />
       <Route path="/learner/cashing" element={<Cashing />} />

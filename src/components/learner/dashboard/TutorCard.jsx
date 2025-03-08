@@ -5,7 +5,7 @@ import '../../../assets/css/schedule.css';
 import { FaStar } from 'react-icons/fa';
 import { Button } from "./ButtonPopup";
 import { useNavigate } from 'react-router-dom';
-import { useSearchTutors } from '../../../hooks/Search/search'; // Import custom hook
+import { useSearchTutors } from '../../../hooks/search/learnerSearchTutor'; // Import custom hook
 import Uia from '../../../assets/img/ui.gif'; // GIF loading
 import { Box, MenuItem, Select, InputAdornment, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';

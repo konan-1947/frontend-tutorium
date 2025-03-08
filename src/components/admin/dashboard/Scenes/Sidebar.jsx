@@ -119,8 +119,8 @@ const Sidebar = () => {
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
-              title="Dashboard"
-              to="/admin/dashboard"
+              title="Trang chủ"
+              to="/admin"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -134,21 +134,28 @@ const Sidebar = () => {
               Data
             </Typography>
             <Item
-              title="Manage Team"
+              title="Quản lý Admin"
+              to="/admin/ad"
+              icon={<PeopleOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Quản lý gia sư"
               to="/admin/team"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Contacts Information"
+              title="Quản lý học viên"
               to="/admin/contacts"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Invoices Balances"
+              title="Quản lý danh mục"
               to="/admin/invoices"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
@@ -163,7 +170,7 @@ const Sidebar = () => {
               Pages
             </Typography>
             <Item
-              title="Profile Form"
+              title="Thêm khoá học"
               to="/admin/form"
               icon={<PersonOutlinedIcon />}
               selected={selected}
@@ -185,7 +192,8 @@ const Sidebar = () => {
             >
               Charts
             </Typography>
-            <Item
+            
+            {/* <Item
               title="Bar Chart"
               to="/admin/bar"
               icon={<BarChartOutlinedIcon />}
@@ -205,7 +213,7 @@ const Sidebar = () => {
               icon={<TimelineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
        
           </Box>
         </Menu>

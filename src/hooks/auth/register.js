@@ -1,7 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
-
+import { useNavigate } from 'react-router-dom';
 export const useRegister = () => {
+  const Navigate = useNavigate();
   return useMutation({
+    
+
     mutationFn: async ({ username, displayname, email, password }) => {
       const response = await fetch('/api/auth/register', {
         method: 'POST',
@@ -18,6 +21,7 @@ export const useRegister = () => {
     },
     onSuccess: (data) => {
       console.log('Registration successful:', data);
+      Navigate('/find');
       // Có thể thêm logic chuyển hướng hoặc thông báo sau khi đăng ký
     },
     onError: (error) => {

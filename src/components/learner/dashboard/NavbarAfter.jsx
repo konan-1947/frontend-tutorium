@@ -8,10 +8,15 @@ import "../../../assets/css/NavBarAfter.css";
 import "../../../assets/css/fonts.css";
 import 'font-awesome/css/font-awesome.min.css';
 import Tur from '../../../assets/img/avatar.png';
+import Logout from "../../../hooks/auth/useLogout";
+
 function NavBar() {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null); // Tạo ref cho dropdown
-
+  const handleLogout = async () => {
+    await Logout(); // Gọi API đăng xuất
+    window.location.href = "/"; // Chuyển hướng về trang chủ sau khi đăng xuất
+  };
   // Đóng dropdown khi click ra ngoài
   useEffect(() => {
     function handleClickOutside(event) {
@@ -19,7 +24,7 @@ function NavBar() {
         setShowDropdown(false);
       }
     }
-    
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -34,11 +39,11 @@ function NavBar() {
           <img src="/assets/img/logo.png" alt="logo" width="50" height="50" className="me-2 rounded-circle border border-dark" />
           <h3 className="m-1 chu-goc-ben-trai-navbar">Tutorium</h3>
         </Navbar.Brand>
-        
+
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" navbarScroll>
-   
+
             <NavDropdown title="Thêm" id="navbarScrollingDropdown" className="chu-goc-ben-trai-navbar">
               <NavDropdown.Item as={Link} to="/services">Diễn đàn</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/contact">Liên hệ với chúng tôi</NavDropdown.Item>
@@ -75,7 +80,8 @@ function NavBar() {
                 <Link to="/lessons">Hồ sơ</Link>
 
                 <hr />
-                <Link to="/">Đăng xuất</Link>
+                <Link onClick={() => { handleLogout() }}>Đăng xuất</Link>
+
               </div>
             )}
           </Nav>
