@@ -5,21 +5,24 @@ import { Routes, Route } from "react-router-dom";
 import TutorRegister from "../pages/TutorRegister";
 import Home from "../pages/Home";
 import Auth from "../pages/Auth";
-import FindTutor from "../pages/FindTutor";
-import Detail from "../pages/Detail";
-import Booking from "../components/learner/booking/schedule";
+
+import Detail from "../pages/DetailTutor";
+import Booking from "../components/learner/booking/Schedule";
 import TutorDashboard from "../pages/TutorDashboard";
 import Howtosignup from "../pages/HowtoSignUp";
 import ProfileLearner from "../pages/Profilelearner";
 import Cashing from "../components/learner/booking/Cash";
 import SearchTutor from "../pages/SearchTutor";
+import ChooseCustomLearnerInfo from "../pages/ChooseCustomLearnerInfo";
 // Import Admin (trang `App.js` của bạn)
 import Admin from "../pages/Admin"; 
-
+import Test from "../pages/test";
 const AppRoutes = () => {
   return (
     <Routes>
       {/* Routes dành cho User */}
+      <Route path="/test" element={<Test />} />
+      <Route path="/learner/choosecustominfo" element={<ChooseCustomLearnerInfo />} />
       <Route path="/learner/booking" element={<Booking />} />
       <Route path="/learner/cashing" element={<Cashing />} />
       <Route path="/profilelearner" element={<ProfileLearner />} />

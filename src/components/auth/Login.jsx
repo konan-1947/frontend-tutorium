@@ -48,13 +48,18 @@ const LoginPage = () => {
     registerMutation.mutate(data);
   };
 
+  const handleGoogleLogin = () => {
+    window.location.href = "/auth/google";
+  };
+
+
   return (
     <div className={`login-container ${isSignUpActive ? "right-panel-active" : ""}`}>
       <div className="form-container sign-in-container">
         <div className="form w-100">
           <h2 className="text-center fw-bold">Đăng nhập</h2>
           <div className="social-login">
-            <button className="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center">
+            <button className="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center" onClick={handleGoogleLogin}>
               <FaGoogle className="me-2" /> Tiếp tục với Google
             </button>
           </div>
@@ -109,7 +114,7 @@ const LoginPage = () => {
         <div className="form w-100">
           <h2 className="text-center fw-bold">Đăng ký</h2>
           <div className="social-login">
-            <button className="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center">
+            <button className="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center" onClick={handleGoogleLogin}>
               <FaGoogle className="me-2" /> Tiếp tục với Google
             </button>
           </div>

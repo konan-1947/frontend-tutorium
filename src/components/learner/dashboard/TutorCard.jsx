@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../assets/css/find.css';
 import '../../../assets/css/schedule.css';
 import { FaStar } from 'react-icons/fa';
 import { Button } from "./ButtonPopup";
 import { useNavigate } from 'react-router-dom';
-import { useSearchTutors } from '../../../hooks/Search/Search'; // Import custom hook
+import { useSearchTutors } from '../../../hooks/search/learnerSearchTutor'; // Import custom hook
 import Uia from '../../../assets/img/ui.gif'; // GIF loading
 import { Box, MenuItem, Select, InputAdornment, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { Search } from 'lucide-react';
+
 
 const TutorSearch = () => {
     const { mutate, isLoading, error, data } = useSearchTutors();
@@ -18,10 +18,19 @@ const TutorSearch = () => {
 
     const [search, setSearch] = useState(''); // Trạng thái loading cho dữ liệu gửi đi
     const [category, setCategory] = useState('');
-    const [location, setLocation] = useState('');
-    const [Salary, setSalary] = useState('');
+    const [address, setAddress] = useState('');
     const [userAddress, setUserAddress] = useState('');
 
+    useEffect(() => {
+        // Lấy dữ liệu đã lưu từ localStorage
+        const savedData = JSON.parse(localStorage.getItem('chooseCustomData'));
+        if (savedData) {
+          setCategory(savedData.category);
+          setAddress(savedData.address);
+       
+        }
+      }, []);
+    
     const handleSearch = (e) => {
         e.preventDefault();
         setLoading(true); // Bắt đầu loading khi người dùng bấm gửi
@@ -142,21 +151,22 @@ const TutorSearch = () => {
                         </div>
 
                         <div>
-                            <Select
-                                sx={{ width: '100%' }}
-                                value={location} // Bind the state to the Select value
-                                onChange={(e) => setLocation(e.target.value)} // Update the state on change
+                        <TextField
+                                sx={{ flex: 2 }}
+                                placeholder="Địa chỉ của của gia sư"
                                 name="address"
-                                displayEmpty
-                            >
-                                <MenuItem value="" >Địa chỉ</MenuItem>
-                                <MenuItem value="Hồ Chí Minh">Hồ Chí Minh</MenuItem>
-                                <MenuItem value="Hà Nội">Hà Nội</MenuItem>
-                                <MenuItem value="Thái Bình">Thái Bình</MenuItem>
-                                <MenuItem value="Bình Dương">Bình Dương</MenuItem>
-                            </Select>
-                        </div>
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon />
+                                        </InputAdornment>
+                                    ),
+                                }}
 
+                            />
+                        </div>
                         <div>
                             <TextField
                                 sx={{ flex: 2 }}

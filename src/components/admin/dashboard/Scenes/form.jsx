@@ -1,154 +1,97 @@
 import { Box, Button, TextField } from "@mui/material";
-import { Formik } from "formik";
-import * as yup from "yup";
+import { useState } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../Header";
+import { useAddCategory } from "../../../../hooks/admin/addCategory";
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
+  const addMutation = useAddCategory();
 
-  const handleFormSubmit = (values) => {
-    console.log(values);
+  const [categoryname, setCategoryname] = useState("");
+  const [description, setDescription] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  // Hàm xử lý submit form
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Kiểm tra đầu vào
+    if (!categoryname || !description) {
+      setError("Cả tên thể loại và mô tả đều là bắt buộc.");
+      return;
+    }
+    
+    setLoading(true);
+    setError(null);
+
+    // Gửi yêu cầu POST lên API
+    try {
+      addMutation.mutate({
+        categoryname,
+        description,
+      });
+    } catch (err) {
+      setError("Có lỗi xảy ra khi tạo thể loại.");
+    } finally {
+      setLoading(false);
+    
+    }
   };
 
   return (
     <Box m="20px">
-      <Header title="CREATE USER" subtitle="Create a New User Profile" />
+      <Header title="CREATE CATEGORY" subtitle="Create a New Category" />
+      <form onSubmit={handleSubmit}>
+        <Box
+          display="grid"
+          gap="30px"
+          gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+          sx={{
+            "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+          }}
+        >
+          <TextField
+            fullWidth
+            variant="filled"
+            type="text"
+            label="Tên thể loại"
+            name="categoryname"
+            value={categoryname}
+            onChange={(e) => setCategoryname(e.target.value)}
+            error={Boolean(error && !categoryname)}
+            helperText={error && !categoryname ? "Tên thể loại là bắt buộc" : ""}
+            sx={{ gridColumn: "span 2" }}
+          />
 
-      <Formik
-        onSubmit={handleFormSubmit}
-        initialValues={initialValues}
-        validationSchema={checkoutSchema}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleBlur,
-          handleChange,
-          handleSubmit,
-        }) => (
-          <form onSubmit={handleSubmit}>
-            <Box
-              display="grid"
-              gap="30px"
-              gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-              sx={{
-                "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
-              }}
-            >
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="First Name"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.firstName}
-                name="firstName"
-                error={!!touched.firstName && !!errors.firstName}
-                helperText={touched.firstName && errors.firstName}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Last Name"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.lastName}
-                name="lastName"
-                error={!!touched.lastName && !!errors.lastName}
-                helperText={touched.lastName && errors.lastName}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Email"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.email}
-                name="email"
-                error={!!touched.email && !!errors.email}
-                helperText={touched.email && errors.email}
-                sx={{ gridColumn: "span 4" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Contact Number"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.contact}
-                name="contact"
-                error={!!touched.contact && !!errors.contact}
-                helperText={touched.contact && errors.contact}
-                sx={{ gridColumn: "span 4" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Address 1"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address1}
-                name="address1"
-                error={!!touched.address1 && !!errors.address1}
-                helperText={touched.address1 && errors.address1}
-                sx={{ gridColumn: "span 4" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Address 2"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address2}
-                name="address2"
-                error={!!touched.address2 && !!errors.address2}
-                helperText={touched.address2 && errors.address2}
-                sx={{ gridColumn: "span 4" }}
-              />
-            </Box>
-            <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="secondary" variant="contained">
-                Create New User
-              </Button>
-            </Box>
-          </form>
-        )}
-      </Formik>
+          <TextField
+            fullWidth
+            variant="filled"
+            type="text"
+            label="Mô tả"
+            name="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            error={Boolean(error && !description)}
+            helperText={error && !description ? "Mô tả là bắt buộc" : ""}
+            sx={{ gridColumn: "span 4" }}
+          />
+        </Box>
+
+        <Box display="flex" justifyContent="end" mt="20px">
+          {error && <p className="text-danger">{error}</p>}
+          <Button
+            type="submit"
+            color="secondary"
+            variant="contained"
+            disabled={loading}
+          >
+            {loading ? "Đang tạo..." : "Tạo thể loại"}
+          </Button>
+        </Box>
+      </form>
     </Box>
   );
-};
-
-const phoneRegExp =
-  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
-
-const checkoutSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
-  contact: yup
-    .string()
-    .matches(phoneRegExp, "Phone number is not valid")
-    .required("required"),
-  address1: yup.string().required("required"),
-  address2: yup.string().required("required"),
-});
-const initialValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  contact: "",
-  address1: "",
-  address2: "",
 };
 
 export default Form;

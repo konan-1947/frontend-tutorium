@@ -6,7 +6,7 @@ export const useSearchTutors = () => {
       // Convert FormData to query string
       const queryString = new URLSearchParams(formData).toString();
 
-      const response = await fetch(`/api/tutor/search?${queryString}`, {
+      const response = await fetch(`/api/learner/search?${queryString}`, {
         method: 'GET',
         headers: {
           // Add any necessary headers here
