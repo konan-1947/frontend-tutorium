@@ -21,18 +21,20 @@ const TutorSearch = () => {
     const [address, setAddress] = useState('');
     const [userAddress, setUserAddress] = useState('');
 
+
     useEffect(() => {
         // Lấy dữ liệu đã lưu từ localStorage
         const savedData = JSON.parse(localStorage.getItem('chooseCustomData'));
         if (savedData) {
-          setCategory(savedData.category);
-          setAddress(savedData.address);
-       
+            setCategory(savedData.category);
+            setAddress(savedData.address);
+
         }
-      }, []);
-    
+    }, []);
+
     const handleSearch = (e) => {
         e.preventDefault();
+        console.log('dâdasd');
         setLoading(true); // Bắt đầu loading khi người dùng bấm gửi
 
         const form = new FormData(e.target); // Collect the form data
@@ -48,6 +50,7 @@ const TutorSearch = () => {
 
     // Handle rendering the tutor results
     const renderTutors = (tutors) => {
+
         return (
             <div className="Container-card">
                 {tutors.map((tutor, index) => (
@@ -55,7 +58,7 @@ const TutorSearch = () => {
                         <div className="tutor-card border p-3 rounded container">
                             <div className="row align-items-center">
                                 <div className="col-md-2 tutor-image text-center">
-                                    <img onClick={() => navigate("/details")} src={tutor.imageUrl} alt="Tutor" className="tutor-avatar rounded img-fluid" />
+                                    <img onClick={() => navigate("/details")} src={tutor.User?.imgurl} alt="Tutor" className="tutor-avatar rounded img-fluid" />
                                 </div>
                                 <div className="col-md-7">
                                     <div className="d-flex">
@@ -74,7 +77,7 @@ const TutorSearch = () => {
                                     <div className="row">
                                         <div className="col-6 text-start">
                                             <p className="mb-1 tutor-rating"><FaStar className="text-warning" /> <strong>{tutor.socialcredit}</strong></p>
-                                            <p className="text-muted"> Điểm đánh giá</p>
+                                            <p className="text-muted"> Điểm đánh giá {tutor.userid}</p>
                                         </div>
                                         <div className="col-6 text-end">
                                             <p className="fw-bold tutor-price">${tutor.expectedsalary}</p>
@@ -84,7 +87,11 @@ const TutorSearch = () => {
                             </div>
                             <div className="row mt-3">
                                 <div className="col-md-12 text-end">
-                                    <Button className="btn btn-pink me-2" onClick={() => navigate("/details")}>Xem chi tiết</Button>
+                                    <Button className="btn btn-pink me-2" onClick={() => navigate(`/learner/detailTutor/:${tutor.userid}`, {
+                                        state: { userid: tutor.userid }
+                                    })}>
+                                        Xem chi tiết
+                                    </Button>
                                     <button className="btn btn-outline-secondary" onClick={() => handleFavorite(tutor)}>Nhắn tin</button>
                                 </div>
                             </div>
@@ -120,7 +127,7 @@ const TutorSearch = () => {
                     <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', justifyContent: 'space-between' }}>
                         <div>
                             <TextField
-                                sx={{ flex: 2,width: '120%' }}
+                                sx={{ flex: 2, width: '120%' }}
                                 placeholder="Tìm kiếm"
                                 name="displayname"
                                 value={search}
@@ -151,7 +158,7 @@ const TutorSearch = () => {
                         </div>
 
                         <div>
-                        <TextField
+                            <TextField
                                 sx={{ flex: 2 }}
                                 placeholder="Địa chỉ của của gia sư"
                                 name="address"

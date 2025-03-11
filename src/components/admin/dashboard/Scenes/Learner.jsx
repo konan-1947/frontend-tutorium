@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Button, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../../../data/theme";
-import getLearnerList from '../../../../hooks/admin/getLearnerList'; // Hàm lấy dữ liệu học viên
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
+import getLearnerList from '../../../../hooks/admin/getLearnerList'; // Gọi API lấy dữ liệu học viên
+import { useNavigate } from 'react-router-dom';  // Import useNavigate
 import Header from "../Header";
 
 const Learner = () => {
@@ -16,6 +14,8 @@ const Learner = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
+  const navigate = useNavigate();  // Initialize navigate hook
+
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
     { field: "name", headerName: "Tên", flex: 1, cellClassName: "name-column--cell" },
@@ -24,7 +24,25 @@ const Learner = () => {
     { field: "email", headerName: "Email", flex: 1 },
     { field: "dateOfBirth", headerName: "Ngày sinh", flex: 1 },
     { field: "role", headerName: "Vai trò", flex: 1 },
-   
+    {
+      field: "edit",
+      headerName: "Sửa",
+      flex: 1,
+      renderCell: (params) => {
+        const learnerData = {
+          userid: params.row.id, // Ensure categoryId is correctly passed
+        }
+        return (
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => navigate(`/admin/updateLearner/${params.row.id}`, { state: learnerData  })}  // Pass learner data via navigate
+          >
+            Sửa
+          </Button>
+        );
+      }
+    }
   ];
 
   // Hàm để lấy dữ liệu trước khi render
@@ -61,7 +79,6 @@ const Learner = () => {
     email: learner.User.email,
     dateOfBirth: new Date(learner.User.dateofbirth).toLocaleDateString(),
     role: learner.User.Roles[0].rolename
-
   }));
 
   return (

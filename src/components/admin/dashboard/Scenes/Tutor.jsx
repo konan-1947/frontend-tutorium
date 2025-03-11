@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../../../data/theme";
 import getTutorList from '../../../../hooks/admin/getTutorList'; // Hàm lấy dữ liệu giảng viên
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../Header";
+import { useNavigate } from 'react-router-dom'; // Hook để điều hướng
 
 const Team = () => {
   const [tutorData, setTutorData] = useState(null);
@@ -15,6 +13,8 @@ const Team = () => {
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+  const navigate = useNavigate();
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
@@ -29,10 +29,28 @@ const Team = () => {
       field: "videoLink",
       headerName: "Video Link",
       flex: 1,
-      renderCell: ({ row: { videoLink } }) => (
-        <a href={videoLink} target="_blank" rel="noopener noreferrer">Watch Video</a>
-      ),
     },
+    {
+      field: "edit", 
+      headerName: "Sửa", 
+      flex: 0.5, 
+      renderCell: (params ) => {
+        const tutorData = {
+          userid: params.row.id, // Ensure categoryId is correctly passed
+        }
+        return (
+          
+      
+        <Button 
+          variant="contained"
+          color="primary"
+          onClick={() =>navigate(`/admin/updateTutor/${params.row.id}`,{state:tutorData})}  // Xử lý nhấn nút Sửa
+        >
+          Sửa
+        </Button>
+      );
+    }
+    }
   ];
 
   // Hàm để lấy dữ liệu trước khi render
@@ -47,6 +65,9 @@ const Team = () => {
       setLoading(false);
     }
   };
+
+  // Hàm xử lý sự kiện khi nhấn nút Sửa
+  
 
   useEffect(() => {
     fetchData();

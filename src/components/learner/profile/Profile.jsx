@@ -182,7 +182,7 @@ const UserProfile = () => {
 
                     {selectedTab === 1 && (
                         <Box sx={{ color: '#333', padding: 3 }}>
-                            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 2 }}>Khóa học đang học</Typography>
+                            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 2 }}>Buổi đang học</Typography>
                             <Divider sx={{ marginBottom: 2 }} />
                             <List>
                                 {courses.map(course => (

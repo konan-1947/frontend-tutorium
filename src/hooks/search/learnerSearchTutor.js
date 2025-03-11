@@ -5,7 +5,7 @@ export const useSearchTutors = () => {
     mutationFn: async (formData) => {
       // Convert FormData to query string
       const queryString = new URLSearchParams(formData).toString();
-
+      console.log(queryString);
       const response = await fetch(`/api/learner/search?${queryString}`, {
         method: 'GET',
         headers: {

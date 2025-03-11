@@ -1,56 +1,93 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import '../../../assets/css/tutorInfo.css';
-import TutorImage from '../../../assets/img/tur.jpg';
-import TutorVideoThumbnail from '../../../assets/img/tur.jpg';
-import { FaCheckCircle, FaBolt, FaEnvelope, FaHeart, FaPlayCircle } from 'react-icons/fa';
+import { FaBolt, FaEnvelope, FaHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-// Định nghĩa một đối tượng dữ liệu cho tutor
-const tutorData = {
-  name: "Trần Văn A",
-  category: "Toán",
-  description: "Mô tả về giảng viên",
-  descriptionVideoLink: "https://www.example.com/video-link", // Đây là đường dẫn video, có thể sử dụng cho video tutorial
-  price: 50,
-  rating: 4.5,
-};
-
 const TutorInfo = () => {
+  const location = useLocation(); // Get the location object
+  const { userid } = location.state || {}; // Retrieve user ID data from state
   const navigate = useNavigate();
+
+  // States to handle data, loading, and error
+  const [tutorData, setTutorData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch tutor details when userId changes
+  useEffect(() => {
+    const fetchTutorDetails = async () => {
+      if (!userid) return;
+
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch(`/api/admin/getTutorDetail/${userid}`, {
+          method: 'GET',
+          credentials: 'true',
+        });
+
+        if (!response.ok) {
+          throw new Error("Không thể lấy thông tin gia sư");
+        }
+
+        const data = await response.json();
+        setTutorData(data); // Assuming the data is nested under 'data'
+        console.log(data.data.data);
+        setTutorData(data.data.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchTutorDetails();
+  }, [userid]);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading tutor information: {error}</div>;
 
   return (
     <div className="tutor-info-page">
       <div className="tutor-info-container">
         <div className="tutor-header">
-          <img src={TutorImage} alt="Tutor" className="tutor-profile-pic" />
+          <img src={tutorData?.User?.imgurl} alt="Tutor" className="tutor-profile-pic" />
           <div className="tutor-details">
-            <h1 className="tutor-name">{tutorData.name} <span className="country-flag">🇨🇦</span></h1>
-            <p className="tutor-description">{tutorData.category}</p>
+            <h1 className="tutor-name">{tutorData?.User.displayname}</h1>
+            <p className="tutor-description">{tutorData?.User.email}</p>
+            <p>{tutorData?.User.address}</p>
           </div>
         </div>
         <div className="tutor-credentials">
-        
-      
+          <p>Date of Birth: {tutorData?.User.dateofbirth}</p>
+          <p>Expected Salary: {tutorData?.expectedsalary} VND</p>
+          <p>Contracts Completed: {tutorData?.contracts}</p>
         </div>
         <div className="about-section">
           <h2>Mô tả</h2>
-          <p>{tutorData.description}</p>
-          <a href="#" className="show-more"></a>
+          <p>{tutorData?.description}</p>
+          {tutorData?.descriptionvideolink && (
+            <div className="video-section">
+              <h3>Video Introduction</h3>
+             <iframe width="560" height="315" src={tutorData.descriptionvideolink} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ></iframe>
+
+          
+            </div>
+          )}
         </div>
       </div>
+      
       <div className="tutor-sticky-card">
-        <div className="video-thumbnail">
-          <img src={TutorVideoThumbnail} alt="Tutor Video" className="video-preview" />
-        </div>
+      <iframe width="100%" src={tutorData.descriptionvideolink}  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ></iframe>
+
         <div className="tutor-pricing">
-          <span className="lesson-count"> Điểm đánh giá {tutorData.rating}</span>
-          <span className="lesson-price">{tutorData.price} VND </span>
-   
+          <span className="lesson-price">{tutorData?.expectedsalary} VND</span>
         </div>
         <button className="btn-primary" onClick={() => navigate('/learner/booking')}><FaBolt /> Đăng kí</button>
         <button className="btn-secondary"><FaEnvelope /> Nhắn tin</button>
         <button className="btn-secondary"><FaHeart /> Theo dõi</button>
-      
       </div>
     </div>
   );

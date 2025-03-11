@@ -77,7 +77,7 @@ function NavBar() {
               <div className="user-dropdown" ref={dropdownRef}>
                 <Link to="/">Trang chủ</Link>
                 <Link to="/messages">Nhắn tin</Link>
-                <Link to="/lessons">Hồ sơ</Link>
+                <Link to="/profilelearner">Hồ sơ</Link>
 
                 <hr />
                 <Link onClick={() => { handleLogout() }}>Đăng xuất</Link>

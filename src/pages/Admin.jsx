@@ -11,14 +11,16 @@ import Tutor from "../components/admin/dashboard/Scenes/Tutor";
 import Course from "../components/admin/dashboard/Scenes/Category";
 import Learner from "../components/admin/dashboard/Scenes/Learner";
 import Bar from "../components/admin/dashboard/Scenes/bar";
-import Form from "../components/admin/dashboard/Scenes/form";
+import Form from "../components/admin/dashboard/Scenes/addCategory";
 import Line from "../components/admin/dashboard/Scenes/line";
 import Pie from "../components/admin/dashboard/Scenes/pie";
 import FAQ from "../components/admin/dashboard/Scenes/faq";
 import Ad from "../components/admin/dashboard/Scenes/Admin";
 import "../assets/css/Admin.css";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
+import UpdateCategoryForm from "../components/admin/dashboard/Scenes/updateCategory";
+import UpdateLearnerForm from "../components/admin/dashboard/Scenes/updateLearner";
+import UpdateTutorForm from "../components/admin/dashboard/Scenes/updateTutor";
 function Admin() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
@@ -34,7 +36,11 @@ function Admin() {
           <main className="content">
             <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
+              <Route path="updatetutor/:userid" element={<UpdateTutorForm/>} />
+              <Route path="dashboard" element={<Dashboard />} />
               <Route path="/" element={<Ad />} />
+              <Route path="updatelearner/:userid" element={<UpdateLearnerForm/>} />
+              <Route path="updatecategory/:categoryId" element={<UpdateCategoryForm/>} />
               <Route path="ad" element={<Ad/>} />
               <Route path="team" element={<Tutor />} />
               <Route path="contacts" element={<Learner />} />

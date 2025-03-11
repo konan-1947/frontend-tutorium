@@ -5,10 +5,13 @@ import { tokens } from "../../../../data/theme";
 import getCategoryList from '../../../../hooks/admin/getCategoryList'; // Hàm lấy dữ liệu category
 import { useDeleteCategory } from '../../../../hooks/admin/deleteCategory'; // Import hook deleteMutation
 import Header from "../Header";
+import { useNavigate } from 'react-router-dom'; // Assuming you're using React Router for navigation
+
 const Category = () => {
   const [categoryData, setCategoryData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Hook to handle navigation
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -22,6 +25,29 @@ const Category = () => {
     { field: "id", headerName: "ID", flex: 0.5 },
     { field: "name", headerName: "Tên", flex: 1, cellClassName: "name-column--cell" },
     { field: "specialization", headerName: "Mô tả", flex: 1 },
+    {
+      field: "edit",
+      headerName: "Sửa",
+      flex: 1,
+      renderCell: (params) => {
+        const categoryData = {
+          categoryId: params.row.id, // Ensure categoryId is correctly passed
+          categoryname: params.row.name,
+          description: params.row.specialization,
+        };  
+        return (
+    
+          <Button
+            color="primary"
+            variant="contained"
+            
+            onClick={() => navigate(`/admin/updateCategory/${params.row.id}`, { state: categoryData })} // Pass category data via state
+          >
+            Sửa
+          </Button>
+        );
+      }
+    },
     {
       field: "delete",
       headerName: "Xoá",
