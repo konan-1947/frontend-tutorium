@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom"; // Import useNavigate và useLocation
-import TutorNavbar from "../components/tutor/dashboard/Navbar";
-import Sidebar from "../components/tutor/dashboard/Sidebar";
-import DashboardStats from "../components/tutor/dashboard/Stats";
-import CourseList from "../components/tutor/dashboard/CourseList";
-import StudentList from "../components/tutor/dashboard/StudentList";
-import Schedule from "../components/tutor/schedules/Schedules";
-import TutorProfile from "../components/tutor/dashboard/Profile";
+import TutorNavbar from "../../components/tutor/dashboard/NavbarTutor";
+import Sidebar from "../../components/tutor/dashboard/Sidebar";
+import DashboardStats from "../../components/tutor/dashboard/Stats";
+import CourseList from "../../components/tutor/dashboard/CourseList";
+import StudentList from "../../components/tutor/dashboard/StudentList";
+import Schedule from "../../components/tutor/schedules/Schedules";
+import TutorProfile from "../../components/tutor/dashboard/Profile";
 const TutorDashboard = () => {
   const [activeComponent, setActiveComponent] = useState("all");
   const navigate = useNavigate(); // Khởi tạo navigate

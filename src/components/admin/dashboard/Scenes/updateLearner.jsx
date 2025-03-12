@@ -1,8 +1,8 @@
 import { Box, Button, TextField, Alert } from "@mui/material";
 import { useState } from "react";
 import { useLocation } from "react-router-dom"; // Import useLocation to access passed state data
-import Header from "../Header";
-import { useUpdateLearner } from "../../../../hooks/admin/updateLearner"; // Assuming you have a hook for updating learner data
+import Header from "../dashboard/Header";
+import { useUpdateLearner } from "../../../hooks/admin/updateLearner"; // Assuming you have a hook for updating learner data
 
 const UpdateLearnerForm = () => {
   const location = useLocation(); // Get the location object

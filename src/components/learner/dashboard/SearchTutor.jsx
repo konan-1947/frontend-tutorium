@@ -5,11 +5,12 @@ import '../../../assets/css/schedule.css';
 import { FaStar } from 'react-icons/fa';
 import { Button } from "./ButtonPopup";
 import { useNavigate } from 'react-router-dom';
-import { useSearchTutors } from '../../../hooks/search/learnerSearchTutor'; // Import custom hook
+import { useSearchTutors } from '../../../hooks/learner/learnerSearchTutor'; // Import custom hook
 import Uia from '../../../assets/img/ui.gif'; // GIF loading
 import { Box, MenuItem, Select, InputAdornment, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import CSS của AOS
 
 const TutorSearch = () => {
     const { mutate, isLoading, error, data } = useSearchTutors();
@@ -47,18 +48,23 @@ const TutorSearch = () => {
 
     // Log the data for debugging purposes
     console.log('Fetched Data:', data);
+    useEffect(() => {
+        AOS.init({ duration: 1000 }); // Khởi tạo AOS với thời gian animation 1s
+    }, []);
 
     // Handle rendering the tutor results
     const renderTutors = (tutors) => {
-
+          
         return (
-            <div className="Container-card">
+            <div className="Container-card" data-aos="fade-up">
                 {tutors.map((tutor, index) => (
                     <li key={index}>
                         <div className="tutor-card border p-3 rounded container">
                             <div className="row align-items-center">
                                 <div className="col-md-2 tutor-image text-center">
-                                    <img onClick={() => navigate("/details")} src={tutor.User?.imgurl} alt="Tutor" className="tutor-avatar rounded img-fluid" />
+                                    <img onClick={() => navigate(`/learner/detailTutor/:${tutor.userid}`, {
+                                        state: { userid: tutor.userid }
+                                    })} src={tutor.User?.imgurl} alt="Tutor" className="tutor-avatar rounded img-fluid" />
                                 </div>
                                 <div className="col-md-7">
                                     <div className="d-flex">
