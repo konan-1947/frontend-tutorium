@@ -16,11 +16,13 @@ import Line from "../../components/admin/dashboard/Scenes/line";
 import Pie from "../../components/admin/dashboard/Scenes/pie";
 import FAQ from "../../components/admin/dashboard/Scenes/faq";
 import Ad from "../../components/admin/dashboard/Scenes/Admin";
-import "../assets/css/Admin.css";
+import "../../assets/css/Admin.css";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import UpdateCategoryForm from "../../components/admin/dashboard/Scenes/updateCategory";
 import UpdateLearnerForm from "../../components/admin/dashboard/Scenes/updateLearner";
 import UpdateTutorForm from "../../components/admin/dashboard/Scenes/updateTutor";
+import VerifyTutor from "../../components/admin/dashboard/Scenes/verifyTutor";
+import VerifyTutorDetail from "../../components/admin/dashboard/Scenes/verifyTutorDetail";
 function Admin() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
@@ -36,6 +38,8 @@ function Admin() {
           <main className="content">
             <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
+              <Route path="verifytutordetail/:userid" element={<VerifyTutorDetail />} />
+              <Route path="verifytutor" element={<VerifyTutor />} />
               <Route path="updatetutor/:userid" element={<UpdateTutorForm/>} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="/" element={<Ad />} />

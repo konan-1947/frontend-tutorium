@@ -66,8 +66,7 @@ const StepPhoto = ({ nextStep, prevStep }) => {
       <div className="profile-card">
         <img src={avatar} alt="Ảnh hồ sơ" className="profile-avatar" />
         <div className="profile-info">
-          <h3>Tezdy N. 🇸🇪</h3>
-          <p> Dạy tiếng Anh</p>
+         
         
         </div>
       </div>

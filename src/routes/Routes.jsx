@@ -2,20 +2,20 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 // Import các trang dành cho User
-import TutorRegister from "../pages/tutor/BecomeToTutor";
+import TutorRegister from "../pages/tutor/BecomeTutor";
 import Home from "../pages/Home";
 import Auth from "../pages/Auth";
 
-import Detail from "../pages/DetailTutor";
-import Booking from "../components/learner/booking/Schedule";
+import Detail from "../pages/learner/TutorDetail";
+import Booking from "../components/learner/booking/ScheduleLearner";
 import TutorDashboard from "../pages/tutor/TutorDashboard";
 import Howtosignup from "../pages/tutor/HowtoSignUp";
-import ProfileLearner from "../pages/Profilelearner";
+import ProfileLearner from "../pages/learner/Profilelearner";
 import Cashing from "../components/learner/booking/Cash";
-import SearchTutor from "../pages/SearchTutor";
-import ChooseCustomLearnerInfo from "../pages/ChooseCustomLearnerInfo";
+import SearchTutor from "../pages/learner/SearchTutor";
+import ChooseCustomLearnerInfo from "../pages/learner/ChooseCustomLearnerInfo";
 // Import Admin (trang `App.js` của bạn)
-import Admin from "../pages/Admin"; 
+import Admin from "../pages/admin/Admin"; 
 const AppRoutes = () => {
   return (
     <Routes>

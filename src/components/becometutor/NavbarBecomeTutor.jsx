@@ -7,7 +7,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import "../../assets/css/NavBarAfter.css";
 import "../../assets/css/fonts.css";
 import 'font-awesome/css/font-awesome.min.css';
-import Tur from '../../assets/img/tur.jpg';
+import Tur from '../../assets/img/avatar.png';
 function NavBar() {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null); // Tạo ref cho dropdown

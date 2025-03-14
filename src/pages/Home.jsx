@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Navbar from '../components/Home/Navbar'
+import Navbar from '../components/Home/NavbarHome'
 import Hero from '../components/Home/Hero'
 import Carousel from '../components/Home/Carousel'
 import BecomeTutor from '../components/Home/BecomeTutor'

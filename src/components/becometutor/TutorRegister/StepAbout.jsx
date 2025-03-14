@@ -8,22 +8,20 @@ const StepAbout = ({ nextStep }) => {
             <h2>Thông tin cá nhân</h2>
             <p>Bắt đầu tạo hồ sơ gia sư công khai của bạn.</p>
             <form>
-                <label>Họ</label>
-                <input type="text" placeholder="Họ của bạn" />
+                <label>Tên người dùng </label>
+                <input type="text" placeholder="Tên người dùng" className="form-control" />
 
-                <label>Tên</label>
-                <input type="text" placeholder="Tên của bạn" />
-
+                <label>Tên hiển thị </label>
+                <input type="text" placeholder="Tên hiển thị của bạn" />
+                
                 <label>Email</label>
                 <input type="email" placeholder="Email của bạn" />
 
-                <label>Quốc gia sinh</label>
-                <select>
-                    <option>Quần đảo Aland</option>
-                    <option>Việt Nam</option>
-                </select>
+                <label>Địa chỉ</label>
+                <input type="text" placeholder="Địa chỉ của bạn" />
 
-                <label>Môn học bạn dạy</label>
+
+                <label>Thể loại bạn dạy</label>
                 <select>
                     <option>Tiếng Anh</option>
                     <option>Toán</option>

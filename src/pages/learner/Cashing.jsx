@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import NavbarAfter from '../../components/learner/dashboard/NavbarAfter'
+import NavbarAfter from '../../components/learner/dashboard/NavbarLearner'
 import Footer from '../../components/Home/Footer'
 import '../assets/css/home.css'
 import Cash from '../../components/learner/booking/Cash'

@@ -6,8 +6,8 @@ import Sidebar from "../../components/tutor/dashboard/Sidebar";
 import DashboardStats from "../../components/tutor/dashboard/Stats";
 import CourseList from "../../components/tutor/dashboard/CourseList";
 import StudentList from "../../components/tutor/dashboard/StudentList";
-import Schedule from "../../components/tutor/schedules/Schedules";
-import TutorProfile from "../../components/tutor/dashboard/Profile";
+import Schedule from "../../components/tutor/schedules/SchedulesTutor";
+import TutorProfile from "../../components/tutor/dashboard/ProfileTutor";
 const TutorDashboard = () => {
   const [activeComponent, setActiveComponent] = useState("all");
   const navigate = useNavigate(); // Khởi tạo navigate
