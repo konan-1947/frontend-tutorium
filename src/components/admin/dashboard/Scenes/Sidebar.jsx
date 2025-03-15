@@ -170,6 +170,14 @@ const Sidebar = () => {
               Pages
             </Typography>
             <Item
+              title="Xác minh gia sư"
+              to="/admin/verifyTutor"
+              icon={<PersonOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            
+            <Item
               title="Thêm khoá học"
               to="/admin/form"
               icon={<PersonOutlinedIcon />}

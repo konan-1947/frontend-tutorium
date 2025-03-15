@@ -3,11 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../assets/css/find.css';
 import '../../../assets/css/schedule.css';
 import { FaStar } from 'react-icons/fa';
-import { Button } from "./ButtonPopup";
+
 import { useNavigate } from 'react-router-dom';
 import { useSearchTutors } from '../../../hooks/learner/learnerSearchTutor'; // Import custom hook
 import Uia from '../../../assets/img/ui.gif'; // GIF loading
-import { Box, MenuItem, Select, InputAdornment, TextField } from '@mui/material';
+import { Box,Button, MenuItem, Select, InputAdornment, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import CSS của AOS
@@ -66,7 +66,7 @@ const TutorSearch = () => {
                                         state: { userid: tutor.userid }
                                     })} src={tutor.User?.imgurl} alt="Tutor" className="tutor-avatar rounded img-fluid" />
                                 </div>
-                                <div className="col-md-7">
+                                <div className="col-md-5">
                                     <div className="d-flex">
                                         <h4 className="fw-bold mb-0">{tutor.User?.displayname}</h4>
                                         <span className="ms-2">{tutor.User?.address}</span>
@@ -79,26 +79,28 @@ const TutorSearch = () => {
                                     <p className="text-muted">Lĩnh vực {tutor.Categories ? tutor.Categories.map(cat => cat.categoryname).join(', ') : 'No categories'}</p>
                                     <p className="tutor-description"><strong>{tutor.description}</strong></p>
                                 </div>
-                                <div className="col-md-3 text-end tutor-price-rating">
+                                <div className="col-md-5 text-end tutor-price-rating ">
                                     <div className="row">
-                                        <div className="col-6 text-start">
-                                            <p className="mb-1 tutor-rating"><FaStar className="text-warning" /> <strong>{tutor.socialcredit}</strong></p>
-                                            <p className="text-muted"> Điểm đánh giá {tutor.userid}</p>
+                                        <div className="col-6 text-end">
+                                        <p className="text-muted fs-8"> Điểm đánh giá</p>
+
+                                        <p className=" text-end"><FaStar className="text-warning" /> <strong>{tutor.socialcredit}</strong></p>
                                         </div>
                                         <div className="col-6 text-end">
-                                            <p className="fw-bold tutor-price">${tutor.expectedsalary}</p>
+                                        <p className="text-muted fs-8"> Lương mong muốn</p>
+
+                                            <p className="fw-bold tutor-price">{tutor.expectedsalary} VND</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="row mt-3">
                                 <div className="col-md-12 text-end">
-                                    <Button className="btn btn-pink me-2" onClick={() => navigate(`/learner/detailTutor/:${tutor.userid}`, {
+                                    <Button className="btn me-2" onClick={() => navigate(`/learner/detailTutor/:${tutor.userid}`, {
                                         state: { userid: tutor.userid }
                                     })}>
                                         Xem chi tiết
                                     </Button>
-                                    <button className="btn btn-outline-secondary" onClick={() => handleFavorite(tutor)}>Nhắn tin</button>
                                 </div>
                             </div>
                         </div>

@@ -7,9 +7,9 @@ const StepPricing = ({ prevStep }) => {
   return (
     <div className="step-pricing">
       <h2>Định giá buổi học</h2>
-      <p>Chọn mức giá bạn muốn tính cho mỗi buổi học 50 phút.</p>
+      <p>Chọn mức giá bạn muốn tính cho mỗi buổi học.</p>
 
-      <label>Giá (USD)</label>
+      <label>Giá (VND)</label>
       <input 
         type="number" 
         placeholder="Nhập số tiền" 

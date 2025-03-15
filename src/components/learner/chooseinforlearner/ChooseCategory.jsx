@@ -36,7 +36,7 @@ const Step1 = ({ formData, setFormData, nextStep }) => {
         <div className="section">
           <Select
             name="category"
-            value={category}
+         
             onChange={(e) => {setCategory(e.target.value), handleSelectChange}}
             fullWidth
           >

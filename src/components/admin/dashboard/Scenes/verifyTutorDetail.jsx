@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom"; // Import useLocation to access 
 import Header from "../Header";
 import { useUpdateLearner } from "../../../../hooks/admin/updateLearner"; // Assuming you have a hook for updating learner data
 
-const UpdateLearnerForm = () => {
+const VerifyTutorDetail = () => {
   const location = useLocation(); // Get the location object
   const { userid, displayname, address, email,learneringgoal, dateofbirth} = location.state || {}; // Retrieve learner data from state
 
@@ -62,80 +62,10 @@ const UpdateLearnerForm = () => {
       <form onSubmit={handleSubmit}>
         <Box display="grid" gap="30px" gridTemplateColumns="repeat(4, minmax(0, 1fr))">
           <p><strong>ID:</strong> {userid}</p> {/* Display learnerId */}
-          <p><strong>Current Name:</strong> {learnerName || "Loading..."}</p>
+          <p><strong>Name:</strong> {learnerName}</p> 
 
           {/* Name */}
-          <TextField
-            fullWidth
-            variant="filled"
-            type="text"
-            label="Tên học viên"
-            name="learnerName"
-            value={learnerName}
-            onChange={(e) => setLearnerName(e.target.value)}
-            error={Boolean(error && !learnerName)}
-            helperText={error && !learnerName ? "Tên học viên là bắt buộc" : ""}
-            sx={{ gridColumn: "span 2" }}
-          />
-
-          {/* Address */}
-          <TextField
-            fullWidth
-            variant="filled"
-            type="text"
-            label="Địa chỉ"
-            name="learnerAddress"
-            value={learnerAddress}
-            onChange={(e) => setLearnerAddress(e.target.value)}
-            error={Boolean(error && !learnerAddress)}
-            helperText={error && !learnerAddress ? "Địa chỉ là bắt buộc" : ""}
-            sx={{ gridColumn: "span 2" }}
-          />
-
-          {/* Email */}
-          <TextField
-            fullWidth
-            variant="filled"
-            type="email"
-            label="Email"
-            name="learnerEmail"
-            value={learnerEmail}
-            onChange={(e) => setLearnerEmail(e.target.value)}
-            error={Boolean(error && !learnerEmail)}
-            helperText={error && !learnerEmail ? "Email là bắt buộc" : ""}
-            sx={{ gridColumn: "span 2" }}
-          />
-
-          {/* Learning Goal */}
-          <TextField
-            fullWidth
-            variant="filled"
-            type="text"
-            label="Mục tiêu học tập"
-            name="learnerLearningGoal"
-            value={learnerLearningGoal}
-            onChange={(e) => setLearnerLearningGoal(e.target.value)}
-            error={Boolean(error && !learnerLearningGoal)}
-            helperText={error && !learnerLearningGoal ? "Mục tiêu học tập là bắt buộc" : ""}
-            sx={{ gridColumn: "span 2" }}
-          />
-
-          {/* Date of Birth */}
-          <TextField
-            fullWidth
-            variant="filled"
-            type="date"
-            label="Ngày sinh"
-            name="learnerDob"
-            value={learnerDob}
-            onChange={(e) => setLearnerDob(e.target.value)}
-            error={Boolean(error && !learnerDob)}
-            helperText={error && !learnerDob ? "Ngày sinh là bắt buộc" : ""}
-            sx={{ gridColumn: "span 2" }}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
+     
         </Box>
 
         <Box display="flex" justifyContent="end" mt="20px">
@@ -145,8 +75,11 @@ const UpdateLearnerForm = () => {
               {alertMessage}
             </Alert>
           )}
-          <Button type="submit" color="secondary" variant="contained" disabled={loading}>
-            {loading ? "Đang cập nhật..." : "Cập nhật học viên"}
+          <Button sx={{ margin: "20px"  }} type="submit" color="secondary" variant="contained" disabled={loading}>
+            {loading ? "Đang xác minh" : "xác minh "}
+          </Button>
+          <Button sx={{ margin: "20px" }} type="submit" color="secondary" variant="contained" disabled={loading}>
+            {loading ? "Đang xác minh" : "Huỷ"}
           </Button>
         </Box>
       </form>
@@ -154,4 +87,4 @@ const UpdateLearnerForm = () => {
   );
 };
 
-export default UpdateLearnerForm;
+export default VerifyTutorDetail;

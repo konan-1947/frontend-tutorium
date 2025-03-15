@@ -52,37 +52,41 @@ const TutorInfo = () => {
   return (
     <div className="tutor-info-page">
       <div className="tutor-info-container">
-        <div className="tutor-header">
-          <img src={tutorData?.User?.imgurl} alt="Tutor" className="tutor-profile-pic" />
-          <div className="tutor-details">
-            <h1 className="tutor-name">{tutorData?.User.displayname}</h1>
-            <p className="tutor-description">{tutorData?.User.email}</p>
-            <p>{tutorData?.User.address}</p>
+        <div className='section-header-tutor'>
+          <div className="tutor-header">
+            <img src={tutorData?.User?.imgurl} alt="Tutor" className="tutor-profile-pic" />
+            <div className="tutor-details">
+              <h1 className="tutor-name">{tutorData?.User.displayname}</h1>
+              <p className="tutor-description">{tutorData?.User.email}</p>
+              <p>{tutorData?.User.address}</p>
+            </div>
           </div>
+          <button className="btn-schedule" onClick={() => navigate('/learner/booking')}> Lịch dạy </button>
+
         </div>
         <div className="tutor-credentials">
-          <p>Date of Birth: {tutorData?.User.dateofbirth}</p>
-          <p>Expected Salary: {tutorData?.expectedsalary} VND</p>
-          <p>Contracts Completed: {tutorData?.contracts}</p>
+          <p>Ngày sinh: {tutorData?.User.dateofbirth}</p>
+          <p>Mức lương mong muốn: {tutorData?.expectedsalary} VND</p>
         </div>
         <div className="about-section">
           <h2>Mô tả</h2>
           <p>{tutorData?.description}</p>
           {tutorData?.descriptionvideolink && (
             <div className="video-section">
-              <h3>Video Introduction</h3>
-             <iframe width="560" height="315" src={tutorData.descriptionvideolink} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ></iframe>
+              <h3>Video giới thiệu</h3>
+              <iframe width="560" height="315" src={tutorData.descriptionvideolink} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ></iframe>
 
-          
+
             </div>
           )}
         </div>
       </div>
-      
+
       <div className="tutor-sticky-card">
-      <iframe width="100%" src={tutorData.descriptionvideolink}  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ></iframe>
+        <iframe width="100%" src={tutorData.descriptionvideolink} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" ></iframe>
 
         <div className="tutor-pricing">
+          <span >Điểm đánh giá {tutorData.socialcredit} </span>
           <span className="lesson-price">{tutorData?.expectedsalary} VND</span>
         </div>
         <button className="btn-primary" onClick={() => navigate('/learner/booking')}><FaBolt /> Đăng kí</button>

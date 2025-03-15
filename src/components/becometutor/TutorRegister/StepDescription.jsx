@@ -4,9 +4,7 @@ import "../../../assets/css/StepDescription.css";
 const StepDescription = ({ nextStep, prevStep }) => {
   const [sections, setSections] = useState([
     { id: 1, title: "Giới thiệu bản thân", content: "", isCollapsed: false },
-    { id: 2, title: "Kinh nghiệm giảng dạy", content: "", isCollapsed: false },
-    { id: 3, title: "Động viên học sinh tiềm năng", content: "", isCollapsed: false },
-    { id: 4, title: "Viết tiêu đề hấp dẫn", content: "", isCollapsed: false },
+  
   ]);
 
   // Cập nhật nội dung khi nhập liệu
