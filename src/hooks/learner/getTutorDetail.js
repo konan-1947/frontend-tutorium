@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 export const useFetchTutors = async () => {
     try {
         //lấy api
-        const response = await fetch(`/api/admin/getTutorDetail/${userid}`,{
+        const response = await fetch(`/api/getTutorDetail/${userid}`,{
             //gửi thuộc tính của api
             method:'GET',
             credentials:'true'
