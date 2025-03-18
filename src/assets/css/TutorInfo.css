@@ -197,3 +197,20 @@
         position: relative;
     }
 }
+.btn-schedule{
+    background-color: #ff5a8a;
+  
+    padding: 10px 20px;
+    border: 2px solid #ff5a8a;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-schedule:hover {
+    background-color: white;
+    color: #ff5a8a;
+    border-color: #ff5a8a;
+    box-shadow: 0 2px 4px rgba(255, 90, 138, 0.2);
+}

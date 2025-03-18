@@ -3,6 +3,7 @@ import { MenuItem, Select, TextField, Button, Box } from '@mui/material';
 import { Navigate } from 'react-router-dom';
 import '../../../../src/assets/css/ChooseAddress.css';
 import { useNavigate } from 'react-router-dom';
+import Gif from '../../../../src/assets/img/gif2.gif';
 const Step3 = ({ formData, setFormData, prevStep }) => {
     const [wallet, setWallet] = useState('');
     const Navigate = useNavigate();
@@ -25,21 +26,17 @@ const Step3 = ({ formData, setFormData, prevStep }) => {
             <div className="step-section2">
                 <div className="form-section2">
 
-                    <p className="subheading">Chọn túi tiền của bạn:</p>
-
+                    <p className="subheading">Mục tiêu học tập của bạn:</p>
+                    <TextField
+                        name="wallet"
+                        value={wallet}
+                        placeholder="Mục tiêu của bạn"
+                        onChange={(e) => { setWallet(e.target.value), handleInputChange }}
+                        fullWidth
+                    />
                     {/* Wallet Section */}
                     <div className="section2">
-                        <Select
-                            name="wallet"
-                            value={wallet}
-                            onChange={(e) => { setAddress(e.target.value), handleInputChange }}
-                            fullWidth
-                        >
-                            <MenuItem value="">Chọn Túi tiền</MenuItem>
-                            <MenuItem value="wallet1">Túi tiền 1</MenuItem>
-                            <MenuItem value="wallet2">Túi tiền 2</MenuItem>
-                            <MenuItem value="wallet3">Túi tiền 3</MenuItem>
-                        </Select>
+                 
                     </div>
 
                     <div className="navigation-buttons2">
@@ -60,8 +57,8 @@ const Step3 = ({ formData, setFormData, prevStep }) => {
                     </div>
                 </div>
 
-                <div className="div-color">
-
+                <div className="div-color2">
+                    <img src={Gif} alt="Gif" />
                 </div>
             </div>
         </form>

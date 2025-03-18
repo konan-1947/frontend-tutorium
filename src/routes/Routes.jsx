@@ -14,12 +14,14 @@ import ProfileLearner from "../pages/learner/Profilelearner";
 import Cashing from "../components/learner/booking/Cash";
 import SearchTutor from "../pages/learner/SearchTutor";
 import ChooseCustomLearnerInfo from "../pages/learner/ChooseCustomLearnerInfo";
+import VerifyLearner from "../pages/learner/Verify"
 // Import Admin (trang `App.js` của bạn)
 import Admin from "../pages/admin/Admin"; 
 const AppRoutes = () => {
   return (
     <Routes>
       {/* Routes dành cho User */}
+      <Route path="/learner/verifylearner" element={<VerifyLearner/>}/>
       <Route path="/learner/choosecustominfo" element={<ChooseCustomLearnerInfo />} />
       <Route path="/learner/booking" element={<Booking />} />
       <Route path="/learner/cashing" element={<Cashing />} />

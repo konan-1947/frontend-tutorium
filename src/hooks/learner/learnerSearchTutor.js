@@ -6,7 +6,7 @@ export const useSearchTutors = () => {
       // Convert FormData to query string
       const queryString = new URLSearchParams(formData).toString();
       console.log(queryString);
-      const response = await fetch(`/api/learner/search?${queryString}`, {
+      const response = await fetch(`/api/learner/findTutor?${queryString}`, {
         method: 'GET',
         headers: {
           // Add any necessary headers here
@@ -14,12 +14,12 @@ export const useSearchTutors = () => {
       });
 
       const data = await response.json();
-
+      console.log(data);
       if (!response.ok) {
         throw new Error(data.message || 'Failed to fetch tutors');
       }
 
-      return data;
+      return data.data;
     },
     onError: (error) => {
       console.error('Error fetching tutors:', error);

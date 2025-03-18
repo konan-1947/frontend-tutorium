@@ -21,6 +21,9 @@ const Step2 = ({ formData, setFormData, prevStep, nextStep }) => {
     return (
             <form onSubmit={handleSelect}>
                 <div className="step-section2">
+                    <div className="div-color">
+                        <img src={Gif} alt="Gif" />
+                    </div>
                     <div className="form-section2">
 
                         <p className="subheading">Nhập địa chỉ của bạn:</p>
@@ -54,9 +57,7 @@ const Step2 = ({ formData, setFormData, prevStep, nextStep }) => {
                         </div>
                     </div>
 
-                    <div className="div-color">
-                        <img src={Gif} alt="Gif" />
-                    </div>
+                    
                 </div>
             </form>
        
