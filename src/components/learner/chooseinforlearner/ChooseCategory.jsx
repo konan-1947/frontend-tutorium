@@ -9,6 +9,8 @@ const Step1 = ({ formData, setFormData, nextStep }) => {
   const { mutate: getCategories, data: categories, isLoading } = useGetCategories();
 
   const handleSelectChange = (e) => {
+    e.preventDefault();
+
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -25,13 +27,10 @@ const Step1 = ({ formData, setFormData, nextStep }) => {
     getCategories();
   }, []);
 
-  const handleSelect = (e) => {
-    e.preventDefault();
-  }
-
+ 
   return (
     <Box sx={{ width: '100%', overflow: 'hidden', alignItems: 'center', justifyItems: 'center', display: 'flex', flexDirection: 'column' }}>
-      <form onSubmit={handleSelect}>
+      <form onSubmit={handleSelectChange}>
         <div className="step-section">
           <div className="form-section">
             <h1>Tài khoản của bạn đã được xác minh</h1>

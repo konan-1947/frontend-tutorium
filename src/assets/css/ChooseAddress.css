@@ -6,8 +6,31 @@
     width: 100%;
     height: 100vh; /* Đảm bảo phần tử chiếm toàn bộ chiều cao màn hình */
   }
-  
+
+  .form-section3 {
+    color: #ffffff;
+    height: 100%;
+    background-color: #fd6051;
+    width: 50%; /* Chiếm 50% chiều rộng */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Căn giữa nội dung của form */
+    padding: 20px;
+    text-align: center;
+  }
   .form-section2 {
+    width: 50%; /* Chiếm 50% chiều rộng */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Căn giữa nội dung của form */
+    padding: 20px;
+    text-align: center;
+  }.form-section4 {
+    color: #ffffff;
+    height: 100%;
+    background-color: #ffba5a;
     width: 50%; /* Chiếm 50% chiều rộng */
     display: flex;
     flex-direction: column;
@@ -20,10 +43,14 @@
     width: 200px;
     height: 200px;
   }
-  .div-color2 {
+  .div-color3 img {
+    width: 200px;
+    height: 200px;
+  }
+  .div-color3 {
     height: 100%;
     width: 50%; /* Chiếm 50% chiều rộng */
-    background-color: #b1d952; /* Thêm màu nền hoặc điều chỉnh theo yêu cầu */
+    background-color: #ffffff; /* Thêm màu nền hoặc điều chỉnh theo yêu cầu */
     display: flex;
     justify-content: center;
     align-items: center;

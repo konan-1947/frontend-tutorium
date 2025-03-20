@@ -19,27 +19,19 @@ const TutorSearch = () => {
 
     // States
     const [formData, setFormData] = useState({
-        search: '',
-        category: '',
-        address: '',
-        userAddress: '',
+        search: "",
+        category:"",
+        address: "",
+        userAddress: "",
         salaryRange: [0, 1000000],
-        socialCredit: ''
+        socialCredit: ""
     });
     const [loading, setLoading] = useState(false);
 
     // Effects
     useEffect(() => {
         getCategories();
-        const savedData = JSON.parse(localStorage.getItem('chooseCustomData'));
-        if (savedData) {
-            setFormData(prev => ({
-                ...prev,
-                category: savedData.category,
-                address: savedData.address
-            }));
-        }
-        AOS.init({ duration: 1000 });
+        AOS.init({ duration: 500 });
     }, []);
 
     // Handlers
@@ -71,12 +63,11 @@ const TutorSearch = () => {
     const handleSearch = (e) => {
         e.preventDefault();
         setLoading(true);
-
         const searchData = new FormData();
-        searchData.append('displayname', formData.search);
-        searchData.append('category', formData.category);
-        searchData.append('address', formData.address);
-        searchData.append('userAddress', formData.userAddress);
+        searchData.append('displayname', formData.search.match("undefined")?"aaaaaa":formData.search);
+        searchData.append('category', formData.category=="undefined"?"":formData.category);
+        searchData.append('address', formData.address=="undefined"?"":formData.address);
+        searchData.append('userAddress', formData.userAddress=="undefined"?"":formData.userAddress);
 
         // Sửa cách gửi salary range
         searchData.append('expectedsalary', `${formData.salaryRange[0]}-${formData.salaryRange[1]}`);
@@ -86,7 +77,7 @@ const TutorSearch = () => {
 
         // Log để debug
         console.log('Search Data:', {
-            displayname: formData.search,
+            displayname: formData.search.toString().match("undefined")?"aaaaaa":formData.search,
             category: formData.category,
             address: formData.address,
             userAddress: formData.userAddress,
@@ -238,12 +229,12 @@ const TutorSearch = () => {
     );
 
     const renderTutors = (tutors) => (
-        <div className="Container-card" data-aos="fade-up">
-            {tutors.map((tutor, index) => (
-                <li key={index}>
-                    <div className="tutor-card border p-3 rounded container">
-                        <div className="row align-items-center">
-                            <div className="col-md-2 tutor-image text-center">
+            <div className="Container-card" data-aos="fade-up">
+                {tutors.map((tutor, index) => (
+                    <li key={index}>
+                        <div className="tutor-card border p-3 rounded container">
+                            <div className="row align-items-center">
+                                <div className="col-md-2 tutor-image text-center">
                                 <img
                                     onClick={() => navigate(`/learner/detailTutor/:${tutor.userid}`, {
                                         state: { userid: tutor.userid }
@@ -252,11 +243,11 @@ const TutorSearch = () => {
                                     alt="Tutor"
                                     className="tutor-avatar rounded img-fluid"
                                 />
-                            </div>
-                            <div className="col-md-5">
-                                <div className="d-flex">
-                                    <h4 className="fw-bold mb-0">{tutor.User?.displayname}</h4>
-                                    <span className="ms-2">{tutor.User?.address}</span>
+                                </div>
+                                <div className="col-md-5">
+                                    <div className="d-flex">
+                                        <h4 className="fw-bold mb-0">{tutor.User?.displayname}</h4>
+                                        <span className="ms-2">{tutor.User?.address}</span>
                                     {tutor.distance && (
                                         <span className="badge ms-2">
                                             <p className="text-muted">Distance: {tutor.distance} km</p>
@@ -269,53 +260,53 @@ const TutorSearch = () => {
                                 <p className="tutor-description"><strong>{tutor.description}</strong></p>
                             </div>
                             <div className="col-md-5 text-end tutor-price-rating">
-                                <div className="row">
-                                    <div className="col-6 text-end">
+                                    <div className="row">
+                                        <div className="col-6 text-end">
                                         <p className="text-muted fs-8">Điểm đánh giá</p>
                                         <p className="text-end">
                                             <FaStar className="text-warning" />
                                             <strong>{tutor.socialcredit}</strong>
                                         </p>
-                                    </div>
-                                    <div className="col-6 text-end">
+                                        </div>
+                                        <div className="col-6 text-end">
                                         <p className="text-muted fs-8">Lương mong muốn</p>
-                                        <p className="fw-bold tutor-price">{tutor.expectedsalary} VND</p>
+                                            <p className="fw-bold tutor-price">{tutor.expectedsalary} VND</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="row mt-3">
-                            <div className="col-md-12 text-end">
+                            <div className="row mt-3">
+                                <div className="col-md-12 text-end">
                                 <Button
                                     className="btn me-2"
                                     onClick={() => navigate(`/learner/detailTutor/:${tutor.userid}`, {
                                         state: { userid: tutor.userid }
                                     })}
                                 >
-                                    Xem chi tiết
-                                </Button>
+                                        Xem chi tiết
+                                    </Button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-            ))}
-        </div>
-    );
+                    </li>
+                ))}
+            </div>
+        );
 
     return (
         <div className="tutorSearch-body">
             <Box sx={{
-                paddingTop: 4,
-                width: '100%',
-                maxWidth: 1100,
-                margin: 'auto',
-                padding: '16px 24px',
-                backgroundColor: 'white',
-                borderRadius: 2,
-                boxShadow: 3,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 2
+                    paddingTop: 4,
+                    width: '100%',
+                    maxWidth: 1100,
+                    margin: 'auto',
+                    padding: '16px 24px',
+                    backgroundColor: 'white',
+                    borderRadius: 2,
+                    boxShadow: 3,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 2
             }}>
                 {renderSearchForm()}
 

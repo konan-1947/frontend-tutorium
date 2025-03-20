@@ -5,7 +5,7 @@ export const useSearchTutors = () => {
     mutationFn: async (formData) => {
       // Convert FormData to query string
       const queryString = new URLSearchParams(formData).toString();
-      console.log(queryString);
+      //console.log(queryString);
       const response = await fetch(`/api/learner/findTutor?${queryString}`, {
         method: 'GET',
         headers: {
@@ -18,7 +18,7 @@ export const useSearchTutors = () => {
       if (!response.ok) {
         throw new Error(data.message || 'Failed to fetch tutors');
       }
-
+ 
       return data.data;
     },
     onError: (error) => {

@@ -5,21 +5,21 @@ import Gif from '../../../../src/assets/img/output-onlinegiftools.gif';
 const Step2 = ({ formData, setFormData, prevStep, nextStep }) => {
     const [address, setAddress] = useState('');
     const handleInputChange = (e) => {
+        e.preventDefault();
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData({...formData, [name]: value});
     };
     useEffect(() => {
         // Lấy dữ liệu đã lưu từ localStorage
         const savedData = JSON.parse(localStorage.getItem('chooseCustomData'));
         if (savedData) {
             setAddress(savedData.address);
+           
         }
     }, []);
-    const handleSelect = (e) => {
-        e.preventDefault();
-    }
+
     return (
-            <form onSubmit={handleSelect}>
+            <form onSubmit={handleInputChange}>
                 <div className="step-section2">
                     <div className="div-color">
                         <img src={Gif} alt="Gif" />
@@ -33,7 +33,7 @@ const Step2 = ({ formData, setFormData, prevStep, nextStep }) => {
                             <TextField
                                 name="address"
                                 value={address}
-                                onChange={(e) => { setAddress(e.target.value), handleInputChange }}
+                                onChange={(e) => { setAddress(e.target.value), handleInputChange(e) }}
                               
                                 placeholder="Nhập địa chỉ của bạn"
                             />
