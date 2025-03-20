@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Hero.css';
+import '../../assets/css/herocarousel.css';
 import { useGetCategories } from '../../hooks/category/getCategories';
 
 const Hero1 = () => {

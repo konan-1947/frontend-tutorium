@@ -1,216 +1,251 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Box, Typography, Tab, Tabs, Avatar, List, ListItem, ListItemText, Divider, Paper, TextField, Button } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Box, Typography, Tab, Tabs, Avatar, List, ListItem, ListItemText, Divider, Paper, TextField, Button, Grid, CircularProgress } from '@mui/material';
+import { useGetLearnerDetail } from '../../../hooks/learner/getLearnerDetail';
+import { useNavigate } from 'react-router-dom';
+const ProfileLearner = () => {
+    const [selectedTab, setSelectedTab] = useState(0);
+    const [editing, setEditing] = useState(false);
+    const [userInfo, setUserInfo] = useState({});
+    const { mutate: getLearnerDetail, data: learnerData, isLoading, error } = useGetLearnerDetail();
+    const navigate = useNavigate();
+    useEffect(() => {
+        getLearnerDetail();
+    }, []);
 
-const UserProfile = () => {
-    const [selectedTab, setSelectedTab] = useState(0); // Mặc định chọn Tab "Thông tin"
-    const [editing, setEditing] = useState(false); // Trạng thái để kiểm tra đang sửa hay không
-    const [profileImage, setProfileImage] = useState("https://via.placeholder.com/150"); // Mặc định ảnh profile
-    const [userInfo, setUserInfo] = useState({
-        name: "John Doe",
-        email: "john.doe@example.com",
-        phone: "123-456-789",
-        dob: "1990-01-01",
-        address: "123 Main St, City, Country",
-        field: "Software Development",
-    });
+    useEffect(() => {
+        if (learnerData?.User) {
+            setUserInfo({
+                displayname: learnerData.User.displayname,
+                email: learnerData.User.email,
+                dateofbirth: learnerData.User.dateofbirth,
+                address: learnerData.User.address,
+            });
+        }
+    }, [learnerData]);
 
-    // Dữ liệu mẫu cho khóa học và gia sư
-    const courses = [
-        { id: 1, name: "React for Beginners" },
-        { id: 2, name: "Advanced JavaScript" },
-    ];
-
-    const tutors = [
-        { id: 1, name: "Jane Smith" },
-        { id: 2, name: "Mike Johnson" },
-    ];
-
-    // Xử lý khi chọn tab
     const handleTabChange = (event, newValue) => {
         setSelectedTab(newValue);
     };
 
-    // Xử lý thay đổi thông tin người dùng
     const handleUserInfoChange = (e) => {
         const { name, value } = e.target;
-        setUserInfo(prevState => ({
-            ...prevState,
+        setUserInfo(prev => ({
+            ...prev,
             [name]: value,
         }));
     };
 
-    // Lưu thông tin khi nhấn nút "Lưu"
     const handleSave = () => {
         setEditing(false);
+        // Thêm logic cập nhật thông tin user ở đây
     };
 
-    // Hủy chế độ sửa thông tin
     const handleCancel = () => {
+        // Reset lại thông tin khi hủy
+        if (learnerData?.User) {
+            setUserInfo({
+                displayname: learnerData.User.displayname,
+                email: learnerData.User.email,
+                dateofbirth: learnerData.User.dateofbirth,
+                address: learnerData.User.address,
+            });
+        }
         setEditing(false);
     };
 
-    // Xử lý thay đổi ảnh profile
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setProfileImage(reader.result); // Cập nhật ảnh mới
-            };
-            reader.readAsDataURL(file);
-        }
-    };
+    if (isLoading) {
+        return (
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                <CircularProgress />
+            </Box>
+        );
+    }
+
+    if (error) {
+        return (
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                <Typography color="error">Có lỗi xảy ra khi tải thông tin người dùng</Typography>
+            </Box>
+        );
+    }
+
+    const user = learnerData?.User;
 
     return (
-        <Box sx={{ display: 'flex', height: '100vh', backgroundColor: 'white', paddingTop: 0 }}>
+        <Box sx={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
             {/* Sidebar */}
-            <Box sx={{ width: 250, backgroundColor: '#3e6cad', color: 'white', padding: 3, borderRadius: 2, paddingTop: 5 }}>
-                <Avatar
-                    src={profileImage} // Hiển thị ảnh profile
-                    sx={{ width: 100, height: 100, marginBottom: 2, marginLeft: 'auto', marginRight: 'auto', border: '2px solid #ffffff' }}
-                />
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageChange} // Xử lý thay đổi ảnh
-                    style={{ display: 'none',marginBottom:10 }}
-                    id="file-input"
-                />
-
-                <Typography variant="h6" align="center" sx={{ marginBottom: 2, fontWeight: 600 }}>
-                    {userInfo.name}
-                </Typography>
+            <Paper sx={{ width: 300, p: 2, m: 2, height: 'fit-content' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 3 }}>
+                    <Avatar
+                        src={user?.avatar}
+                        sx={{ width: 100, height: 100, mb: 2 }}
+                    />
+                    <Typography variant="h6">{user?.displayname}</Typography>
+                    <Typography color="textSecondary">{user?.email}</Typography>
+                </Box>
+                <Divider sx={{ my: 2 }} />
                 <Tabs
+                    orientation="vertical"
                     value={selectedTab}
                     onChange={handleTabChange}
-                    orientation="vertical"
-                    sx={{
-                        borderRight: 2, borderColor: 'divider', color: 'white',
-                         // Đảm bảo tất cả các Tab có màu chữ trắng
-                       
-                        '& .Mui-selected': {
-                            color: '#ff6172', // Chỉnh màu khi tab được chọn (tùy chỉnh màu theo yêu cầu)
-                        }
-                    }}
+                    sx={{ borderRight: 1, borderColor: 'divider' }}
                 >
-                    <Tab sx={{ color: 'white' }} label="Thông tin" />
-                    <Tab sx={{ color: 'white' }} label="Khóa học" />
-                    <Tab sx={{ color: 'white' }} label="Gia sư" />
+                    <Tab label="Thông tin cá nhân" />
+                    <Tab label="Giảng viên theo dõi" />
+                    <Tab label="Cài đặt tài khoản" />
                 </Tabs>
-            </Box>
+            </Paper>
 
-            {/* Content */}
-            <Box sx={{ flexGrow: 1, padding: 3, backgroundColor: '#f8f9fa' }}>
-                <Paper sx={{ padding: 3, backgroundColor: '#ffffff', borderRadius: 2, boxShadow: 3 }}>
-                    {/* Tab Content */}
-                    {selectedTab === 0 && (
-                        <Box sx={{ color: '#333', padding: 3 }}>
-                            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 2 }}>Thông tin người dùng</Typography>
-                            <Divider sx={{ marginBottom: 2 }} />
-                            {editing ? (
-                                <>
-                                    <label htmlFor="file-input">
-                                        <Button variant="contained" component="span" sx={{ marginTop: 2 }}>Thay đổi ảnh</Button>
-                                    </label>
-                                    <TextField
-                                        label="Tên"
-                                        name="name"
-                                        value={userInfo.name}
-                                        onChange={handleUserInfoChange}
-                                        fullWidth
-                                        sx={{ marginBottom: 2,marginTop:2 }}
-                                    />
-                                    <TextField
-                                        label="Email"
-                                        name="email"
-                                        value={userInfo.email}
-                                        onChange={handleUserInfoChange}
-                                        fullWidth
-                                        sx={{ marginBottom: 2 }}
-                                    />
-                                    <TextField
-                                        label="Số điện thoại"
-                                        name="phone"
-                                        value={userInfo.phone}
-                                        onChange={handleUserInfoChange}
-                                        fullWidth
-                                        sx={{ marginBottom: 2 }}
-                                    />
-                                    <TextField
-                                        label="Ngày sinh"
-                                        name="dob"
-                                        value={userInfo.dob}
-                                        onChange={handleUserInfoChange}
-                                        fullWidth
-                                        sx={{ marginBottom: 2 }}
-                                    />
-                                    <TextField
-                                        label="Địa chỉ"
-                                        name="address"
-                                        value={userInfo.address}
-                                        onChange={handleUserInfoChange}
-                                        fullWidth
-                                        sx={{ marginBottom: 2 }}
-                                    />
-                                    <TextField
-                                        label="Lĩnh vực"
-                                        name="field"
-                                        value={userInfo.field}
-                                        onChange={handleUserInfoChange}
-                                        fullWidth
-                                        sx={{ marginBottom: 2 }}
-                                    />
-                                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                        <Button onClick={handleCancel} variant="outlined" color="secondary">Hủy</Button>
-                                        <Button onClick={handleSave} variant="contained" color="primary">Lưu</Button>
-                                    </Box>
-                                </>
+            {/* Main Content */}
+            <Box sx={{ flexGrow: 1, p: 3 }}>
+                {selectedTab === 0 && (
+                    <Paper sx={{ p: 3 }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
+                            <Typography variant="h5">Thông tin cá nhân</Typography>
+                            {!editing ? (
+                                <Button variant="contained" onClick={() => setEditing(true)}>
+                                    Chỉnh sửa
+                                </Button>
                             ) : (
-                                <>
-                                    <Typography variant="body1" sx={{ marginBottom: 1 }}><strong>Tên:</strong> {userInfo.name}</Typography>
-                                    <Typography variant="body1" sx={{ marginBottom: 1 }}><strong>Email:</strong> {userInfo.email}</Typography>
-                                    <Typography variant="body1" sx={{ marginBottom: 1 }}><strong>Số điện thoại:</strong> {userInfo.phone}</Typography>
-                                    <Typography variant="body1" sx={{ marginBottom: 1 }}><strong>Ngày sinh:</strong> {userInfo.dob}</Typography>
-                                    <Typography variant="body1" sx={{ marginBottom: 1 }}><strong>Địa chỉ:</strong> {userInfo.address}</Typography>
-                                    <Typography variant="body1" sx={{ marginBottom: 1 }}><strong>Lĩnh vực:</strong> {userInfo.field}</Typography>
-                                    <Button onClick={() => setEditing(true)} variant="contained" color="primary">Sửa thông tin</Button>
-                                </>
+                                <Box>
+                                    <Button variant="contained" onClick={handleSave} sx={{ mr: 1 }}>
+                                        Lưu
+                                    </Button>
+                                    <Button variant="outlined" onClick={handleCancel}>
+                                        Hủy
+                                    </Button>
+                                </Box>
                             )}
                         </Box>
-                    )}
 
-                    {selectedTab === 1 && (
-                        <Box sx={{ color: '#333', padding: 3 }}>
-                            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 2 }}>Buổi đang học</Typography>
-                            <Divider sx={{ marginBottom: 2 }} />
-                            <List>
-                                {courses.map(course => (
-                                    <ListItem key={course.id}>
-                                        <ListItemText primary={course.name} />
-                                    </ListItem>
-                                ))}
-                            </List>
-                        </Box>
-                    )}
+                        <Grid container spacing={3}>
+                            <Grid item xs={12} md={6}>
+                                {editing ? (
+                                    <TextField
+                                        fullWidth
+                                        label="Họ và tên"
+                                        name="displayname"
+                                        value={userInfo.displayname || ''}
+                                        onChange={handleUserInfoChange}
+                                    />
+                                ) : (
+                                    <Box sx={{ mb: 2 }}>
+                                        <Typography variant="subtitle1" color="textSecondary">
+                                            Họ và tên
+                                        </Typography>
+                                        <Typography variant="body1">
+                                            {user?.displayname || 'Chưa cập nhật'}
+                                        </Typography>
+                                    </Box>
+                                )}
+                            </Grid>
+                            <Grid item xs={12} md={6}>
+                                {editing ? (
+                                    <TextField
+                                        fullWidth
+                                        label="Email"
+                                        name="email"
+                                        value={userInfo.email || ''}
+                                        onChange={handleUserInfoChange}
+                                    />
+                                ) : (
+                                    <Box sx={{ mb: 2 }}>
+                                        <Typography variant="subtitle1" color="textSecondary">
+                                            Email
+                                        </Typography>
+                                        <Typography variant="body1">
+                                            {user?.email || 'Chưa cập nhật'}
+                                        </Typography>
+                                    </Box>
+                                )}
+                            </Grid>
+                            <Grid item xs={12} md={6}>
+                                {editing ? (
+                                    <TextField
+                                        fullWidth
+                                        label="Ngày sinh"
+                                        name="dateofbirth"
+                                        type="date"
+                                        value={userInfo.dateofbirth || ''}
+                                        onChange={handleUserInfoChange}
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                    />
+                                ) : (
+                                    <Box sx={{ mb: 2 }}>
+                                        <Typography variant="subtitle1" color="textSecondary">
+                                            Ngày sinh
+                                        </Typography>
+                                        <Typography variant="body1">
+                                            {user?.dateofbirth ? new Date(user.dateofbirth).toLocaleDateString() : 'Chưa cập nhật'}
+                                        </Typography>
+                                    </Box>
+                                )}
+                            </Grid>
+                            <Grid item xs={12} md={6}>
+                                {editing ? (
+                                    <TextField
+                                        fullWidth
+                                        label="Địa chỉ"
+                                        name="address"
+                                        value={userInfo.address || ''}
+                                        onChange={handleUserInfoChange}
+                                    />
+                                ) : (
+                                    <Box sx={{ mb: 2 }}>
+                                        <Typography variant="subtitle1" color="textSecondary">
+                                            Địa chỉ
+                                        </Typography>
+                                        <Typography variant="body1">
+                                            {user?.address || 'Chưa cập nhật'}
+                                        </Typography>
+                                    </Box>
+                                )}
+                            </Grid>
+                        </Grid>
+                    </Paper>
+                )}
 
-                    {selectedTab === 2 && (
-                        <Box sx={{ color: '#333', padding: 3 }}>
-                            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: 2 }}>Gia sư đang theo dõi</Typography>
-                            <Divider sx={{ marginBottom: 2 }} />
-                            <List>
-                                {tutors.map(tutor => (
-                                    <ListItem key={tutor.id}>
-                                        <ListItemText primary={tutor.name} />
+                {selectedTab === 1 && (
+                    <Paper sx={{ p: 3 }}>
+                        <Typography variant="h5" sx={{ mb: 3 }}>Giảng viên theo dõi</Typography>
+                        <List>
+                            {learnerData?.LearningHistory?.map((history, index) => (
+                                <React.Fragment key={index}>
+                                    <ListItem>
+                                        <ListItemText
+                                            primary={history.Course.title}
+                                            secondary={`Thời gian: ${new Date(history.createdAt).toLocaleDateString()}`}
+                                        />
                                     </ListItem>
-                                ))}
-                            </List>
-                        </Box>
-                    )}
-                </Paper>
+                                    <Divider />
+                                </React.Fragment>
+                            ))}
+                        </List>
+                    </Paper>
+                )}
+
+                {selectedTab === 2 && (
+                    <Paper sx={{ p: 3 }}>
+                        <Typography variant="h5" sx={{ mb: 3 }}>Cài đặt tài khoản</Typography>
+                        <Button 
+                            variant="contained" 
+                            color="primary" 
+                            sx={{ mr: 2 }} 
+                            onClick={() => navigate('/resetpassword')}  
+                        >
+                            Đổi mật khẩu
+                        </Button>
+                        <Button variant="outlined" color="error"
+                        onClick={() => navigate('/')}  >
+                            Đăng xuất
+                        </Button>
+                    </Paper>
+                )}
             </Box>
         </Box>
     );
 };
 
-export default UserProfile;
+export default ProfileLearner;

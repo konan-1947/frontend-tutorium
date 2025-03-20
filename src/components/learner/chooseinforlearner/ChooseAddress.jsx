@@ -30,13 +30,7 @@ const Step2 = ({ formData, setFormData, prevStep, nextStep }) => {
 
                         {/* Address Section */}
                         <div className="section2">
-                            <TextField
-                                name="address"
-                                value={address}
-                                onChange={(e) => { setAddress(e.target.value), handleInputChange(e) }}
-                              
-                                placeholder="Nhập địa chỉ của bạn"
-                            />
+                           
                         </div>
 
                         <div className="navigation-buttons2">

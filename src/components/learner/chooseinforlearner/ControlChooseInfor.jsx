@@ -42,7 +42,7 @@ const TutorRegistrationForm = () => {
     setShowConfetti(true);
     setTimeout(() => {
       setShowConfetti(false);
-      navigate('/next-page'); // Điều hướng sau khi submit
+      navigate('/find'); // Điều hướng sau khi submit
     }, 3000);
   };
 

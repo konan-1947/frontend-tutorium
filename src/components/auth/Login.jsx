@@ -100,6 +100,9 @@ const LoginPage = () => {
             {loginMutation.isError && (
               <p className="text-danger">{loginMutation.error.message}</p>
             )}
+            <div className="mb-3 text-end">
+              <a href="/forgotpassword" className="text-decoration-none">Quên mật khẩu?</a>
+            </div>
             <button
               className="btn btn-primary w-100"
               type="submit"

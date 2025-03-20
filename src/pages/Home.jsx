@@ -7,7 +7,7 @@ import BecomeTutor from '../components/Home/BecomeTutor'
 import Lessons from '../components/Home/Lessons'
 import Footer from '../components/Home/Footer'
 import '../assets/css/home.css'
-import P from '../components/Home/p'
+import P from '../components/Home/NavbarSkew'
 
 const queryClient = new QueryClient()
 
