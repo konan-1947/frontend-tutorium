@@ -230,8 +230,8 @@ const TutorSearch = () => {
 
     const renderTutors = (tutors) => (
             <div className="Container-card" data-aos="fade-up">
-                {tutors.map((tutor, index) => (
-                    <li key={index}>
+                {tutors.map((tutor) => (
+                    <li key={`tutor-${tutor.userid}`}>
                         <div className="tutor-card border p-3 rounded container">
                             <div className="row align-items-center">
                                 <div className="col-md-2 tutor-image text-center">
@@ -255,7 +255,9 @@ const TutorSearch = () => {
                                     )}
                                 </div>
                                 <p className="text-muted">
-                                    Lĩnh vực {tutor.Categories ? tutor.Categories.map(cat => cat.categoryname).join(', ') : 'No categories'}
+                                    Lĩnh vực {tutor.Categories ? tutor.Categories.map(cat => (
+                                        <span key={`category-${cat.id}`}>{cat.categoryname}</span>
+                                    )).reduce((prev, curr) => [prev, ', ', curr]) : 'No categories'}
                                 </p>
                                 <p className="tutor-description"><strong>{tutor.description}</strong></p>
                             </div>

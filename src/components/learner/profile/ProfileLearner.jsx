@@ -1,24 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Tab, Tabs, Avatar, List, ListItem, ListItemText, Divider, Paper, TextField, Button, Grid, CircularProgress } from '@mui/material';
+import { Box, Typography, Tab, Tabs, Avatar, List, ListItem, ListItemText, Divider, Paper, TextField, Button, Grid, CircularProgress, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import { useGetLearnerDetail } from '../../../hooks/learner/getLearnerDetail';
 import { useNavigate } from 'react-router-dom';
+import { useUpdateLearner } from '../../../hooks/learner/updateLearner';
+import { useGetCategories } from '../../../hooks/category/getCategories';
+
 const ProfileLearner = () => {
     const [selectedTab, setSelectedTab] = useState(0);
     const [editing, setEditing] = useState(false);
     const [userInfo, setUserInfo] = useState({});
     const { mutate: getLearnerDetail, data: learnerData, isLoading, error } = useGetLearnerDetail();
+    const { mutate: updateLearner } = useUpdateLearner();
+    const { mutate: getCategories, data: categories } = useGetCategories();
     const navigate = useNavigate();
+
     useEffect(() => {
         getLearnerDetail();
+        getCategories();
     }, []);
 
     useEffect(() => {
         if (learnerData?.User) {
             setUserInfo({
-                displayname: learnerData.User.displayname,
-                email: learnerData.User.email,
                 dateofbirth: learnerData.User.dateofbirth,
                 address: learnerData.User.address,
+                categoryid: learnerData.User.categoryid,
+                learninggoal: learnerData.User.learninggoal,
             });
         }
     }, [learnerData]);
@@ -35,19 +42,21 @@ const ProfileLearner = () => {
         }));
     };
 
-    const handleSave = () => {
-        setEditing(false);
-        // Thêm logic cập nhật thông tin user ở đây
+    const handleSave= () => {
+      
+          updateLearner(userInfo);
+         
     };
-
+    console.log(learnerData);
     const handleCancel = () => {
-        // Reset lại thông tin khi hủy
         if (learnerData?.User) {
             setUserInfo({
                 displayname: learnerData.User.displayname,
                 email: learnerData.User.email,
                 dateofbirth: learnerData.User.dateofbirth,
                 address: learnerData.User.address,
+                category: learnerData.User.category,
+                learninggoal: learnerData.User.learninggoal,
             });
         }
         setEditing(false);
@@ -77,7 +86,7 @@ const ProfileLearner = () => {
             <Paper sx={{ width: 300, p: 2, m: 2, height: 'fit-content' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 3 }}>
                     <Avatar
-                        src={user?.avatar}
+                        src={user?.imgurl}
                         sx={{ width: 100, height: 100, mb: 2 }}
                     />
                     <Typography variant="h6">{user?.displayname}</Typography>
@@ -203,6 +212,56 @@ const ProfileLearner = () => {
                                     </Box>
                                 )}
                             </Grid>
+                            <Grid item xs={12} md={6}>
+                                {editing ? (
+                                    <FormControl fullWidth>
+                                        <InputLabel>Danh mục học</InputLabel>
+                                        <Select
+                                            label="Danh mục học"
+                                            name="categoryid"
+                                            value={userInfo.categoryid || ''}
+                                            onChange={handleUserInfoChange}
+                                        >
+                                            {categories?.data?.map((category) => (
+                                                <MenuItem key={category.categoryid} value={category.categoryid}>
+                                                    {category.categoryname}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
+                                ) : (
+                                    <Box sx={{ mb: 2 }}>
+                                        <Typography variant="subtitle1" color="textSecondary">
+                                            Danh mục học
+                                        </Typography>
+                                        <Typography variant="body1">
+                                            {categories?.data?.find(cat => cat.categoryid === user?.categoryid)?.categoryname || 'Chưa cập nhật'}
+                                        </Typography>
+                                    </Box>
+                                )}
+                            </Grid>
+                            <Grid item xs={12} md={6}>
+                                {editing ? (
+                                    <TextField
+                                        fullWidth
+                                        label="Mục tiêu học tập"
+                                        name="learninggoal"
+                                        value={userInfo.learninggoal || ''}
+                                        onChange={handleUserInfoChange}
+                                        multiline
+                                        rows={4}
+                                    />
+                                ) : (
+                                    <Box sx={{ mb: 2 }}>
+                                        <Typography variant="subtitle1" color="textSecondary">
+                                            Mục tiêu học tập
+                                        </Typography>
+                                        <Typography variant="body1">
+                                            {user?.learninggoal || 'Chưa cập nhật'}
+                                        </Typography>
+                                    </Box>
+                                )}
+                            </Grid>
                         </Grid>
                     </Paper>
                 )}
@@ -237,8 +296,11 @@ const ProfileLearner = () => {
                         >
                             Đổi mật khẩu
                         </Button>
-                        <Button variant="outlined" color="error"
-                        onClick={() => navigate('/')}  >
+                        <Button 
+                            variant="outlined" 
+                            color="error"
+                            onClick={() => navigate('/')}  
+                        >
                             Đăng xuất
                         </Button>
                     </Paper>

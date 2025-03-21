@@ -1,16 +1,16 @@
 import { useMutation } from '@tanstack/react-query';
 
-export const useChooseCustomInfo = () => {
+export const useUpdateLearner = () => {
   return useMutation({
 
-    mutationFn: async (formData) => {
-   
+    mutationFn: async (userInfo) => {
+   console.log(userInfo);
       const response = await fetch('/api/learner/chooseCustomInfo', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(userInfo),
       });
    
 
@@ -29,4 +29,4 @@ export const useChooseCustomInfo = () => {
   });
 };
 
-export default useChooseCustomInfo; 
+export default useUpdateLearner; 

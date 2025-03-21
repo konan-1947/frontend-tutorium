@@ -2,18 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Button } from "@mui/material";
 import '../../../assets/css/tutorInfo.css';
-import { FaBolt, FaEnvelope, FaHeart } from 'react-icons/fa';
+import { FaBolt, FaEnvelope, FaHeart, FaHeartBroken } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { useFollow } from '../../../hooks/learner/useFollow';
+import { useUnfollow } from '../../../hooks/learner/useUnfollow';
 
 const TutorInfo = () => {
-  const location = useLocation(); // Get the location object
-  const { userid } = location.state || {}; // Retrieve user ID data from state
+  const location = useLocation();
+  const { userid } = location.state || {};
   const navigate = useNavigate();
+  const { mutate: followTutor, isLoading: isFollowing } = useFollow();
+  const { mutate: unfollowTutor, isLoading: isUnfollowing } = useUnfollow();
 
   // States to handle data, loading, and error
   const [tutorData, setTutorData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isFollowed, setIsFollowed] = useState(false);
 
   // Fetch tutor details when userId changes
   useEffect(() => {
@@ -34,8 +39,9 @@ const TutorInfo = () => {
         }
 
         const data = await response.json();
-
         setTutorData(data.data);
+        // Check if the tutor is already followed
+        setIsFollowed(data.data.isFollowed || false);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -46,13 +52,43 @@ const TutorInfo = () => {
     fetchTutorDetails();
   }, [userid]);
 
+  const handleFollow = async () => {
+    try {
+      await followTutor(userid, {
+        onSuccess: (data) => {
+          alert('Theo dõi gia sư thành công!');
+          setIsFollowed(true);
+        },
+        onError: (error) => {
+          alert(error.message || 'Có lỗi xảy ra khi theo dõi gia sư');
+        }
+      });
+    } catch (error) {
+      alert('Có lỗi xảy ra khi theo dõi gia sư');
+    }
+  };
+
+  const handleUnfollow = async () => {
+    try {
+      await unfollowTutor(userid, {
+        onSuccess: (data) => {
+          alert('Đã hủy theo dõi gia sư thành công!');
+          setIsFollowed(false);
+        },
+        onError: (error) => {
+          alert(error.message || 'Có lỗi xảy ra khi hủy theo dõi gia sư');
+        }
+      });
+    } catch (error) {
+      alert('Có lỗi xảy ra khi hủy theo dõi gia sư');
+    }
+  };
+
   // Thêm hàm chuyển đổi URL YouTube
   const getEmbedUrl = (url) => {
     if (!url) return '';
     
-    // Xử lý URL YouTube
     if (url.includes('youtube.com') || url.includes('youtu.be')) {
-      // Lấy video ID từ URL
       let videoId = '';
       
       if (url.includes('youtube.com/watch')) {
@@ -65,7 +101,6 @@ const TutorInfo = () => {
         videoId = url.split('youtu.be/')[1];
       }
       
-      // Trả về URL embed
       return `https://www.youtube.com/embed/${videoId}`;
     }
     
@@ -98,12 +133,13 @@ const TutorInfo = () => {
           }}
           className='btn-schedule'
             onClick={() => navigate('/learner/booking')}> Lịch dạy </Button>
-
         </div>
+
         <div className="tutor-credentials">
           <p>Ngày sinh: {tutorData?.User.dateofbirth}</p>
           <p>Mức lương mong muốn: {tutorData?.expectedsalary} VND</p>
         </div>
+
         <div className="about-section">
           <h2>Mô tả</h2>
           <p>{tutorData?.description}</p>
@@ -138,12 +174,28 @@ const TutorInfo = () => {
         )}
 
         <div className="tutor-pricing">
-          <span >Điểm đánh giá {tutorData.socialcredit} </span>
+          <span>Điểm đánh giá {tutorData.socialcredit} </span>
           <span className="lesson-price">{tutorData?.expectedsalary} VND</span>
         </div>
         <button className="btn-primary" onClick={() => navigate('/learner/booking')}><FaBolt /> Đăng kí</button>
         <button className="btn-secondary"><FaEnvelope /> Nhắn tin</button>
-        <button className="btn-secondary"><FaHeart /> Theo dõi</button>
+     
+          <button 
+            className="btn-secondary "
+            onClick={handleUnfollow}
+         
+          >
+            <FaHeartBroken /> {isUnfollowing ? 'Đang hủy...' : 'Hủy theo dõi'}
+          </button>
+ 
+          <button 
+            className="btn-secondary"
+            onClick={handleFollow}
+          
+          >
+            <FaHeart /> {isFollowing ? 'Đang theo dõi...' : 'Theo dõi'}
+          </button>
+      
       </div>
     </div>
   );
