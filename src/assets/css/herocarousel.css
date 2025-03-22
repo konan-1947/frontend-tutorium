@@ -1,0 +1,174 @@
+.hero1-section {
+  
+  background: linear-gradient(135deg, #f6f8fc 0%, #ffffff 100%);
+
+}
+
+.hero1-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.text1-content {
+  flex: 1;
+  max-width: 500px;
+}
+
+.text1-content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.text1-content p {
+  font-size: 1.25rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.cta1-button {
+  padding: 12px 32px;
+  font-size: 1.125rem;
+  background: #7c3aed;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta1-button:hover {
+  background: #6d28d9;
+  transform: translateY(-2px);
+}
+
+.carousel1-container {
+  flex: 1;
+  display: flex;
+  height: 600px;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel1-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
+}
+
+.gradient1-overlay {
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.gradient1-top {
+  top: -1px;
+  height: 80px;
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(246, 248, 252, 0.8), transparent);
+}
+
+.gradient1-bottom {
+  bottom: -1px;
+  height: 80px;
+  width: 100%;
+  background: linear-gradient(to top, rgba(246, 248, 252, 0.8), transparent);
+}
+
+.gradient1-left {
+  left: -1px;
+  height: 100%;
+  width: 80px;
+  background: linear-gradient(to right, rgba(246, 248, 252, 0.8), transparent);
+}
+
+.gradient1-right {
+  right: -1px;
+  height: 100%;
+  width: 80px;
+  background: linear-gradient(to left, rgba(246, 248, 252, 0.8), transparent);
+}
+
+.skewed1-carousel {
+  margin: 0 auto;
+  height: 400px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  animation: skewScroll1 20s linear infinite;
+  transform: rotatex(20deg) rotateZ(-20deg) skewX(20deg);
+}
+
+.carousel1-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(243, 243, 243, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.carousel1-item:hover {
+  transform: translateY(-4px) translateX(4px) scale(1.025);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  fill: #7c3aed;
+  stroke: white;
+  stroke-width: 2;
+}
+
+.carousel1-item p {
+  color: #4b5563;
+  margin: 0;
+  font-size: 1rem;
+}
+
+@keyframes skewScroll1 {
+  0% {
+    transform: rotatex(20deg) rotateZ(-20deg) skewX(20deg) translateZ(0) translateY(0);
+  }
+  100% {
+    transform: rotatex(20deg) rotateZ(-20deg) skewX(20deg) translateZ(0) translateY(-100%);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero1-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .text1-content {
+    max-width: 100%;
+  }
+
+  .text1-content h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .skewed1-carousel {
+    grid-template-columns: 1fr;
+    width: 300px;
+  }
+}

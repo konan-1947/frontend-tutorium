@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useVerifyLearner } from "../../hooks/learner/verifyLearner";
 import {
   Box,
   Button,
