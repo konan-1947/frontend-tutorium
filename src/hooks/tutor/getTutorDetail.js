@@ -1,9 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 
-export const useGetLearnerDetail = () => {
+export const useGetTutorDetail = () => {
   return useMutation({
     mutationFn: async () => {
-      const response = await fetch(`/api/learner/getLearnerDetail`, {
+        console.log('aaaaaaaaaaaaaa')
+      const response = await fetch(`/api/tutor/getTutorDetail`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -29,4 +30,4 @@ export const useGetLearnerDetail = () => {
   });
 };
 
-export default useGetLearnerDetail; 
+export default useGetTutorDetail; 

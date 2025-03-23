@@ -1,0 +1,221 @@
+/* Vùng chứa widget, cố định ở góc dưới bên phải */
+
+.chatPopup {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 320px;
+  height: 400px;
+  z-index: 1000;
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Khi mở chat, chatBox hiện lên */
+.chat-open .chatPopup {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
+}
+
+
+.chatWidgetContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  font-family: sans-serif;
+}
+
+/* Nút chat hình tròn */
+.chatButton {
+  background-color: #0084ff;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: flex;              /* Dùng flex để căn giữa nội dung */
+  align-items: center;        /* Căn giữa theo trục dọc */
+  justify-content: center;    /* Căn giữa theo trục ngang */
+}
+
+
+/* Khung chat với hiệu ứng slide từ dưới lên và scale theo màn hình */
+.chatBox {
+  width: 90vw;         /* Chiếm 90% chiều rộng màn hình */
+  max-width: 350px;    /* Không vượt quá 350px trên màn hình lớn */
+  height: 70vh;        /* Chiếm 70% chiều cao màn hình */
+  max-height: 450px;   /* Không vượt quá 450px trên màn hình lớn */
+  display: flex;
+  flex-direction: column;
+  background: #f5f5f5;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  bottom: 0;           /* Đặt sát biên dưới */
+  right: 20px;
+  animation: slideUp 0.4s ease-out;
+}
+
+@media (max-width: 480px) {
+  .chatBox {
+    width: 95vw;
+    height: 80vh;
+    right: 10px;
+  }
+}
+
+
+/* Định nghĩa keyframes cho hiệu ứng slide up */
+@keyframes slideUp {
+  from {
+    transform:translateX(100%) translateY(100%) ;
+  }
+  to {
+    transform:translateX(0) translateY(0);
+  }
+}
+
+@keyframes dots {
+  0% { content: "."; }
+  33% { content: ".."; }
+  66% { content: "..."; }
+}
+
+.loadingDots::after {
+  content: "...";
+  display: inline-block;
+  animation: dots 1.5s steps(3, end) infinite;
+}
+
+
+/* Header của khung chat */
+.chatHeader {
+  background: #0084ff;
+  color: #fff;
+  padding: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Container bên trái header */
+.headerLeft {
+  display: flex;
+  align-items: center;
+}
+
+/* Vòng bao quanh icon dưới dạng hình tròn */
+.supportIconWrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff; /* Bạn có thể thay đổi màu nền nếu cần */
+  margin-right: 8px;
+}
+
+/* Style cho icon hỗ trợ */
+.supportIcon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Giúp ảnh không bị biến dạng */
+}
+
+/* Nút đóng khung chat */
+.closeBtn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Vùng hiển thị tin nhắn */
+.chatMessages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background: #fff;
+}
+
+/* Tin nhắn chung */
+.message {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+/* Tin nhắn nhận (bên trái) */
+.received {
+  justify-content: flex-start;
+}
+
+/* Tin nhắn gửi (bên phải) */
+.sent {
+  justify-content: flex-end;
+}
+
+/* Hình dạng bubble cho tin nhắn */
+.bubble {
+  max-width: 70%;
+  padding: 8px 12px;
+  border-radius: 16px;
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+/* Màu cho tin nhắn nhận */
+.received .bubble {
+  background: #e5e5ea;
+  color: #000;
+  border-top-left-radius: 0;
+}
+
+/* Màu cho tin nhắn gửi */
+.sent .bubble {
+  background: #0084ff;
+  color: #fff;
+  border-top-right-radius: 0;
+}
+
+/* Khu vực nhập liệu */
+.chatInputContainer {
+  display: flex;
+  background: #fff;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+
+/* Ô nhập */
+.chatInput {
+  flex: 1;
+  border: none;
+  border-radius: 16px;
+  padding: 8px 12px;
+  outline: none;
+  font-size: 14px;
+  background: #f0f0f0;
+}
+
+/* Nút gửi */
+.sendBtn {
+  background: #0084ff;
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 8px 16px;
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}

@@ -44,7 +44,6 @@ const ProfileLearner = () => {
 
     const handleSave= () => {
       
-          updateLearner(userInfo);
          
     };
     console.log(learnerData);

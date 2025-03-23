@@ -45,10 +45,10 @@
 /* Định dạng các nhóm tutor-category */
 .tutor-categories {
   display: flex;
-  justify-content: space-between;
+
   flex-wrap: wrap;
-  gap: 30px;
-  margin-top: 50px;
+
+  font-weight: bold;
 }
 
 .tutor-category {

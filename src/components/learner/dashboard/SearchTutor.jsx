@@ -246,14 +246,12 @@ const TutorSearch = () => {
                                 </div>
                                 <div className="col-md-5">
                                     <div className="d-flex">
-                                        <h4 className="fw-bold mb-0">{tutor.User?.displayname}</h4>
+                                        <h4 className="fw-bold mb-2 mr-4">{tutor.User?.displayname}</h4>
                                         <span className="ms-2">{tutor.User?.address}</span>
-                                    {tutor.distance && (
-                                        <span className="badge ms-2">
-                                            <p className="text-muted">Distance: {tutor.distance} km</p>
-                                        </span>
-                                    )}
+                                  
+                                    
                                 </div>
+                                {tutor.distance && ( <p className="text-muted">Distance: {tutor.distance} km</p> )}
                                 <p className="text-muted">
                                     Lĩnh vực {tutor.Categories ? tutor.Categories.map(cat => (
                                         <span key={`category-${cat.id}`}>{cat.categoryname}</span>
@@ -281,7 +279,7 @@ const TutorSearch = () => {
                                 <div className="col-md-12 text-end">
                                 <Button
                                     className="btn me-2"
-                                    onClick={() => navigate(`/learner/detailTutor/:${tutor.userid}`, {
+                                    onClick={() => navigate(`/learner/detailTutor/${tutor.userid}`, {
                                         state: { userid: tutor.userid }
                                     })}
                                 >

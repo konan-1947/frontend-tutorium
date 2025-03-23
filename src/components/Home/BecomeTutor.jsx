@@ -26,7 +26,7 @@ const BecomeTutorSection = () => {
         </ul>
         <button onClick={() => {
           window.scrollTo({ top: 0})
-          Navigate("/signupTutor")
+          Navigate("/howtosignup");
         }
         }
           className="become-tutor-button" data-aos="fade-up" data-aos-delay="1400">Trở thành gia sư&rarr;</button>
