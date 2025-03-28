@@ -22,6 +22,7 @@ export const useDeleteCategory = () => {
         },
         onSuccess: () => {
             window.location.reload();
+            alert("Xóa thành công");
         },
         onError: (error) => {
             console.log("không xoá được");

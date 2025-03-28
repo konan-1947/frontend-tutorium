@@ -24,7 +24,8 @@ export const useUpdateTutor = () => {
             return data;
         },
         onSuccess: (data) => {
-            console.log("Tutor updated successfully:", data); // More specific log message
+            console.log("Learner updated successfully:", data); // More specific log message
+            alert("Learner  cập nhật thành công!");
         },
         onError: (error) => {
             console.error("Error updating tutor:", error); // Better error log message

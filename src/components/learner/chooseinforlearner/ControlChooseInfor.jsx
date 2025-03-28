@@ -81,7 +81,7 @@ const TutorRegistrationForm = () => {
                   {step === 1 && (
                     <div style={{ width: '100%' }}>
                       <TextField
-                        label="Mục tiêu học tập của cậu là gì?"
+                        label="Mục tiêu học tập của bạn là gì?"
                         variant="outlined"
                         fullWidth
                         name="learninggoal"
@@ -146,7 +146,7 @@ const TutorRegistrationForm = () => {
                   {step === 3 && (
                     <div style={{ width: '120%' }}>
                       <TextField
-                        label="Cậu sống ở đâu?"
+                        label="Bạn sống ở đâu?"
                         variant="outlined"
                         fullWidth
                         name="address"
@@ -179,7 +179,7 @@ const TutorRegistrationForm = () => {
                     <div style={{ width: '80%', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
-                          label="Ngày đặc biệt của cậu"
+                          label="Ngày đặc biệt của bạn"
                           value={dateOfBirth}
                           onChange={(newValue) => {
                             setDateOfBirth(newValue);

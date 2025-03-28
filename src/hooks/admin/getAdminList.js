@@ -6,14 +6,15 @@ export const useFetchTutors = async () => {
         const response = await fetch("/api/admin/getAdminList",{
             //gửi thuộc tính của api
             method:'GET',
-            credentials:'true'
+            credentials:'include'
         });
         //lỗi của api
         if(!response.ok){
             throw new Error("Không thể lấy AdminList")
         }
+        console.log(response)
         const data = await response.json();
-
+        console.log("Danh sách Admin:", data);
         return data;
 
     } catch (error) {

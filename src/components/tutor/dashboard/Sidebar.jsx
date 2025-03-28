@@ -112,14 +112,36 @@ const Sidebar = ({ setActiveComponent }) => {
         {/* Transaction History */}
         <ListGroup.Item
           action
-          onClick={() => setActiveComponent("courseslist")} // Sửa "coursetList" thành "courseslist" để đồng bộ với TutorDashboard
+          onClick={() => setActiveComponent("bookingslist")} // Sửa "coursetList" thành "courseslist" để đồng bộ với TutorDashboard
           className="d-flex align-items-center py-3 rounded-3 mb-2"
           style={{ transition: 'all 0.3s' }}
           onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#e7f5ff')}
           onMouseOut={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
         >
           <CreditCard className="me-2 text-primary" size={20} />
-          <span className="text-dark fw-bold">Danh sách khóa học</span>
+          <span className="text-dark fw-bold">Danh sách đăng kí lịch học</span>
+        </ListGroup.Item>
+        <ListGroup.Item
+          action
+          onClick={() => setActiveComponent("listcompleted")} // Sửa "coursetList" thành "courseslist" để đồng bộ với TutorDashboard
+          className="d-flex align-items-center py-3 rounded-3 mb-2"
+          style={{ transition: 'all 0.3s' }}
+          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#e7f5ff')}
+          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
+        >
+          <CreditCard className="me-2 text-primary" size={20} />
+          <span className="text-dark fw-bold">Lịch dạy đã hoàn thành</span>
+        </ListGroup.Item>
+        <ListGroup.Item
+          action
+          onClick={() => setActiveComponent("createaccomplishment")} // Sửa "coursetList" thành "courseslist" để đồng bộ với TutorDashboard
+          className="d-flex align-items-center py-3 rounded-3 mb-2"
+          style={{ transition: 'all 0.3s' }}
+          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#e7f5ff')}
+          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
+        >
+          <CreditCard className="me-2 text-primary" size={20} />
+          <span className="text-dark fw-bold">Thành tích của bạn</span>
         </ListGroup.Item>
       </ListGroup>
     </div>

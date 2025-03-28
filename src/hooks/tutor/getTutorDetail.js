@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 export const useGetTutorDetail = () => {
   return useMutation({
     mutationFn: async () => {
-        console.log('aaaaaaaaaaaaaa')
+ 
       const response = await fetch(`/api/tutor/getTutorDetail`, {
         method: 'GET',
         headers: {
@@ -16,13 +16,13 @@ export const useGetTutorDetail = () => {
       }
      
       const data = await response.json();
-     console.log(data);
+ 
       return data;
  
   
     },
     onSuccess: (data) => {
-      console.log("Learner detail fetched successfully:", data);
+      console.log("Tutor detail fetched successfully:", data);
     },
     onError: (error) => {
       console.error("Error fetching learner detail:", error);

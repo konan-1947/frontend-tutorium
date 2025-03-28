@@ -30,18 +30,14 @@ const Category = () => {
       headerName: "Sửa",
       flex: 1,
       renderCell: (params) => {
-        const categoryData = {
-          categoryId: params.row.id, // Ensure categoryId is correctly passed
-          categoryname: params.row.name,
-          description: params.row.specialization,
-        };  
+       const categoryId = params.row.id;
         return (
     
           <Button
             color="primary"
             variant="contained"
             
-            onClick={() => navigate(`/admin/updateCategory/${params.row.id}`, { state: categoryData })} // Pass category data via state
+            onClick={() => navigate(`/admin/updateCategory/${categoryId}`, { state: categoryData })} // Pass category data via state
           >
             Sửa
           </Button>
@@ -131,7 +127,7 @@ const Category = () => {
           },
         }}
       >
-        <DataGrid rows={rows} columns={columns} checkboxSelection />
+        <DataGrid rows={rows} columns={columns}/>
       </Box>
     </Box>
   );

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Box, Button, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../../../data/theme";
-import getLearnerList from '../../../../hooks/admin/getLearnerList'; // Gọi API lấy dữ liệu học viên
-import { useNavigate } from 'react-router-dom';  // Import useNavigate
+import getLearnerList from '../../../../hooks/admin/getLearnerList';
+import { useDeleteLearner } from '../../../../hooks/admin/deleteLearner'; // Import hook mới
+import { useNavigate } from 'react-router-dom';
 import Header from "../Header";
 
 const Learner = () => {
@@ -13,8 +14,8 @@ const Learner = () => {
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
-  const navigate = useNavigate();  // Initialize navigate hook
+  const navigate = useNavigate();
+  const { mutate: deleteLearner } = useDeleteLearner(); // Sử dụng hook xóa
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
@@ -30,15 +31,42 @@ const Learner = () => {
       flex: 1,
       renderCell: (params) => {
         const learnerData = {
-          userid: params.row.id, // Ensure categoryId is correctly passed
-        }
+          userid: params.row.id,
+        };
         return (
           <Button
             color="primary"
             variant="contained"
-            onClick={() => navigate(`/admin/updateLearner/${params.row.id}`, { state: learnerData  })}  // Pass learner data via navigate
+            onClick={() => navigate(`/admin/updateLearner/${params.row.id}`, { state: learnerData })}
           >
             Sửa
+          </Button>
+        );
+      }
+    },
+    {
+      field: "delete",
+      headerName: "Xóa",
+      flex: 1,
+      renderCell: (params) => {
+        return (
+          <Button
+            color="error"
+            variant="contained"
+            onClick={() => {
+              if (window.confirm("Bạn có chắc chắn muốn xóa học viên này?")) {
+                deleteLearner(params.row.id, {
+                  onSuccess: () => {
+                    fetchData(); // Cập nhật lại danh sách sau khi xóa
+                  },
+                  onError: (error) => {
+                    alert("Xóa học viên thất bại: " + error.message);
+                  },
+                });
+              }
+            }}
+          >
+            Xóa
           </Button>
         );
       }
@@ -48,7 +76,7 @@ const Learner = () => {
   // Hàm để lấy dữ liệu trước khi render
   const fetchData = async () => {
     try {
-      const data = await getLearnerList(); // Gọi API lấy danh sách học viên
+      const data = await getLearnerList();
       setLearnerData(data);
       setLoading(false);
     } catch (error) {
@@ -74,7 +102,7 @@ const Learner = () => {
   const rows = learnerData?.data?.map(learner => ({
     id: learner.userid,
     name: learner.User.displayname,
-    specialization: learner.learninggoal, // Lĩnh vực (hoặc mục tiêu học tập)
+    specialization: learner.learninggoal,
     address: learner.User.address,
     email: learner.User.email,
     dateOfBirth: new Date(learner.User.dateofbirth).toLocaleDateString(),
@@ -83,7 +111,7 @@ const Learner = () => {
 
   return (
     <Box m="20px">
-      <Header title="" subtitle="" /> {/* Cập nhật tiêu đề */}
+      <Header title="Danh sách học viên" subtitle="Quản lý học viên" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -113,7 +141,7 @@ const Learner = () => {
           },
         }}
       >
-        <DataGrid rows={rows} columns={columns} checkboxSelection />
+        <DataGrid rows={rows} columns={columns}  />
       </Box>
     </Box>
   );

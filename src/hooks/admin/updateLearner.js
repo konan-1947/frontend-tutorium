@@ -22,6 +22,7 @@ export const useUpdateLearner = () => {
     },
     onSuccess: () => {
       console.log("Learner updated successfully");
+      alert("Learner  cập nhật thành công!");
     },
     onError: (error) => {
       console.error("Error updating learner:", error);

@@ -3,10 +3,10 @@ import axios from 'axios';
 
 export const useResetPassword = () => {
   return useMutation({
-    mutationFn: async ({ oldPassword, email, newPassword, confirmPassword }) => {
+    mutationFn: async ({ oldPassword,  newPassword, confirmPassword }) => {
       const response = await axios.post('/api/auth/resetPassword', {
         oldPassword,
-        email,
+
         newPassword,
         confirmPassword
       });

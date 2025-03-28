@@ -75,7 +75,9 @@ const VerifyTutorDetail = () => {
               {alertMessage}
             </Alert>
           )}
-          <Button sx={{ margin: "20px"  }} type="submit" color="secondary" variant="contained" disabled={loading}>
+          <Button sx={{ margin: "20px"  }} type="submit" color="secondary" variant="contained" disabled={loading}
+            onClick={() => window.location.reload()}
+          >
             {loading ? "Đang xác minh" : "xác minh "}
           </Button>
           <Button sx={{ margin: "20px" }} type="submit" color="secondary" variant="contained" disabled={loading}>

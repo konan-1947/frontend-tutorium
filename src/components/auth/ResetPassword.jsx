@@ -19,7 +19,7 @@ const ResetPassword = () => {
   const { mutate: resetPassword, isLoading, error, isSuccess } = useResetPassword();
   const [formData, setFormData] = useState({
     oldPassword: '',
-    email: '',
+
     newPassword: '',
     confirmPassword: ''
   });
@@ -41,7 +41,7 @@ const ResetPassword = () => {
     setFormError('');
 
     // Validate form
-    if (!formData.oldPassword || !formData.email || !formData.newPassword || !formData.confirmPassword) {
+    if (!formData.oldPassword  || !formData.newPassword || !formData.confirmPassword) {
       setFormError('Vui lòng điền đầy đủ thông tin');
       return;
     }
@@ -127,22 +127,7 @@ const ResetPassword = () => {
         )}
 
         <form onSubmit={handleSubmit}>
-          <TextField
-            fullWidth
-            label="Email"
-            name="email"
-            type="email"
-            variant="outlined"
-            value={formData.email}
-            onChange={handleChange}
-            sx={{ 
-              mb: 3,
-              '& .MuiOutlinedInput-root': { 
-                borderRadius: "12px" 
-              }
-            }}
-          />
-
+    
           <TextField
             fullWidth
             label="Mật khẩu cũ"

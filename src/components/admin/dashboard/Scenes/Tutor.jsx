@@ -3,6 +3,7 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../../../data/theme";
 import getTutorList from '../../../../hooks/admin/getTutorList'; // Hàm lấy dữ liệu giảng viên
+import { useDeleteTutor } from '../../../../hooks/admin/deleteTutor'; // Hook để xóa giảng viên
 import Header from "../Header";
 import { useNavigate } from 'react-router-dom'; // Hook để điều hướng
 
@@ -34,22 +35,41 @@ const Team = () => {
       field: "edit", 
       headerName: "Sửa", 
       flex: 0.5, 
-      renderCell: (params ) => {
+      renderCell: (params) => {
         const tutorData = {
-          userid: params.row.id, // Ensure categoryId is correctly passed
-        }
+          userid: params.row.id,
+        };
         return (
-          
-      
-        <Button 
-          variant="contained"
-          color="primary"
-          onClick={() =>navigate(`/admin/updateTutor/${params.row.id}`,{state:tutorData})}  // Xử lý nhấn nút Sửa
-        >
-          Sửa
-        </Button>
-      );
-    }
+          <Button 
+            variant="contained"
+            color="primary"
+            onClick={() => navigate(`/admin/updateTutor/${params.row.id}`, { state: tutorData })}
+          >
+            Sửa
+          </Button>
+        );
+      }
+    },
+    {
+      field: "delete", 
+      headerName: "Xóa", 
+      flex: 0.5, 
+      renderCell: (params) => {
+        const tutorId = params.row.id;
+        const { mutate: deleteTutor } = useDeleteTutor();
+        return (
+          <Button 
+            variant="contained"
+            color="error"
+            onClick={() => {
+              deleteTutor(tutorId);
+              window.location.reload();
+            }}
+          >
+            Xóa
+          </Button>
+        );
+      }
     }
   ];
 
@@ -65,9 +85,6 @@ const Team = () => {
       setLoading(false);
     }
   };
-
-  // Hàm xử lý sự kiện khi nhấn nút Sửa
-  
 
   useEffect(() => {
     fetchData();
@@ -126,10 +143,11 @@ const Team = () => {
           },
         }}
       >
-        <DataGrid rows={rows} columns={columns} checkboxSelection />
+        <DataGrid rows={rows} columns={columns} />
       </Box>
     </Box>
   );
 };
 
 export default Team;
+

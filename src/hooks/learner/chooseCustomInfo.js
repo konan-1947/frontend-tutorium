@@ -14,11 +14,14 @@ export const useChooseCustomInfo = () => {
       });
    
 
+      const data = await response.json();
+    
       if (!response.ok) {
-        throw new Error('Verification failed111');
+        console.log("Lỗi:", data.message); // In lỗi rõ ràng
+        throw new Error(data.message); // Ném lỗi ra ngoài để xử lý tiếp
       }
-      console.log("aa");
-      return response.json();
+    
+      return data;
     },
     onSuccess: (data) => {
       console.log('Verification successful:', data);

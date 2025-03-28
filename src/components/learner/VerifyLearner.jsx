@@ -12,7 +12,7 @@ import Turnstile from "react-turnstile";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import { motion } from "framer-motion";
 import backgroundImage from "../../assets/img/imgchoosecustominfo.jpg";
-
+import { useVerifyLearner } from "../../hooks/learner/verifyLearner";
 const SITE_KEY = "0x4AAAAAABBM7Xkmnn5KDQQM"; // Thay bằng Site Key của cậu
 
 const VerifyLearner = () => {
@@ -27,7 +27,8 @@ const VerifyLearner = () => {
     }
 
     try {
-      await verifyLearner({ captchaToken }); // Gửi token lên server để xác minh
+      await verifyLearner(); // Gửi token lên server để xác minh
+      console.log('adddd');
       navigate("/learner/choosecustominfo");
     } catch (error) {
       console.error("Verification failed:", error);

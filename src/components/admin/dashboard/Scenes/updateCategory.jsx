@@ -1,80 +1,70 @@
-import { Box, Button, TextField, Alert } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
-import { useLocation } from "react-router-dom"; // Import useLocation to access passed state data
+import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../Header";
-import { useUpdateCategory } from "../../../../hooks/admin/updateCategory";  // Assuming the hook is for updating
+import { useUpdateCategory } from "../../../../hooks/admin/updateCategory";
+import { useParams } from "react-router-dom";
 
-const UpdateCategoryForm = () => {
-  const location = useLocation(); // Get the location object
-  const { categoryId, categoryname, description } = location.state || {}; // Retrieve category data from state
-
+const Form = () => {
+  const {categoryId} =useParams();
+  const isNonMobile = useMediaQuery("(min-width:600px)");
   const updateMutation = useUpdateCategory();
 
-  const [name, setCategoryname] = useState(categoryname || ""); // Set initial value from state
-  const [desc, setDescription] = useState(description || ""); // Set initial value from state
+  const [categoryname, setCategoryname] = useState("");
+  const [description, setDescription] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [alertMessage, setAlertMessage] = useState(null);
-  const [alertType, setAlertType] = useState("success");
-
-  // Check if categoryId is passed correctly
-  console.log("Category ID:", categoryId); // Debugging line
-
-  // Handle form submission
+console.log(categoryId)
+  // Hàm xử lý submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Validate input
-    if (!name || !desc) {
-      setError("Both category name and description are required.");
+    // Kiểm tra đầu vào
+    if (!categoryname || !description) {
+      setError("Cả tên thể loại và mô tả đều là bắt buộc.");
       return;
     }
     
     setLoading(true);
     setError(null);
 
-    // Call update category API
+    // Gửi yêu cầu POST lên API
     try {
-      console.log("Sending data:", { categoryId, categoryname: name, description: desc }); // Debugging line
-      await updateMutation.mutateAsync({
-        categoryid: categoryId,
-        categoryname: name,
-        description: desc,
+      updateMutation.mutate({
+        categoryid:categoryId,
+        categoryname,
+        description,
       });
-
-      setAlertMessage("Category updated successfully!");
-      setAlertType("success");
     } catch (err) {
-      setAlertMessage("Failed to update category.");
-      setAlertType("error");
+      setError("Có lỗi xảy ra khi tạo thể loại.");
     } finally {
       setLoading(false);
+    
     }
   };
 
   return (
     <Box m="20px">
-      <Header title="UPDATE CATEGORY" subtitle="Update Category Details" />
-      
+      <Header title="CREATE CATEGORY" subtitle="Create a New Category" />
       <form onSubmit={handleSubmit}>
         <Box
           display="grid"
           gap="30px"
           gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+          sx={{
+            "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+          }}
         >
-          <p><strong>ID:</strong> {categoryId}</p> {/* Display categoryId */}
-          <p><strong>Current Name:</strong> {categoryname || "Loading..."}</p>
-
           <TextField
             fullWidth
             variant="filled"
             type="text"
             label="Tên thể loại"
             name="categoryname"
-            value={name}
+            value={categoryname}
             onChange={(e) => setCategoryname(e.target.value)}
-            error={Boolean(error && !name)}
-            helperText={error && !name ? "Tên thể loại là bắt buộc" : ""}
+            error={Boolean(error && !categoryname)}
+            helperText={error && !categoryname ? "Tên thể loại là bắt buộc" : ""}
+            sx={{ gridColumn: "span 2" }}
           />
 
           <TextField
@@ -83,27 +73,23 @@ const UpdateCategoryForm = () => {
             type="text"
             label="Mô tả"
             name="description"
-            value={desc}
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
-            error={Boolean(error && !desc)}
-            helperText={error && !desc ? "Mô tả là bắt buộc" : ""}
+            error={Boolean(error && !description)}
+            helperText={error && !description ? "Mô tả là bắt buộc" : ""}
+            sx={{ gridColumn: "span 4" }}
           />
         </Box>
 
         <Box display="flex" justifyContent="end" mt="20px">
           {error && <p className="text-danger">{error}</p>}
-          {alertMessage && (
-            <Alert severity={alertType} sx={{ width: "100%", mb: 2 }}>
-              {alertMessage}
-            </Alert>
-          )}
           <Button
             type="submit"
             color="secondary"
             variant="contained"
             disabled={loading}
           >
-            {loading ? "Đang cập nhật..." : "Cập nhật thể loại"}
+            {loading ? "Đang tạo..." : "Tạo thể loại"}
           </Button>
         </Box>
       </form>
@@ -111,4 +97,4 @@ const UpdateCategoryForm = () => {
   );
 };
 
-export default UpdateCategoryForm;
+export default Form;

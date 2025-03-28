@@ -21,8 +21,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import UpdateCategoryForm from "../../components/admin/dashboard/Scenes/updateCategory";
 import UpdateLearnerForm from "../../components/admin/dashboard/Scenes/updateLearner";
 import UpdateTutorForm from "../../components/admin/dashboard/Scenes/updateTutor";
-import VerifyTutor from "../../components/admin/dashboard/Scenes/verifyTutor";
+import VerifyTutor from "../../components/admin/dashboard/Scenes/UnverifyTutor";
 import VerifyTutorDetail from "../../components/admin/dashboard/Scenes/verifyTutorDetail";
+import UpdateAdminForm from "../../components/admin/dashboard/Scenes/updateAdmin";
+import CreateAdmin from "../../components/admin/dashboard/Scenes/createAdmin";
+import TutorDetail from "../../components/admin/dashboard/Scenes/TutorDetail";
 function Admin() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
@@ -38,17 +41,20 @@ function Admin() {
           <main className="content">
             <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
+              <Route path="tutordetail/:userid" element={<TutorDetail />} />
               <Route path="verifytutordetail/:userid" element={<VerifyTutorDetail />} />
               <Route path="verifytutor" element={<VerifyTutor />} />
               <Route path="updatetutor/:userid" element={<UpdateTutorForm/>} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="/" element={<Ad />} />
+              <Route path="updateadmin/:userid" element={<UpdateAdminForm/>} />
               <Route path="updatelearner/:userid" element={<UpdateLearnerForm/>} />
               <Route path="updatecategory/:categoryId" element={<UpdateCategoryForm/>} />
               <Route path="ad" element={<Ad/>} />
               <Route path="team" element={<Tutor />} />
               <Route path="contacts" element={<Learner />} />
               <Route path="invoices" element={<Course />} />
+              <Route path="createAdmin" element={<CreateAdmin />} />
               <Route path="form" element={<Form />} />
               <Route path="bar" element={<Bar />} />
               <Route path="pie" element={<Pie />} />

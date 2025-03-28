@@ -7,7 +7,8 @@ import { useUnfollow } from '../../../hooks/learner/useUnfollow';
 import { useSpring, animated } from '@react-spring/web'; // Import react-spring
 
 const TutorInfo = () => {
-  const { userid } = useParams();
+  const { username } = useParams();
+
   const navigate = useNavigate();
   const { mutate: followTutor, isLoading: isFollowing } = useFollow();
   const { mutate: unfollowTutor, isLoading: isUnfollowing } = useUnfollow();
@@ -19,13 +20,13 @@ const TutorInfo = () => {
 
   useEffect(() => {
     const fetchTutorDetails = async () => {
-      if (!userid) return;
+      if (!username) return;
 
       setIsLoading(true);
       setError(null);
 
       try {
-        const response = await fetch(`/api/admin/getTutorDetail/${userid}`, {
+        const response = await fetch(`/api/learner/getTutorDetail/${username}`, {
           method: 'GET',
           credentials: 'include',
         });
@@ -46,8 +47,9 @@ const TutorInfo = () => {
     };
 
     fetchTutorDetails();
-  }, [userid, navigate]);
-
+  }, [username, navigate]);
+  console.log(tutorData?.userid)
+ const userid = tutorData?.userid;
   const handleFollow = async () => {
     try {
       await followTutor(userid, {
@@ -115,7 +117,7 @@ const TutorInfo = () => {
 
   if (isLoading) return <div className="text-center mt-5 text-primary">Đang tải...</div>;
   if (error) return <div className="text-center mt-5 text-danger fw-bold">Lỗi: {error}</div>;
-
+console.log(tutorData)
   return (
     <div className="container my-5" style={{ maxWidth: '1200px' }}>
       <div className="row g-4">
@@ -180,32 +182,25 @@ const TutorInfo = () => {
                 <div className="text-center mb-4">
                   <p className="text-dark"><strong>Điểm đánh giá:</strong> <span className="badge bg-warning text-dark">{tutorData?.socialcredit}</span></p>
                 </div>
+             
+                <div className="d-grid gap-2 mt-2 "style={{ gridTemplateColumns: '1fr 1fr ' }}>
                 <button
                     className="btn btn-primary btn-md"
-                    onClick={() => navigate('/learner/booking')}
+                    onClick={() => navigate(`/learner/bookingcontracts/${tutorData?.User?.username}`, { state: { username: tutorData?.User?.username } })}
                     style={{ background: 'linear-gradient(90deg, #007bff, #00c4ff)', border: 'none' ,width:'100%' }}
                   >
                     <FaBolt className="me-2" /> Đăng ký
-                  </button>
-                <div className="d-grid gap-2 mt-2 "style={{ gridTemplateColumns: '1fr 1fr ' }}>
-                
+                  </button> 
                   <button
                     className="btn btn-outline-info btn-md"
                     style={{ transition: 'all 0.3s' }}
                     onMouseOver={(e) => e.target.style.backgroundColor = '#e7f5ff'}
                     onMouseOut={(e) => e.target.style.backgroundColor = 'transparent'}
+                    onClick={() => navigate(`/messages/${tutorData?.User?.username}` )}
                   >
                     <FaEnvelope className="me-2" /> Nhắn tin
                   </button>
-                  <button
-                    className="btn btn-outline-info btn-md"
-                    onClick={() => navigate('/learner/booking')}
-                    style={{ transition: 'all 0.3s' }}
-                    onMouseOver={(e) => e.target.style.backgroundColor = '#f8f9fa'}
-                    onMouseOut={(e) => e.target.style.backgroundColor = 'transparent'}
-                  >
-                    <FaCalendar className="me-2" /> Xem lịch học
-                  </button>
+                
 
                   <button
                     className="btn btn-outline-info btn-md "

@@ -1,31 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Tab, Tabs, Avatar, List, ListItem, ListItemText, Divider, Paper, TextField, Button, Grid, CircularProgress, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { Box, Typography, Tab, Tabs, Avatar, Divider, Paper, TextField, Button, Grid, CircularProgress, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import { useGetLearnerDetail } from '../../../hooks/learner/getLearnerDetail';
 import { useNavigate } from 'react-router-dom';
 import { useUpdateLearner } from '../../../hooks/learner/updateLearner';
 import { useGetCategories } from '../../../hooks/category/getCategories';
-
+import FollowedTutorsList from './ListTutorFollow';
+import useGetListAllContracts from '../../../hooks/learner/getListAllContracts';
+import ListAllContract from './ListAllContract';
+import { useDeleteAccount } from '../../../hooks/learner/deleteAccount';
+import ListContractActive from './ListContractActive';
 const ProfileLearner = () => {
     const [selectedTab, setSelectedTab] = useState(0);
     const [editing, setEditing] = useState(false);
     const [userInfo, setUserInfo] = useState({});
-    const { mutate: getLearnerDetail, data: learnerData, isLoading, error } = useGetLearnerDetail();
+    const { mutate: getLearnerDetail, data: learnerData, isPending: isLoading, error } = useGetLearnerDetail();
     const { mutate: updateLearner } = useUpdateLearner();
     const { mutate: getCategories, data: categories } = useGetCategories();
     const navigate = useNavigate();
 
     useEffect(() => {
-        getLearnerDetail();
+        getLearnerDetail(); // Gọi API để lấy thông tin người học
         getCategories();
-    }, []);
-
+    }, [getLearnerDetail, getCategories]);
+    console.log(learnerData);
     useEffect(() => {
         if (learnerData?.User) {
             setUserInfo({
+
+                displayname: learnerData.User.displayname,
+                imgurl: learnerData.User.imgurl,
                 dateofbirth: learnerData.User.dateofbirth,
                 address: learnerData.User.address,
-                categoryid: learnerData.User.categoryid,
-                learninggoal: learnerData.User.learninggoal,
+                learninggoal: learnerData.learninggoal,
             });
         }
     }, [learnerData]);
@@ -41,21 +47,44 @@ const ProfileLearner = () => {
             [name]: value,
         }));
     };
-
-    const handleSave= () => {
-      
-         
+    const { mutate: deleteAccount,isError } = useDeleteAccount();
+    const handleDelete = () => {
+        if (window.confirm("Bạn có chắc chắn muốn xóa tài khoản? Hành động này không thể hoàn tác!")) {
+            deleteAccount(null, {
+            onSuccess: () => {
+                alert("Tài khoản đã được xóa thành công.");
+                navigate('/');
+            },
+            onError: (err) => {
+                console.error("Delete error:", err);
+                const errorMessage = err?.response?.data?.message || "Xóa tài khoản thất bại, vui lòng thử lại!";
+                alert(errorMessage);
+            },
+            });
+        }
     };
-    console.log(learnerData);
+    const handleSave = () => {
+        updateLearner(userInfo, {
+            onSuccess: () => {
+                setEditing(false);
+                getLearnerDetail(); // Cập nhật lại thông tin sau khi lưu
+            },
+            onError: (err) => {
+                console.error("Update error:", err);
+                alert("Cập nhật thông tin thất bại, vui lòng thử lại!");
+            },
+        });
+    };
+
     const handleCancel = () => {
         if (learnerData?.User) {
             setUserInfo({
+
                 displayname: learnerData.User.displayname,
-                email: learnerData.User.email,
+                imgurl: learnerData.User.imgurl,
                 dateofbirth: learnerData.User.dateofbirth,
                 address: learnerData.User.address,
-                category: learnerData.User.category,
-                learninggoal: learnerData.User.learninggoal,
+                learninggoal: learnerData.learninggoal,
             });
         }
         setEditing(false);
@@ -82,14 +111,14 @@ const ProfileLearner = () => {
     return (
         <Box sx={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
             {/* Sidebar */}
-            <Paper sx={{ width: 300, p: 2, m: 2, height: 'fit-content' }}>
+            <Paper sx={{ width: 300, p: 2, m: 2, height: 'fit-content', boxShadow: 3, borderRadius: 2 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 3 }}>
                     <Avatar
                         src={user?.imgurl}
-                        sx={{ width: 100, height: 100, mb: 2 }}
+                        sx={{ width: 100, height: 100, mb: 2, border: '2px solid #007bff' }}
                     />
-                    <Typography variant="h6">{user?.displayname}</Typography>
-                    <Typography color="textSecondary">{user?.email}</Typography>
+                    <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#333' }}>{user?.displayname}</Typography>
+                    <Typography color="textSecondary">{user?.username}</Typography>
                 </Box>
                 <Divider sx={{ my: 2 }} />
                 <Tabs
@@ -98,28 +127,39 @@ const ProfileLearner = () => {
                     onChange={handleTabChange}
                     sx={{ borderRight: 1, borderColor: 'divider' }}
                 >
-                    <Tab label="Thông tin cá nhân" />
-                    <Tab label="Giảng viên theo dõi" />
-                    <Tab label="Cài đặt tài khoản" />
+                    <Tab label="Thông tin cá nhân" sx={{ fontWeight: selectedTab === 0 ? 'bold' : 'normal', color: selectedTab === 0 ? '#007bff' : 'inherit' }} />
+                    <Tab label="Giảng viên theo dõi" sx={{ fontWeight: selectedTab === 1 ? 'bold' : 'normal', color: selectedTab === 1 ? '#007bff' : 'inherit' }} />
+                    <Tab label="Lịch sử đăng ký" sx={{ fontWeight: selectedTab === 2 ? 'bold' : 'normal', color: selectedTab === 2 ? '#007bff' : 'inherit' }} />
+                    <Tab label="Lịch học chính thức" sx={{ fontWeight: selectedTab === 3 ? 'bold' : 'normal', color: selectedTab === 3 ? '#007bff' : 'inherit' }} />
+                    <Tab label="Cài đặt tài khoản" sx={{ fontWeight: selectedTab === 4 ? 'bold' : 'normal', color: selectedTab === 4 ? '#007bff' : 'inherit' }} />
+
                 </Tabs>
             </Paper>
 
             {/* Main Content */}
             <Box sx={{ flexGrow: 1, p: 3 }}>
                 {selectedTab === 0 && (
-                    <Paper sx={{ p: 3 }}>
+                    <Paper sx={{ p: 3, boxShadow: 3, borderRadius: 2 }}>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
-                            <Typography variant="h5">Thông tin cá nhân</Typography>
+                            <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#007bff' }}>Thông tin cá nhân</Typography>
                             {!editing ? (
-                                <Button variant="contained" onClick={() => setEditing(true)}>
+                                <Button
+                                    variant="contained"
+                                    onClick={() => setEditing(true)}
+                                    sx={{ background: 'linear-gradient(90deg, #007bff, #00c4ff)', color: '#fff' }}
+                                >
                                     Chỉnh sửa
                                 </Button>
                             ) : (
                                 <Box>
-                                    <Button variant="contained" onClick={handleSave} sx={{ mr: 1 }}>
+                                    <Button
+                                        variant="contained"
+                                        onClick={handleSave}
+                                        sx={{ mr: 1, background: 'linear-gradient(90deg, #007bff, #00c4ff)', color: '#fff' }}
+                                    >
                                         Lưu
                                     </Button>
-                                    <Button variant="outlined" onClick={handleCancel}>
+                                    <Button variant="outlined" onClick={handleCancel} sx={{ borderColor: '#007bff', color: '#007bff' }}>
                                         Hủy
                                     </Button>
                                 </Box>
@@ -127,6 +167,7 @@ const ProfileLearner = () => {
                         </Box>
 
                         <Grid container spacing={3}>
+
                             <Grid item xs={12} md={6}>
                                 {editing ? (
                                     <TextField
@@ -151,18 +192,18 @@ const ProfileLearner = () => {
                                 {editing ? (
                                     <TextField
                                         fullWidth
-                                        label="Email"
-                                        name="email"
-                                        value={userInfo.email || ''}
+                                        label="URL ảnh đại diện"
+                                        name="imgurl"
+                                        value={userInfo.imgurl || ''}
                                         onChange={handleUserInfoChange}
                                     />
                                 ) : (
                                     <Box sx={{ mb: 2 }}>
                                         <Typography variant="subtitle1" color="textSecondary">
-                                            Email
+                                            URL ảnh đại diện
                                         </Typography>
                                         <Typography variant="body1">
-                                            {user?.email || 'Chưa cập nhật'}
+                                            {user?.imgurl ? <a href={user.imgurl} target="_blank" rel="noopener noreferrer">Xem ảnh</a> : 'Chưa cập nhật'}
                                         </Typography>
                                     </Box>
                                 )}
@@ -176,9 +217,7 @@ const ProfileLearner = () => {
                                         type="date"
                                         value={userInfo.dateofbirth || ''}
                                         onChange={handleUserInfoChange}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
+                                        InputLabelProps={{ shrink: true }}
                                     />
                                 ) : (
                                     <Box sx={{ mb: 2 }}>
@@ -186,7 +225,7 @@ const ProfileLearner = () => {
                                             Ngày sinh
                                         </Typography>
                                         <Typography variant="body1">
-                                            {user?.dateofbirth ? new Date(user.dateofbirth).toLocaleDateString() : 'Chưa cập nhật'}
+                                            {user?.dateofbirth ? new Date(user.dateofbirth).toLocaleDateString('vi-VN') : 'Chưa cập nhật'}
                                         </Typography>
                                     </Box>
                                 )}
@@ -213,34 +252,6 @@ const ProfileLearner = () => {
                             </Grid>
                             <Grid item xs={12} md={6}>
                                 {editing ? (
-                                    <FormControl fullWidth>
-                                        <InputLabel>Danh mục học</InputLabel>
-                                        <Select
-                                            label="Danh mục học"
-                                            name="categoryid"
-                                            value={userInfo.categoryid || ''}
-                                            onChange={handleUserInfoChange}
-                                        >
-                                            {categories?.data?.map((category) => (
-                                                <MenuItem key={category.categoryid} value={category.categoryid}>
-                                                    {category.categoryname}
-                                                </MenuItem>
-                                            ))}
-                                        </Select>
-                                    </FormControl>
-                                ) : (
-                                    <Box sx={{ mb: 2 }}>
-                                        <Typography variant="subtitle1" color="textSecondary">
-                                            Danh mục học
-                                        </Typography>
-                                        <Typography variant="body1">
-                                            {categories?.data?.find(cat => cat.categoryid === user?.categoryid)?.categoryname || 'Chưa cập nhật'}
-                                        </Typography>
-                                    </Box>
-                                )}
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                {editing ? (
                                     <TextField
                                         fullWidth
                                         label="Mục tiêu học tập"
@@ -256,7 +267,7 @@ const ProfileLearner = () => {
                                             Mục tiêu học tập
                                         </Typography>
                                         <Typography variant="body1">
-                                            {user?.learninggoal || 'Chưa cập nhật'}
+                                            {learnerData?.learninggoal || 'Chưa cập nhật'}
                                         </Typography>
                                     </Box>
                                 )}
@@ -266,42 +277,54 @@ const ProfileLearner = () => {
                 )}
 
                 {selectedTab === 1 && (
-                    <Paper sx={{ p: 3 }}>
-                        <Typography variant="h5" sx={{ mb: 3 }}>Giảng viên theo dõi</Typography>
-                        <List>
-                            {learnerData?.LearningHistory?.map((history, index) => (
-                                <React.Fragment key={index}>
-                                    <ListItem>
-                                        <ListItemText
-                                            primary={history.Course.title}
-                                            secondary={`Thời gian: ${new Date(history.createdAt).toLocaleDateString()}`}
-                                        />
-                                    </ListItem>
-                                    <Divider />
-                                </React.Fragment>
-                            ))}
-                        </List>
+                    <Paper sx={{ p: 3, boxShadow: 3, borderRadius: 2 }}>
+                        <Typography variant="h5" sx={{ mb: 3, fontWeight: 'bold', color: '#007bff' }}>
+                            Giảng viên theo dõi
+                        </Typography>
+                        <FollowedTutorsList />
+                    </Paper>
+                )}
+                {selectedTab === 2 && (
+                    <Paper sx={{ p: 3, boxShadow: 3, borderRadius: 2 }}>
+                        <Typography variant="h5" sx={{ mb: 3, fontWeight: 'bold', color: '#007bff' }}>
+                            Lịch học đã đăng ký
+                        </Typography>
+                        <ListAllContract />
                     </Paper>
                 )}
 
-                {selectedTab === 2 && (
-                    <Paper sx={{ p: 3 }}>
-                        <Typography variant="h5" sx={{ mb: 3 }}>Cài đặt tài khoản</Typography>
-                        <Button 
-                            variant="contained" 
-                            color="primary" 
-                            sx={{ mr: 2 }} 
-                            onClick={() => navigate('/resetpassword')}  
+                {selectedTab === 4 && (
+                    <Paper sx={{ p: 3, boxShadow: 3, borderRadius: 2 }}>
+                        <Typography variant="h5" sx={{ mb: 3, fontWeight: 'bold', color: '#007bff' }}>Cài đặt tài khoản</Typography>
+                        <Button
+                            variant="contained"
+                            sx={{ mr: 2, background: 'linear-gradient(90deg, #007bff, #00c4ff)', color: '#fff' }}
+                            onClick={() => navigate('/resetpassword')}
                         >
                             Đổi mật khẩu
                         </Button>
-                        <Button 
-                            variant="outlined" 
+                        <Button
+                            variant="outlined"
                             color="error"
-                            onClick={() => navigate('/')}  
+                            onClick={() => navigate('/')}
                         >
                             Đăng xuất
                         </Button>
+                        <Button
+                            style={{ backgroundColor: '#ff3e3e', color: 'white',marginLeft: '15px' }}
+                            variant="outlined"
+                            color="error"
+                         
+                            onClick={() => handleDelete()}
+                        >
+                            Xoá tài khoản
+                        </Button>
+                    </Paper>
+                )}
+                    {selectedTab === 3 && (
+                    <Paper sx={{ p: 3, boxShadow: 3, borderRadius: 2 }}>
+                        <Typography variant="h5" sx={{ mb: 3, fontWeight: 'bold', color: '#007bff' }}>Lịch học chính thức</Typography>
+                        <ListContractActive/>
                     </Paper>
                 )}
             </Box>

@@ -21,7 +21,7 @@ export const useRegister = () => {
     },
     onSuccess: (data) => {
       console.log('Registration successful:', data);
-      Navigate('/find');
+      Navigate('/verifylearner')
       // Có thể thêm logic chuyển hướng hoặc thông báo sau khi đăng ký
     },
     onError: (error) => {

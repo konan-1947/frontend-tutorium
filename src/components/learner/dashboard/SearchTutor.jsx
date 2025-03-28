@@ -16,11 +16,13 @@ const TutorSearch = () => {
     const { mutate, isLoading, error, data } = useSearchTutors();
     const { mutate: getCategories, data: categoriesData } = useGetCategories();
     const navigate = useNavigate();
-
+    const handleNavigate = () => {
+        window.location.href = "http://localhost:5000"; // Hoặc chỉ định đường dẫn tương đối nếu trong cùng domain
+      };
     // States
     const [formData, setFormData] = useState({
         search: "",
-        category:"",
+        category: "",
         address: "",
         userAddress: "",
         salaryRange: [0, 1000000],
@@ -64,10 +66,10 @@ const TutorSearch = () => {
         e.preventDefault();
         setLoading(true);
         const searchData = new FormData();
-        searchData.append('displayname', formData.search.match("undefined")?"aaaaaa":formData.search);
-        searchData.append('category', formData.category=="undefined"?"":formData.category);
-        searchData.append('address', formData.address=="undefined"?"":formData.address);
-        searchData.append('userAddress', formData.userAddress=="undefined"?"":formData.userAddress);
+        searchData.append('displayname', formData.search.match("undefined") ? "aaaaaa" : formData.search);
+        searchData.append('category', formData.category == "undefined" ? "" : formData.category);
+        searchData.append('address', formData.address == "undefined" ? "" : formData.address);
+        searchData.append('userAddress', formData.userAddress == "undefined" ? "" : formData.userAddress);
 
         // Sửa cách gửi salary range
         searchData.append('expectedsalary', `${formData.salaryRange[0]}-${formData.salaryRange[1]}`);
@@ -77,7 +79,7 @@ const TutorSearch = () => {
 
         // Log để debug
         console.log('Search Data:', {
-            displayname: formData.search.toString().match("undefined")?"aaaaaa":formData.search,
+            displayname: formData.search.toString().match("undefined") ? "aaaaaa" : formData.search,
             category: formData.category,
             address: formData.address,
             userAddress: formData.userAddress,
@@ -89,7 +91,7 @@ const TutorSearch = () => {
             onSettled: () => setLoading(false)
         });
     };
-
+    console.log(categoriesData);
     // Render functions
     const renderSearchForm = () => (
         <form onSubmit={handleSearch}>
@@ -195,27 +197,27 @@ const TutorSearch = () => {
                                 <span>{formatSalary(formData.salaryRange[1])}</span>
                             </Box>
                         </Box>
-                        <Box sx={{  }}>
-                        {/* Rating Select */}
-                        Sắp xếp theo điểm đánh giá
-                        <Button
-                        
-                            onClick={handleSortChange}
-                            variant="outlined"
-                            size="small"
-                            sx={{
-                                minWidth: 'auto',
-                                padding: '8px',
-                                borderColor: '#ced4da',
-                                width: '100%',
-                                backgroundColor: 'white',
-                                '& .MuiOutlinedInput-notchedOutline': {
-                                    borderColor: '#ced4da'
-                                }
-                            }}
-                        >
-                            {formData.socialcreditsortasc === 'true' ? 'tăng dần' : 'giảm dần'}
-                        </Button>
+                        <Box sx={{}}>
+                            {/* Rating Select */}
+                            Sắp xếp theo điểm đánh giá
+                            <Button
+
+                                onClick={handleSortChange}
+                                variant="outlined"
+                                size="small"
+                                sx={{
+                                    minWidth: 'auto',
+                                    padding: '8px',
+                                    borderColor: '#ced4da',
+                                    width: '100%',
+                                    backgroundColor: 'white',
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                        borderColor: '#ced4da'
+                                    }
+                                }}
+                            >
+                                {formData.socialcreditsortasc === 'true' ? 'tăng dần' : 'giảm dần'}
+                            </Button>
                         </Box>
                     </Box>
                 </div>
@@ -229,84 +231,84 @@ const TutorSearch = () => {
     );
 
     const renderTutors = (tutors) => (
-            <div className="Container-card" data-aos="fade-up">
-                {tutors.map((tutor) => (
-                    <li key={`tutor-${tutor.userid}`}>
-                        <div className="tutor-card border p-3 rounded container">
-                            <div className="row align-items-center">
-                                <div className="col-md-2 tutor-image text-center">
+        <div className="Container-card" data-aos="fade-up">
+            {tutors.map((tutor) => (
+                <li key={`tutor-${tutor.userid}`}>
+                    <div className="tutor-card border p-3 rounded container">
+                        <div className="row align-items-center">
+                            <div className="col-md-2 tutor-image text-center">
                                 <img
                                     onClick={() => navigate(`/learner/detailTutor/:${tutor.userid}`, {
                                         state: { userid: tutor.userid }
                                     })}
-                                    src={tutor.User?.imgurl}
+                                    src={tutor.User?.imgurl || Uia}
                                     alt="Tutor"
                                     className="tutor-avatar rounded img-fluid"
                                 />
+                            </div>
+                            <div className="col-md-5">
+                                <div className="d-flex">
+                                    <h4 className="fw-bold mb-2 mr-4">{tutor.User?.displayname}</h4>
+                                    <span className="ms-2">{tutor.User?.address}</span>
+
+
                                 </div>
-                                <div className="col-md-5">
-                                    <div className="d-flex">
-                                        <h4 className="fw-bold mb-2 mr-4">{tutor.User?.displayname}</h4>
-                                        <span className="ms-2">{tutor.User?.address}</span>
-                                  
-                                    
-                                </div>
-                                {tutor.distance && ( <p className="text-muted">Distance: {tutor.distance} km</p> )}
+                                {tutor.distance && (<p className="text-muted">Distance: {tutor.distance.toFixed(2)} km</p>)}
                                 <p className="text-muted">
-                                    Lĩnh vực {tutor.Categories ? tutor.Categories.map(cat => (
-                                        <span key={`category-${cat.id}`}>{cat.categoryname}</span>
-                                    )).reduce((prev, curr) => [prev, ', ', curr]) : 'No categories'}
+                                    Lĩnh vực {tutor.Categories && tutor.Categories.length > 0
+                                        ? tutor.Categories.map(cat => cat.categoryname).join(', ')
+                                        : 'No categories'}
                                 </p>
                                 <p className="tutor-description"><strong>{tutor.description}</strong></p>
                             </div>
                             <div className="col-md-5 text-end tutor-price-rating">
-                                    <div className="row">
-                                        <div className="col-6 text-end">
+                                <div className="row">
+                                    <div className="col-6 text-end">
                                         <p className="text-muted fs-8">Điểm đánh giá</p>
                                         <p className="text-end">
                                             <FaStar className="text-warning" />
                                             <strong>{tutor.socialcredit}</strong>
                                         </p>
-                                        </div>
-                                        <div className="col-6 text-end">
+                                    </div>
+                                    <div className="col-6 text-end">
                                         <p className="text-muted fs-8">Lương mong muốn</p>
-                                            <p className="fw-bold tutor-price">{tutor.expectedsalary} VND</p>
-                                        </div>
+                                        <p className="fw-bold tutor-price">{tutor.expectedsalary} VND</p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="row mt-3">
-                                <div className="col-md-12 text-end">
+                        </div>
+                        <div className="row mt-3">
+                            <div className="col-md-12 text-end">
                                 <Button
                                     className="btn me-2"
-                                    onClick={() => navigate(`/learner/detailTutor/${tutor.userid}`, {
-                                        state: { userid: tutor.userid }
+                                    onClick={() => navigate(`/learner/detailTutor/${tutor?.User.username}`, {
+                                        state: { username: tutor?.User.username, userid: tutor.userid }
                                     })}
                                 >
-                                        Xem chi tiết
-                                    </Button>
-                                </div>
+                                    Xem chi tiết
+                                </Button>
                             </div>
                         </div>
-                    </li>
-                ))}
-            </div>
-        );
+                    </div>
+                </li>
+            ))}
+        </div>
+    );
 
     return (
         <div className="tutorSearch-body">
             <Box sx={{
-                    paddingTop: 4,
-                    width: '100%',
-                    maxWidth: 1100,
-                    margin: 'auto',
-                    padding: '16px 24px',
-                    backgroundColor: 'white',
-                    borderRadius: 2,
-                    boxShadow: 3,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 2
+                paddingTop: 4,
+                width: '100%',
+                maxWidth: 1100,
+                margin: 'auto',
+                padding: '16px 24px',
+                backgroundColor: 'white',
+                borderRadius: 2,
+                boxShadow: 3,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2
             }}>
                 {renderSearchForm()}
 

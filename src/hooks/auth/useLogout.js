@@ -1,19 +1,31 @@
-// file: src/hooks/useLogout.js
-export const useLogout = async () => {
-    try {
-      const response = await fetch("/auth/logout", {
-        method: "GET",
-        credentials: "include", // Để gửi cookie session
+import { useMutation } from '@tanstack/react-query';
+
+export const useLogout = () => {
+  return useMutation({
+    mutationFn: async () => {
+      const response = await fetch('/api/auth/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include', // Gửi cookies để backend xử lý session
       });
 
       if (!response.ok) {
-        throw new Error("Không thể đăng xuất");
+        throw new Error('Đăng xuất thất bại');
       }
 
-      window.location.href = "/"; // Chuyển hướng sau khi đăng xuất
-    } catch (error) {
-      console.error("Lỗi khi đăng xuất:", error);
-    }
-  };
-  
+      const data = await response.json();
+      console.log("Logout response:", data);
+      return data;
+    },
+    onSuccess: (data) => {
+      console.log("Đăng xuất thành công:", data);
+    },
+    onError: (error) => {
+      console.error("Lỗi khi đăng xuất:", error.message);
+    },
+  });
+};
+
 export default useLogout;

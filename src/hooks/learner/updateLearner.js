@@ -5,20 +5,21 @@ export const useUpdateLearner = () => {
 
     mutationFn: async (userInfo) => {
    console.log(userInfo);
-      const response = await fetch('/api/learner/chooseCustomInfo', {
-        method: 'POST',
+      const response = await fetch('/api/learner/updateProfileLearner', {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(userInfo),
       });
-   
-
+      const data = await response.json();
+        
       if (!response.ok) {
-        throw new Error('Verification failed111');
+        console.log("Lỗi:", data.message); // In lỗi rõ ràng
+        throw new Error(data.message); // Ném lỗi ra ngoài để xử lý tiếp
       }
-      console.log("aa");
-      return response.json();
+       
+      return { message: data.message, data }; // Trả về cả message và toàn bộ data
     },
     onSuccess: (data) => {
       console.log('Verification successful:', data);

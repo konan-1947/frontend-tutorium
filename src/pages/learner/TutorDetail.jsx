@@ -4,6 +4,7 @@ import Footer from '../../components/Home/Footer'
 import '../../assets/css/home.css'
 import TutorInfo from '../../components/learner/dashboard/TutorDetail'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AddTutorSchedule from '../../components/learner/booking/ScheduleLearner';
 const queryClient = new QueryClient();
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
             <NavbarAfter />
             <QueryClientProvider client={queryClient}>
                 <TutorInfo />
+                <AddTutorSchedule />
             </QueryClientProvider>
             <Footer />
         </div>

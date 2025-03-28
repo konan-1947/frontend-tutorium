@@ -30,7 +30,7 @@ const ChatWidget = () => {
       <style>
         {`
           .slide-out {
-            transform: translateY(200%);
+            transform: translate(100%, 100%);
           }
           .fade-in {
             opacity: 1;

@@ -120,7 +120,7 @@ const Sidebar = () => {
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
               title="Trang chủ"
-              to="/admin"
+              to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -147,6 +147,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+            
             <Item
               title="Quản lý học viên"
               to="/admin/contacts"
@@ -176,7 +177,13 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            
+             <Item
+              title="Thêm Admin"
+              to="/admin/createAdmin"
+              icon={<PersonOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
             <Item
               title="Thêm khoá học"
               to="/admin/form"

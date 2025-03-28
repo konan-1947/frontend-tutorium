@@ -6,7 +6,7 @@ export const useFetchTutors = async () => {
         const response = await fetch("/api/admin/getTutorList",{
             //gửi thuộc tính của api
             method:'GET',
-            credentials:'true'
+            credentials:'include',
         });
         //lỗi của api
         if(!response.ok){

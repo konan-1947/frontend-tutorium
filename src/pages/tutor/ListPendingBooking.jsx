@@ -1,0 +1,24 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import NavbarAfter from '../components/learner/profile/NavbarProfileLearner';
+import Login from '../components/auth/Login';
+import Footer from '../components/Home/Footer';
+import '../assets/css/home.css';
+import ListPendingBooking from '../../components/tutor/dashboard/ListPendingBooking';
+
+// Tạo instance của QueryClient
+const queryClient = new QueryClient();
+
+const Home = () => {
+  return (
+      <div className="home-overflow">
+        <NavbarAfter />
+        <QueryClientProvider client={queryClient}>
+            <ListPendingBooking />
+        </QueryClientProvider>
+        <Footer />
+      </div>
+  );
+};
+
+export default Home;
