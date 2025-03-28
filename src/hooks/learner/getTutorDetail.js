@@ -14,14 +14,13 @@ export const useFetchTutors = async () => {
         }
         const data = await response.json();
 
-        return data;
+        return data.data;
 
     } catch (error) {
       //xuất lỗi  
       console.log(error);
     }
-    
-   
+     
 };
 
 export default useFetchTutors;
