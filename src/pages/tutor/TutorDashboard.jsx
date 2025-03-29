@@ -72,7 +72,7 @@ const TutorDashboard = () => {
               <Routes>
                 <Route
                   path="/"
-                  element={<DashboardStats />}
+                  element={<TutorProfile/>}
                 />
                 <Route
                   path="profile"

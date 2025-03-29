@@ -27,7 +27,7 @@ export const useRegisterTutor = () => {
 
     },
     onError: (error) => {
-      alert("Tên người dùng hoặc email đã được dùng. Vui lý nhập lại!");
+      alert("Tên người dùng hoặc email đã được dùng. Vui lòng nhập lại!");
     },
   });
 };

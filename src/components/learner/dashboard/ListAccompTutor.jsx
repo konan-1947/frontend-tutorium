@@ -101,7 +101,7 @@ const TutorAccomplishments = () => {
         <div className="text-center mt-4" data-aos="fade-up" data-aos-delay="200">
           <Button
             variant="secondary"
-            onClick={() => navigate(`/tutorinfo/${username}`)}
+            onClick={() => navigate(`/tutor/dashboard/profile`)}
             style={{ background: 'linear-gradient(90deg, #6c757d, #adb5bd)', border: 'none' }}
           >
             Quay lại

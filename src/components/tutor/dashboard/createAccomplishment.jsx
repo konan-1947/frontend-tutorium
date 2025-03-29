@@ -117,7 +117,7 @@ const CreateAccomplishment = () => {
     createAccomplishment(formData, {
       onSuccess: () => {
         alert("Thêm thành tựu thành công!");
-        navigate('/tutor/dashboard'); // Điều hướng sau khi thành công
+        navigate('/tutor/dashboard/schedule'); // Điều hướng sau khi thành công
       },
       onError: (error) => {
         alert(`Lỗi: ${error.message || 'Thêm thành tựu thất bại'}`);

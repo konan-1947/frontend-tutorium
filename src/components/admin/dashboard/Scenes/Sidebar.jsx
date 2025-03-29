@@ -131,7 +131,7 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Data
+             Quản Lý
             </Typography>
             <Item
               title="Quản lý Admin"
@@ -168,7 +168,7 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Pages
+            _________________________
             </Typography>
             <Item
               title="Xác minh gia sư"
@@ -193,7 +193,7 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Thêm khoá học"
+              title="Thêm danh mục"
               to="/admin/form"
               icon={<PersonOutlinedIcon />}
               selected={selected}

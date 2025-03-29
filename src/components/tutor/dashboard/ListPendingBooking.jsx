@@ -15,7 +15,7 @@ const ListPendingBooking = () => {
   if (isLoading) {
     return (
       <Box sx={{ p: 3 }}>
-        <Typography>Loading pending bookings...</Typography>
+        <Typography>Đang tải...</Typography>
       </Box>
     );
   }
@@ -23,7 +23,7 @@ const ListPendingBooking = () => {
   if (error) {
     return (
       <Box sx={{ p: 3 }}>
-        <Typography color="error">Failed to load bookings: {error.message}</Typography>
+        <Typography color="error">\Lỗi: {error.message}</Typography>
       </Box>
     );
   }
@@ -31,7 +31,7 @@ const ListPendingBooking = () => {
   if (!data || !Array.isArray(data) || data.length === 0) {
     return (
       <Box sx={{ p: 3 }}>
-        <Typography>No pending bookings available</Typography>
+        <Typography>Không có hợp đồng nào đang chờ</Typography>
       </Box>
     );
   }

@@ -17,6 +17,7 @@ const AddTutorSchedule = () => {
   const [startTime, setStartTime] = useState(""); // Chỉ lưu giờ bắt đầu
   const [endTime, setEndTime] = useState(""); // Chỉ lưu giờ kết thúc
   const [timeError, setTimeError] = useState("");
+  const [dateError, setDateError] = useState("");
 
   const { mutate, isPending, isError, error, isSuccess } = useCreateWorkingTime();
 
@@ -46,11 +47,24 @@ const AddTutorSchedule = () => {
       const diffHours = diffMs / (1000 * 60 * 60);
 
       if (diffHours > 3) {
-        setTimeError("Khoảng thời gian không được vượt quá 3 tiếng");
+        setTimeError("Khoảng thởi gian không được vượt quá 3 tiếng");
       } else if (diffHours <= 0) {
-        setTimeError("Thời gian kết thúc phải sau thời gian bắt đầu");
+        setTimeError("Thời gian kết thúc phải sau thởi gian bắt đầu");
       } else {
         setTimeError("");
+      }
+    }
+  };
+
+  const validateDate = (date) => {
+    if (date) {
+      const selectedDateObj = new Date(date);
+      const currentDateObj = new Date();
+
+      if (selectedDateObj < currentDateObj) {
+        setDateError("Không thể đặt lịch trong quá khứ");
+      } else {
+        setDateError("");
       }
     }
   };
@@ -59,12 +73,13 @@ const AddTutorSchedule = () => {
     if (!date || !time) return "";
     const [day, month, year] = date.split("/");
     return `${year}-${month}-${day}T${time}:00`;
+    
   };
 
   const handleSaveSchedule = (e) => {
     e.preventDefault();
     
-    if (timeError || !selectedDate) return;
+    if (timeError || dateError || !selectedDate) return;
 
     const apiStartTime = convertToApiFormat(selectedDate, startTime);
     const apiEndTime = convertToApiFormat(selectedDate, endTime);
@@ -149,7 +164,7 @@ const AddTutorSchedule = () => {
                       </Col>
                       <Col md={4}>
                         <Form.Group className="mb-3">
-                          <Form.Label className="text DARK fw-bold">Giờ bắt đầu</Form.Label>
+                          <Form.Label className="text-dark fw-bold">Giờ bắt đầu</Form.Label>
                           <Form.Control
                             type="time"
                             name="startTime"
@@ -181,6 +196,11 @@ const AddTutorSchedule = () => {
                       {timeError}
                     </Alert>
                   )}
+                  {dateError && (
+                    <Alert variant="warning" className="text-center">
+                      {dateError}
+                    </Alert>
+                  )}
                   {isPending && (
                     <div className="text-center mb-3">
                       <Spinner animation="border" variant="primary" />
@@ -189,12 +209,13 @@ const AddTutorSchedule = () => {
                   )}
                   {isError && (
                     <Alert variant="danger" className="text-center">
-                      Lỗi: {error.message || "Không thể lưu lịch. Vui lòng thử lại!"}
+                      Lỗi: Không thể đặt lịch vào quá khứ
                     </Alert>
                   )}
                   {isSuccess && (
                     <Alert variant="success" className="text-center">
                       Lịch dạy đã được lưu thành công!
+                      <Link to="/tutor/dashboard/schedule"> Xem lịch dạy</Link>
                     </Alert>
                   )}
 
@@ -203,7 +224,7 @@ const AddTutorSchedule = () => {
                       type="submit"
                       className="btn btn-primary btn-lg"
                       style={{ background: 'linear-gradient(90deg, #007bff, #00c4ff)', border: 'none', padding: '12px 40px' }}
-                      disabled={isPending || !!timeError}
+                      disabled={isPending || !!timeError || !!dateError}
                     >
                       Lưu lịch dạy
                     </Button>
@@ -214,8 +235,9 @@ const AddTutorSchedule = () => {
           </Col>
         </Row>
       </Container>
-    </div>
+      </div>
   );
 };
 
 export default AddTutorSchedule;
+/******  26e1361f-8e99-46fe-91b5-d4b11db85020  *******/

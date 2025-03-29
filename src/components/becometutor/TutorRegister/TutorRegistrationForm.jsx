@@ -106,7 +106,7 @@ const TutorRegistrationForm = () => {
     registerTutor(formData, {
       onSuccess: () => {
         alert("Đăng ký gia sư thành công!");
-        navigate('/tutor/dashboard');
+        navigate('/tutor/dashboard/profile');
       },
  
     });

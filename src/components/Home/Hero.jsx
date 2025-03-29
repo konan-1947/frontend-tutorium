@@ -4,7 +4,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import CSS của AOS
 import image from '../../assets/img/imghome.jpg';
 import'../../assets/css/fonts.css';
+import { useNavigate } from 'react-router-dom';
 const HeroSection = () => {
+  const nagivate = useNavigate();
   useEffect(() => {
     AOS.init({ duration: 1000, once: true }); // Khởi tạo AOS với thời gian animation 1s
   }, []);
@@ -21,8 +23,10 @@ const HeroSection = () => {
         <p data-aos="fade-up" data-aos-delay="600">
           Tham gia các bài học trực tuyến phù hợp với trình độ, ngân sách và lịch trình của bạn.
         </p>
-        <button className="btn-get-started" data-aos="fade-up" data-aos-delay="800">
+        <button className="btn-get-started" data-aos="fade-up" data-aos-delay="800"
+        onClick={() =>nagivate(`/find`)}>
           Tìm gia sư của bạn &raquo;
+          
         </button>
       </div>
       <div className="hero-image" data-aos="fade-left" data-aos-delay="1000">

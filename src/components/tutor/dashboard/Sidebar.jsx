@@ -44,19 +44,7 @@ const Sidebar = ({ setActiveComponent }) => {
       data-aos="fade-right"
     >
       <ListGroup variant="flush">
-        {/* Dashboard */}
-        <ListGroup.Item
-          action
-          onClick={() => setActiveComponent("all")}
-          className="d-flex align-items-center py-3 rounded-3 mb-2"
-          style={{ transition: 'all 0.3s' }}
-          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#e7f5ff')}
-          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
-        >
-          <House className="me-2 text-primary" size={20} />
-          <span className="text-dark fw-bold">Trang chủ</span>
-        </ListGroup.Item>
-
+     
         {/* My Profile */}
         <ListGroup.Item
           action
@@ -134,7 +122,7 @@ const Sidebar = ({ setActiveComponent }) => {
         </ListGroup.Item>
         <ListGroup.Item
           action
-          onClick={() => setActiveComponent("createaccomplishment")} // Sửa "coursetList" thành "courseslist" để đồng bộ với TutorDashboard
+          onClick={() => setActiveComponent("listaccomplishment")} // Sửa "coursetList" thành "courseslist" để đồng bộ với TutorDashboard
           className="d-flex align-items-center py-3 rounded-3 mb-2"
           style={{ transition: 'all 0.3s' }}
           onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#e7f5ff')}

@@ -5,7 +5,7 @@ import 'aos/dist/aos.css';
 import AOS from 'aos';
 import { useNavigate, useParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import { useGetWorkingTime } from "../../../hooks/learner/getWorkingTime";
+import { usegetTutorWorkingTimes } from "../../../hooks/tutor/getWorkingTime";
 import "../../../assets/css/lich2.css"; // Import file CSS
 
 const getDaysInMonth = (month, year) => new Date(year, month + 1, 0).getDate();
@@ -36,7 +36,7 @@ const Calendar = () => {
   const navigate = useNavigate();
   const { username } = useParams();
 
-  const { mutate, data: workingTimesData, isPending, isError, error } = useGetWorkingTime();
+  const { mutate, data: workingTimesData, isPending, isError, error } = usegetTutorWorkingTimes();
   const daysOfWeek = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
   const weeks = generateCalendar(currentMonth, currentYear);
 
@@ -46,8 +46,8 @@ const Calendar = () => {
       once: true,
     });
 
-    if (username) mutate(username);
-  }, [username, mutate]);
+  mutate();
+  }, [ mutate]);
 
   const registerMutation = useMutation({
     mutationFn: async (taskData) => {
@@ -111,7 +111,6 @@ const Calendar = () => {
   };
 
   if (isPending) return <div className="text-center my-5"><Spinner animation="border" variant="primary" /> Đang tải lịch làm việc...</div>;
-  if (isError) return <Alert variant="danger" className="text-center my-5">Lỗi: {error.message}</Alert>;
 
   return (
     <div>

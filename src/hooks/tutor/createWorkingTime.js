@@ -15,17 +15,17 @@ export const useCreateWorkingTime = () => {
       const data = await response.json();
     
       if (!response.ok) {
-        console.log("Lỗi:", data.message); // In lỗi rõ ràng
-        throw new Error(data.message); // Ném lỗi ra ngoài để xử lý tiếp
+        console.log(); // In lỗi rõ ràng
+        throw new Error(); // Ném lỗi ra ngoài để xử lý tiếp
       }
     
       return data;
     },
     onSuccess: (data) => {
-      console.log("Learner detail fetched successfully:", data);
+      console.log(":", data);
     },
     onError: (error) => {
-      console.error("Error fetching learner detail:", error);
+      console.error(":", error);
     },
   });
 };

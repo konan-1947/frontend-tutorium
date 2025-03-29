@@ -16,169 +16,137 @@ const TutorSearch = () => {
     const { mutate, isLoading, error, data } = useSearchTutors();
     const { mutate: getCategories, data: categoriesData } = useGetCategories();
     const navigate = useNavigate();
-    const handleNavigate = () => {
-        window.location.href = "http://localhost:5000"; // Hoặc chỉ định đường dẫn tương đối nếu trong cùng domain
-      };
-    // States
+
+    // Khởi tạo state với tất cả các trường cần thiết
     const [formData, setFormData] = useState({
-        search: "",
-        category: "",
-        address: "",
-        userAddress: "",
+        search: '',
+        category: '',
+        address: '',
+        userAddress: '',
         salaryRange: [0, 1000000],
-        socialCredit: ""
+        socialcreditsortasc: 'false', // Khởi tạo mặc định là giảm dần
     });
     const [loading, setLoading] = useState(false);
 
-    // Effects
+    // Lấy danh mục khi component mount
     useEffect(() => {
         getCategories();
         AOS.init({ duration: 500 });
     }, []);
 
-    // Handlers
+    // Xử lý thay đổi input
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prev => ({
+        setFormData((prev) => ({
             ...prev,
-            [name]: value
+            [name]: value,
         }));
     };
 
+    // Xử lý thay đổi khoảng lương
     const handleSalaryChange = (event, newValue) => {
-        setFormData(prev => ({
+        setFormData((prev) => ({
             ...prev,
-            salaryRange: newValue
+            salaryRange: newValue,
         }));
     };
 
+    // Định dạng tiền tệ
     const formatSalary = (value) => {
         return `${value.toLocaleString('vi-VN')} VND`;
     };
+
+    // Chuyển đổi sắp xếp điểm đánh giá
     const handleSortChange = () => {
-        setFormData(prev => ({
+        setFormData((prev) => ({
             ...prev,
-            socialcreditsortasc: prev.socialcreditsortasc === 'true' ? 'false' : 'true'
+            socialcreditsortasc: prev.socialcreditsortasc === 'true' ? 'false' : 'true',
         }));
     };
 
+    // Xử lý tìm kiếm
     const handleSearch = (e) => {
         e.preventDefault();
         setLoading(true);
+
         const searchData = new FormData();
-        searchData.append('displayname', formData.search.match("undefined") ? "aaaaaa" : formData.search);
-        searchData.append('category', formData.category == "undefined" ? "" : formData.category);
-        searchData.append('address', formData.address == "undefined" ? "" : formData.address);
-        searchData.append('userAddress', formData.userAddress == "undefined" ? "" : formData.userAddress);
-
-        // Sửa cách gửi salary range
+        searchData.append('displayname', formData.search || ''); // Nếu rỗng thì gửi chuỗi rỗng
+        searchData.append('category', formData.category || '');
+        searchData.append('address', formData.address || '');
+        searchData.append('userAddress', formData.userAddress || '');
         searchData.append('expectedsalary', `${formData.salaryRange[0]}-${formData.salaryRange[1]}`);
-
         searchData.append('socialcreditsortasc', formData.socialcreditsortasc);
 
-
-        // Log để debug
-        console.log('Search Data:', {
-            displayname: formData.search.toString().match("undefined") ? "aaaaaa" : formData.search,
-            category: formData.category,
-            address: formData.address,
-            userAddress: formData.userAddress,
-            expectedsalary: `${formData.salaryRange[0]}-${formData.salaryRange[1]}`,
-            minSocialCredit: formData.socialCredit || 0
-        });
+        // Log dữ liệu để debug
+        for (let pair of searchData.entries()) {
+            console.log(`${pair[0]}: ${pair[1]}`);
+        }
 
         mutate(searchData, {
-            onSettled: () => setLoading(false)
+            onSuccess: () => {
+                console.log('Search successful:', data);
+            },
+            onError: (err) => {
+                console.error('Search error:', err);
+            },
+            onSettled: () => setLoading(false),
         });
     };
-    console.log(categoriesData);
-    // Render functions
+
+    // Form tìm kiếm
     const renderSearchForm = () => (
         <form onSubmit={handleSearch}>
             <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                {/* Search Input */}
-                <div>
-                    <TextField
-                        sx={{ flex: 2, width: '120%' }}
-                        placeholder="Tìm kiếm"
-                        name="search"
-                        value={formData.search}
-                        onChange={handleInputChange}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <SearchIcon />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                </div>
+                <TextField
+                    sx={{ flex: 2, minWidth: '200px' }}
+                    placeholder="Tìm kiếm gia sư"
+                    name="search"
+                    value={formData.search}
+                    onChange={handleInputChange}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <SearchIcon />
+                            </InputAdornment>
+                        ),
+                    }}
+                />
 
-                {/* Category Select */}
-                <div>
-                    <Select
-                        sx={{ marginLeft: 3, width: '100%' }}
-                        value={formData.category}
-                        onChange={handleInputChange}
-                        name="category"
-                        displayEmpty
-                    >
-                        <MenuItem value="">Lĩnh vực</MenuItem>
-                        {categoriesData?.data?.map((category) => (
-                            <MenuItem
-                                key={category.id}
-                                value={category.categoryname}
-                            >
-                                {category.categoryname}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </div>
+                <Select
+                    sx={{ flex: 1, minWidth: '150px' }}
+                    value={formData.category}
+                    onChange={handleInputChange}
+                    name="category"
+                    displayEmpty
+                >
+                    <MenuItem value="">Tất cả danh mục</MenuItem>
+                    {categoriesData?.data?.map((category) => (
+                        <MenuItem key={category.id} value={category.categoryname}>
+                            {category.categoryname}
+                        </MenuItem>
+                    ))}
+                </Select>
 
-                {/* Address Fields */}
-                <div>
-                    <TextField
-                        sx={{ flex: 2 }}
-                        placeholder="Địa chỉ của gia sư"
-                        name="address"
-                        value={formData.address}
-                        onChange={handleInputChange}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <SearchIcon />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                </div>
-                <div>
-                    <TextField
-                        sx={{ flex: 2 }}
-                        placeholder="Địa chỉ của bạn"
-                        name="userAddress"
-                        value={formData.userAddress}
-                        onChange={handleInputChange}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <SearchIcon />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                </div>
+                <TextField
+                    sx={{ flex: 2, minWidth: '200px' }}
+                    placeholder="Địa chỉ gia sư"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <SearchIcon />
+                            </InputAdornment>
+                        ),
+                    }}
+                />
 
-                {/* Salary and Rating Filters */}
-                <div style={{ width: '100%', padding: '20px 10px' }}>
-                    <Box sx={{ width: '100%', display: 'flex', gap: 2, padding: '10px' }}>
-                        {/* Salary Slider */}
-                        <Box sx={{
-                            flex: 1,
-                            backgroundColor: '#f5f5f5',
-                            padding: '15px',
-                            borderRadius: '8px'
-                        }}>
+              
+
+                <Box sx={{ width: '100%', padding: '10px 0' }}>
+                    <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                        <Box sx={{ flex: 1, backgroundColor: '#f5f5f5', padding: '15px', borderRadius: '8px' }}>
                             <p style={{ marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>
                                 Học phí/giờ:
                             </p>
@@ -197,133 +165,132 @@ const TutorSearch = () => {
                                 <span>{formatSalary(formData.salaryRange[1])}</span>
                             </Box>
                         </Box>
-                        <Box sx={{}}>
-                            {/* Rating Select */}
-                            Sắp xếp theo điểm đánh giá
+                        <Box sx={{ flex: '0 0 auto' }}>
+                            <p style={{ marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>
+                                Sắp xếp điểm:
+                            </p>
                             <Button
-
                                 onClick={handleSortChange}
                                 variant="outlined"
-                                size="small"
-                                sx={{
-                                    minWidth: 'auto',
-                                    padding: '8px',
-                                    borderColor: '#ced4da',
-                                    width: '100%',
-                                    backgroundColor: 'white',
-                                    '& .MuiOutlinedInput-notchedOutline': {
-                                        borderColor: '#ced4da'
-                                    }
-                                }}
+                                sx={{ width: '120px' }}
                             >
-                                {formData.socialcreditsortasc === 'true' ? 'tăng dần' : 'giảm dần'}
+                                {formData.socialcreditsortasc === 'true' ? 'Tăng dần' : 'Giảm dần'}
                             </Button>
                         </Box>
                     </Box>
-                </div>
+                </Box>
 
-                {/* Search Button */}
-                <button type="submit" disabled={loading || isLoading}>
+                <Button
+                    type="submit"
+                    variant="contained"
+                    disabled={loading || isLoading}
+                    sx={{ backgroundColor: '#1976d2', padding: '10px 20px', minWidth: '120px' }}
+                >
                     {loading || isLoading ? 'Đang tìm...' : 'Tìm kiếm'}
-                </button>
+                </Button>
             </Box>
         </form>
     );
 
+    // Hiển thị danh sách gia sư
     const renderTutors = (tutors) => (
         <div className="Container-card" data-aos="fade-up">
             {tutors.map((tutor) => (
-                <li key={`tutor-${tutor.userid}`}>
-                    <div className="tutor-card border p-3 rounded container">
-                        <div className="row align-items-center">
-                            <div className="col-md-2 tutor-image text-center">
-                                <img
-                                    onClick={() => navigate(`/learner/detailTutor/:${tutor.userid}`, {
-                                        state: { userid: tutor.userid }
-                                    })}
-                                    src={tutor.User?.imgurl || Uia}
-                                    alt="Tutor"
-                                    className="tutor-avatar rounded img-fluid"
-                                />
-                            </div>
-                            <div className="col-md-5">
-                                <div className="d-flex">
-                                    <h4 className="fw-bold mb-2 mr-4">{tutor.User?.displayname}</h4>
-                                    <span className="ms-2">{tutor.User?.address}</span>
-
-
-                                </div>
-                                {tutor.distance && (<p className="text-muted">Distance: {tutor.distance.toFixed(2)} km</p>)}
-                                <p className="text-muted">
-                                    Lĩnh vực {tutor.Categories && tutor.Categories.length > 0
-                                        ? tutor.Categories.map(cat => cat.categoryname).join(', ')
-                                        : 'No categories'}
-                                </p>
-                                <p className="tutor-description"><strong>{tutor.description}</strong></p>
-                            </div>
-                            <div className="col-md-5 text-end tutor-price-rating">
-                                <div className="row">
-                                    <div className="col-6 text-end">
-                                        <p className="text-muted fs-8">Điểm đánh giá</p>
-                                        <p className="text-end">
-                                            <FaStar className="text-warning" />
-                                            <strong>{tutor.socialcredit}</strong>
-                                        </p>
-                                    </div>
-                                    <div className="col-6 text-end">
-                                        <p className="text-muted fs-8">Lương mong muốn</p>
-                                        <p className="fw-bold tutor-price">{tutor.expectedsalary} VND</p>
-                                    </div>
-                                </div>
-                            </div>
+                <div key={`tutor-${tutor.userid}`} className="tutor-card border p-3 rounded mb-3">
+                    <div className="row align-items-center">
+                        <div className="col-md-2 text-center">
+                            <img
+                                onClick={() => navigate(`/learner/detailTutor/${tutor.userid}`, {
+                                    state: { userid: tutor.userid },
+                                })}
+                                src={tutor.User?.imgurl || Uia}
+                                alt="Tutor"
+                                className="tutor-avatar rounded img-fluid"
+                                style={{ cursor: 'pointer', maxWidth: '100px' }}
+                            />
                         </div>
-                        <div className="row mt-3">
-                            <div className="col-md-12 text-end">
-                                <Button
-                                    className="btn me-2"
-                                    onClick={() => navigate(`/learner/detailTutor/${tutor?.User.username}`, {
-                                        state: { username: tutor?.User.username, userid: tutor.userid }
-                                    })}
-                                >
-                                    Xem chi tiết
-                                </Button>
+                        <div className="col-md-6">
+                            <div className="d-flex align-items-center">
+                                <h4 className="fw-bold mb-2 me-3">{tutor.User?.displayname}</h4>
+                                <span className="text-muted">{tutor.User?.address}</span>
                             </div>
+                            {tutor.distance && (
+                                <p className="text-muted">Khoảng cách: {tutor.distance.toFixed(2)} km</p>
+                            )}
+                            <p className="text-muted">
+                                Lĩnh vực: {tutor.Categories?.length > 0
+                                    ? tutor.Categories.map((cat) => cat.categoryname).join(', ')
+                                    : 'Không có danh mục'}
+                            </p>
+                            <p className="tutor-description"><strong>{tutor.description}</strong></p>
+                        </div>
+                        <div className="col-md-4 text-end">
+                            <div className="row">
+                                <div className="col-6">
+                                    <p className="text-muted fs-8">Điểm đánh giá</p>
+                                    <p>
+                                        <FaStar className="text-warning" /> <strong>{tutor.socialcredit}</strong>
+                                    </p>
+                                </div>
+                                <div className="col-6">
+                                    <p className="text-muted fs-8">Lương mong muốn</p>
+                                    <p className="fw-bold tutor-price">{formatSalary(tutor.expectedsalary)}</p>
+                                </div>
+                            </div>
+                            <Button
+                                variant="outlined"
+                                onClick={() =>
+                                    navigate(`/learner/detailTutor/${tutor?.User.username}`, {
+                                        state: { username: tutor?.User.username, userid: tutor.userid },
+                                    })
+                                }
+                            >
+                                Xem chi tiết
+                            </Button>
                         </div>
                     </div>
-                </li>
+                </div>
             ))}
         </div>
     );
 
     return (
         <div className="tutorSearch-body">
-            <Box sx={{
-                paddingTop: 4,
-                width: '100%',
-                maxWidth: 1100,
-                margin: 'auto',
-                padding: '16px 24px',
-                backgroundColor: 'white',
-                borderRadius: 2,
-                boxShadow: 3,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 2
-            }}>
+            <Box
+                sx={{
+                    paddingTop: 4,
+                    width: '100%',
+                    maxWidth: 1100,
+                    margin: 'auto',
+                    padding: '16px 24px',
+                    backgroundColor: 'white',
+                    borderRadius: 2,
+                    boxShadow: 3,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 2,
+                }}
+            >
                 {renderSearchForm()}
 
-                {error && <p>Error fetching data: {error.message}</p>}
+                {error && (
+                    <p className="text-danger text-center">Lỗi khi tải dữ liệu: {error.message}</p>
+                )}
 
                 {(loading || isLoading) && (
                     <div className="text-center my-4">
-                        <img src={Uia} alt="Loading..." className="img-fluid" />
+                        <img src={Uia} alt="Loading..." className="img-fluid" style={{ maxWidth: '150px' }} />
                     </div>
                 )}
 
                 {data && (
-                    Array.isArray(data) ? renderTutors(data) :
-                        data.tutors && Array.isArray(data.tutors) ? renderTutors(data.tutors) :
-                            <p>Không tìm thấy gia sư phù hợp</p>
+                    Array.isArray(data) && data.length > 0 ? (
+                        renderTutors(data)
+                    ) : data?.tutors && Array.isArray(data.tutors) && data.tutors.length > 0 ? (
+                        renderTutors(data.tutors)
+                    ) : (
+                        <p className="text-center text-muted">Không tìm thấy gia sư phù hợp</p>
+                    )
                 )}
             </Box>
         </div>

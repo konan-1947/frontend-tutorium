@@ -154,16 +154,24 @@ function NavBar() {
                   <Link to="/">Trang chủ</Link>
                   <Link to="/messages">Nhắn tin</Link>
                   <Link
-                    to={
-                      data?.roles === "learner"
-                        ? "/learner/profile"
+                      to={
+                        data?.roles === "learner"
+                          ? "/learner/profile"
+                          : data?.roles === "tutor"
+                          ? "/tutor/dashboard"
+                          : data?.roles === "admin"
+                          ? "/admin"
+                          : "/"
+                      }
+                    >
+                      {data?.roles === "learner"
+                        ? "Hồ sơ người học"
+                        : data?.roles === "tutor"
+                        ? "Hồ sơ gia sư"
                         : data?.roles === "admin"
-                        ? "/admin"
-                        : "/tutor/dashboard"
-                    }
-                  >
-                    Hồ sơ
-                  </Link>
+                        ? "Quản lí"
+                        : ""}
+                    </Link>
                   <Link to="/help">Giúp đỡ</Link>
                   <hr />
                   <Link to="/" onClick={handleLogout} >

@@ -27,6 +27,7 @@ console.log(tutorDetail);
       verifyTutor(userid, {
         onSuccess: () => {
             alert("Đã gửi thông báo tới gia sư");
+            navigate("/admin/verifytutor");
         },
         onError: (error) => {
           setAlertMessage("Xác minh thất bại: " + error.message);
