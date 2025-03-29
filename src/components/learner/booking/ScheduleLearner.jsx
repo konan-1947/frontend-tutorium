@@ -115,7 +115,7 @@ const Calendar = () => {
 
   return (
     <div>
-      <Container className="my-7">
+      <Container className="m-7">
         <Row className="g-3">
           <Col md={8} data-aos="fade-left">
             <section className="calendar__days">

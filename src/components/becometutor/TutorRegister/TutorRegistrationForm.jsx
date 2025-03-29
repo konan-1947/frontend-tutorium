@@ -108,9 +108,7 @@ const TutorRegistrationForm = () => {
         alert("Đăng ký gia sư thành công!");
         navigate('/tutor/dashboard');
       },
-      onError: (error) => {
-        alert(`Lỗi: ${error.message || 'Đăng ký thất bại'}`);
-      }
+ 
     });
   };
 

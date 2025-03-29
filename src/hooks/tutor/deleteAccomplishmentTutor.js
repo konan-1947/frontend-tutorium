@@ -1,28 +1,32 @@
 import { useMutation } from '@tanstack/react-query';
+import { Navigate } from 'react-router-dom';
 
 export const useDeleteAccomplishmentTutor = () => {
+
   return useMutation({
-    mutationFn: async (accomplishmentid) => {
-      const response = await fetch(`/api/tutor/deleteAccomplishmentTutor/${accomplishmentid}`, {
+    mutationFn: async (accomplishmentId) => {
+      const response = await fetch(`/api/tutor/deleteAccomplishmentTutor/${accomplishmentId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
       });
-console.log(username)
-      const data = await response.json(username);
+
+const data = await response.json();
+
     
       if (!response.ok) {
-        console.log("Lỗi:", data.message); // In lỗi rõ ràng
-        throw new Error(data.message); // Ném lỗi ra ngoài để xử lý tiếp
+        throw new Error(); // Ném lỗi ra ngoài để xử lý tiếp
       }
    
       return data;
  
   
     },
+
     onSuccess: (data) => {
-        alert(`Xoá thành công`)
+        alert(`Xoá thành công`);
+       window.location.reload();
       console.log("Learner detail fetched successfully:", data);
     },
     onError: (error) => {

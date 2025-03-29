@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { FaBolt, FaEnvelope, FaHeart, FaHeartBroken, FaCalendar } from 'react-icons/fa';
+import { FaBolt, FaEnvelope, FaHeart, FaHeartBroken, FaTrophy } from 'react-icons/fa';
 import { useFollow } from '../../../hooks/learner/useFollow';
 import { useUnfollow } from '../../../hooks/learner/useUnfollow';
 import { useSpring, animated } from '@react-spring/web'; // Import react-spring
@@ -49,7 +49,7 @@ const TutorInfo = () => {
     fetchTutorDetails();
   }, [username, navigate]);
   console.log(tutorData?.userid)
- const userid = tutorData?.userid;
+  const userid = tutorData?.userid;
   const handleFollow = async () => {
     try {
       await followTutor(userid, {
@@ -117,7 +117,7 @@ const TutorInfo = () => {
 
   if (isLoading) return <div className="text-center mt-5 text-primary">Đang tải...</div>;
   if (error) return <div className="text-center mt-5 text-danger fw-bold">Lỗi: {error}</div>;
-console.log(tutorData)
+  console.log(tutorData)
   return (
     <div className="container my-5" style={{ maxWidth: '1200px' }}>
       <div className="row g-4">
@@ -159,8 +159,20 @@ console.log(tutorData)
               <div className="card-body p-4">
                 <h5 className="card-title text-primary mb-3">Mô tả</h5>
                 <p className="text-dark">{tutorData?.description}</p>
+            <button
+                  className="btn btn-outline-info btn-md d-flex justify-content-center align-items-center"
+                  onClick={() => navigate(`/learner/listaccomplishment/${tutorData.User.username}`)}
+
+                  style={{ transition: 'all 0.3s' }}
+                  onMouseOver={(e) => e.target.style.backgroundColor = '#eed94a'}
+                  onMouseOut={(e) => e.target.style.backgroundColor = 'transparent'}
+                >
+
+Thành tựu của tôi: <FaTrophy className="text-yellow-500 "/>
+                </button>
               </div>
             </div>
+
           </animated.div>
         </div>
 
@@ -182,31 +194,31 @@ console.log(tutorData)
                 <div className="text-center mb-4">
                   <p className="text-dark"><strong>Điểm đánh giá:</strong> <span className="badge bg-warning text-dark">{tutorData?.socialcredit}</span></p>
                 </div>
-             
-                <div className="d-grid gap-2 mt-2 "style={{ gridTemplateColumns: '1fr 1fr ' }}>
-                <button
+
+                <div className="d-grid gap-2 mt-2 " style={{ gridTemplateColumns: '1fr 1fr ' }}>
+                  <button
                     className="btn btn-primary btn-md"
                     onClick={() => navigate(`/learner/bookingcontracts/${tutorData?.User?.username}`, { state: { username: tutorData?.User?.username } })}
-                    style={{ background: 'linear-gradient(90deg, #007bff, #00c4ff)', border: 'none' ,width:'100%' }}
+                    style={{ background: 'linear-gradient(90deg, #007bff, #00c4ff)', border: 'none', width: '100%' }}
                   >
                     <FaBolt className="me-2" /> Đăng ký
-                  </button> 
+                  </button>
                   <button
                     className="btn btn-outline-info btn-md"
                     style={{ transition: 'all 0.3s' }}
                     onMouseOver={(e) => e.target.style.backgroundColor = '#e7f5ff'}
                     onMouseOut={(e) => e.target.style.backgroundColor = 'transparent'}
-                    onClick={() => navigate(`/messages/${tutorData?.User?.username}` )}
+                    onClick={() => navigate(`/messages/${tutorData?.User?.username}`)}
                   >
                     <FaEnvelope className="me-2" /> Nhắn tin
                   </button>
-                
+
 
                   <button
                     className="btn btn-outline-info btn-md "
                     onClick={handleUnfollow}
-                  
-                    style={{ transition: 'all 0.3s'}}
+
+                    style={{ transition: 'all 0.3s' }}
                     onMouseOver={(e) => e.target.style.backgroundColor = '#eed94a'}
                     onMouseOut={(e) => e.target.style.backgroundColor = 'transparent'}
                   >

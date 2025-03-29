@@ -36,11 +36,11 @@ const TutorAccomplishments = ({ setActiveComponent }) => {
       setIsLoading(false);
     }
   }, [accomplishmentData, fetchError]);
-console.log(accomplishments);
-  const handleViewDetail = (accomplishmentid) => {
- 
-    navigate(`/tutor/dashboard/detailaccomplishment/${accomplishmentid}`,{ state: id });
-  };
+  console.log(accomplishments);
+
+
+
+
 
   if (isLoading || isFetching) {
     return <div className="text-center mt-5 text-primary">Đang tải danh sách thành tích...</div>;
@@ -76,29 +76,38 @@ console.log(accomplishments);
                     <td>{accomplishment.title}</td>
                     <td>
                       <span
-                        className={`badge ${
-                          accomplishment.status === "verified"
-                            ? "bg-success"
-                            : accomplishment.status === "rejected"
+                        className={`badge ${accomplishment.status === "verified"
+                          ? "bg-success"
+                          : accomplishment.status === "rejected"
                             ? "bg-danger"
                             : "bg-warning"
-                        }`}
+                          }`}
                       >
                         {accomplishment.status === "verified"
                           ? "Đã xác minh"
                           : accomplishment.status === "rejected"
-                          ? "Bị từ chối"
-                          : "Đang chờ"}
+                            ? "Bị từ chối"
+                            : "Đang chờ"}
                       </span>
                     </td>
                     <td>
                       <Button
                         variant="info"
                         size="sm"
-                        onClick={() => handleViewDetail(accomplishment.accomplishmentid)}
+                        onClick={() => navigate(`/tutor/dashboard/detailaccomplishment/${accomplishment.accomplishmentid}`)}
                         style={{ background: 'linear-gradient(90deg, #17a2b8, #20c997)', border: 'none' }}
                       >
                         Xem chi tiết
+                      </Button>
+                    </td>
+                    <td>
+                      <Button
+                        variant="info"
+                        size="sm"
+                        onClick={() => navigate(`/tutor/dashboard/updateaccomplishment/${accomplishment.accomplishmentid}`)}
+                        style={{ background: 'linear-gradient(90deg, #17a2b8, #20c997)', border: 'none' }}
+                      >
+                        Sửa
                       </Button>
                     </td>
                   </tr>

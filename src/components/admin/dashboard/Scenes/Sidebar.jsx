@@ -147,7 +147,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            
+
             <Item
               title="Quản lý học viên"
               to="/admin/contacts"
@@ -177,10 +177,18 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-             <Item
+            <Item
               title="Thêm Admin"
               to="/admin/createAdmin"
               icon={<PersonOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Xác minh thành tích "
+              to="/admin/accomlish"
+              icon={<HelpOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -191,15 +199,8 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            
-            <Item
-              title="FAQ Page"
-              to="/admin/faq"
-              icon={<HelpOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
 
+          
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -207,7 +208,7 @@ const Sidebar = () => {
             >
               Charts
             </Typography>
-            
+
             {/* <Item
               title="Bar Chart"
               to="/admin/bar"
@@ -229,7 +230,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             /> */}
-       
+
           </Box>
         </Menu>
       </ProSidebar>

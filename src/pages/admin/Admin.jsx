@@ -26,6 +26,7 @@ import VerifyTutorDetail from "../../components/admin/dashboard/Scenes/verifyTut
 import UpdateAdminForm from "../../components/admin/dashboard/Scenes/updateAdmin";
 import CreateAdmin from "../../components/admin/dashboard/Scenes/createAdmin";
 import TutorDetail from "../../components/admin/dashboard/Scenes/TutorDetail";
+import PendingAccomplishments from "../../components/admin/dashboard/Scenes/getListAccomplishmentPending";
 function Admin() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
@@ -50,6 +51,7 @@ function Admin() {
               <Route path="updateadmin/:userid" element={<UpdateAdminForm/>} />
               <Route path="updatelearner/:userid" element={<UpdateLearnerForm/>} />
               <Route path="updatecategory/:categoryId" element={<UpdateCategoryForm/>} />
+              <Route path="accomlish" element={<PendingAccomplishments/>} />
               <Route path="ad" element={<Ad/>} />
               <Route path="team" element={<Tutor />} />
               <Route path="contacts" element={<Learner />} />

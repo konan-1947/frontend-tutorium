@@ -126,7 +126,7 @@ const CreateAccomplishment = () => {
    
 
     // Giả lập thành công nếu không có hook
-    alert("Thêm thành tựu thành công! (Giả lập)");
+    alert("Thêm thành tựu thành công!");
     navigate('/tutor/dashboard');
   };
 

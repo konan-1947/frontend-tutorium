@@ -18,7 +18,8 @@ import ChooseCustomLearnerInfo from "../pages/learner/ChooseCustomLearnerInfo";
 import ForgotPassword from "../pages/ForgotPasswordPage";
 import ResetPassword from "../pages/ResetPasswordPage";
 import VerifyLearner from "../pages/learner/Verify";
-
+import ListAccomp from "../components/learner/dashboard/ListAccompTutor";
+import DetailAccomp from "../components/learner/dashboard/DetailAccomp";
 // Import Admin
 import Admin from "../pages/admin/Admin";
 import Error404 from "../pages/Error404";
@@ -87,8 +88,18 @@ const AppRoutes = () => {
             </ProtectedRoute>
           }
         />
-
-
+        <Route path="/learner/listaccomplishment/:username" element={
+          <ProtectedRoute allowedRoles={["learner"]}>
+            <ListAccomp/>
+          </ProtectedRoute>
+        }
+        />
+           <Route path="/learner/accomplishmentdetail/:accomplishmentid" element={
+          <ProtectedRoute allowedRoles={["learner"]}>
+            <DetailAccomp/>
+          </ProtectedRoute>
+        }
+        />
         <Route
           path="/learner/profile"
           element={
@@ -160,9 +171,9 @@ const AppRoutes = () => {
         <Route
           path="/admin/*"
           element={
-            <ProtectedRoute allowedRoles={[ "admin"]}>
-            <Admin />
-</ProtectedRoute>
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <Admin />
+            </ProtectedRoute>
           }
         />
 
@@ -176,10 +187,11 @@ const AppRoutes = () => {
           }
         />
         {/* Route dành cho chat */}
+
         <Route path="/oops" element={<Oops />} />
         <Route path="/messages/:username" element={<MessageWithUser />} />
       </Routes>
-    </QueryClientProvider>
+    </QueryClientProvider >
   );
 };
 

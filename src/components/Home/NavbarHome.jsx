@@ -101,7 +101,7 @@ function NavBar() {
                 <Nav.Link
                   as={Link} 
                   to="/tutorregister"
-                  onClick={() => handleRoleBasedNavigation("becometutor")}
+                  onClick={() => navigate("#becometutor")}
                   className="chu-goc-ben-trai-navbar"
                 >
                   Trở thành gia sư

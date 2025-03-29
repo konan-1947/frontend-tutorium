@@ -15,7 +15,7 @@ export const useCreateAccomplishmentTutor = () => {
       const data = await response.json();
     
       if (!response.ok) {
-        console.log("Lỗi:", data.message); // In lỗi rõ ràng
+        alert(data.message);
         throw new Error(data.message); // Ném lỗi ra ngoài để xử lý tiếp
       }
     

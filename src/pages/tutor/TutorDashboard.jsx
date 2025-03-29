@@ -18,6 +18,7 @@ import ListCompletedContracts from "../../components/tutor/dashboard/ListComplet
 import CreateAccomplishment from "../../components/tutor/dashboard/createAccomplishment";
 import DetailAccomp from "../../components/tutor/dashboard/DetailAccomp";
 import ListAccomp from "../../components/tutor/dashboard/ListAccomp";
+import UpdateAcccomp from "../../components/tutor/dashboard/UpdateAcccomp";
 const TutorDashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -43,6 +44,7 @@ const TutorDashboard = () => {
     else if (path === "createaccomplishment") setActiveComponent("createaccomplishment");
     else if (path === "detailcomplishment") setActiveComponent("detailcomplishment");
     else if (path === "listaccomplishment") setActiveComponent("listaccomplishment");
+    else if (path === "updateaccomplishment") setActiveComponent("updateaccomplishment");
     else setActiveComponent("all");
   }, [location]);
 
@@ -94,7 +96,7 @@ const TutorDashboard = () => {
                 />
                 <Route
                   path="pending-booking/:contractId"
-                  element={<DetailPendingBooking />}
+                  element={<DetailPendingBooking setActiveComponent={handleComponentChange}/>}
                 />
                 <Route
                   path="listcompleted"
@@ -113,6 +115,12 @@ const TutorDashboard = () => {
                 <Route
                   path="detailaccomplishment/:accomplishmentid"
                   element={<DetailAccomp  />}
+
+                  
+                />
+                   <Route
+                  path="updateaccomplishment/:accomplishmentid"
+                  element={<UpdateAcccomp/>}
 
                 />
               </Routes>

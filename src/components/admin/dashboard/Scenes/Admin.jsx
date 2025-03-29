@@ -55,7 +55,7 @@ const Team = () => {
     },
     {
       field: "delete",
-      headerName: "Xóa",
+      headerName: "Dừng hoạt động",
       flex: 1,
       renderCell: ({ row }) => (
         <Button
@@ -66,7 +66,7 @@ const Team = () => {
           onClick={() => handleDelete(row.id)}
           disabled={isDeleting} // Vô hiệu hóa nút khi đang xóa
         >
-          {isDeleting ? "Đang xóa..." : "Xóa"}
+          {isDeleting ? "Đang xóa..." : "Dừng"}
         </Button>
       ),
     },
@@ -88,10 +88,10 @@ const Team = () => {
 
   // Xử lý khi nhấn nút Xóa
   const handleDelete = (adminId) => {
-    if (window.confirm("Bạn có chắc chắn muốn xóa admin này?")) {
+    if (window.confirm("Bạn có chắc chắn muốn dừng admin này?")) {
       deleteAdminMutation(adminId, {
         onSuccess: () => {
-          alert("Xóa admin thành công!");
+          alert("Dừng admin thành công!");
           // Refresh lại trang
           window.location.reload();
         },

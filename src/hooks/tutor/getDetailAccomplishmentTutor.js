@@ -15,7 +15,7 @@ console.log(accomplishmentid)
     
       if (!response.ok) {
         console.log("Lỗi:", data.message); // In lỗi rõ ràng
-        throw new Error(data.message); // Ném lỗi ra ngoài để xử lý tiếp
+        throw new Error(); // Ném lỗi ra ngoài để xử lý tiếp
       }
       console.log("Danh sách:", data);
 
@@ -26,7 +26,7 @@ console.log(accomplishmentid)
       console.log(":", data);
     },
     onError: (error) => {
-      console.error("", error);
+      console.error();
     },
   });
 };

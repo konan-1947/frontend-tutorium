@@ -31,7 +31,7 @@ console.log(accomplishmentid)
           setIsLoading(false);
         },
         onError: (err) => {
-          setError(err);
+          setError("Không tìm thấy thành tích.");
           setIsLoading(false);
         },
       });
@@ -43,7 +43,7 @@ console.log(accomplishmentid)
   }
 
   if (error || fetchError) {
-    return <div className="text-center mt-5 text-danger fw-bold">Lỗi tải dữ liệu: {(error || fetchError).message}</div>;
+    return <div className="text-center mt-5  fw-bold">Không tìm thấy thành tích.{(error || fetchError).message}</div>;
   }
 
   if (!accomplishment) {
@@ -112,7 +112,7 @@ console.log(accomplishmentid)
             </Col>
             <Col md={6}>
               <div className="mb-3">
-                <strong className="text-dark">Người cấp:</strong>
+                <strong className="text-dark">Tổ chức cấp:</strong>
                 <p className="text-muted mb-0">{accomplishment.issuer || "Không có thông tin người cấp"}</p>
               </div>
             </Col>
@@ -140,24 +140,13 @@ console.log(accomplishmentid)
             </Col>
           </Row>
           <Row>
-            <Col md={6}>
-              <div className="mb-3">
-                <strong className="text-dark">ID thành tích:</strong>
-                <p className="text-muted mb-0">{accomplishment.accomplishmentid}</p>
-              </div>
-            </Col>
-            <Col md={6}>
-              <div className="mb-3">
-                <strong className="text-dark">ID người dùng:</strong>
-                <p className="text-muted mb-0">{accomplishment.userid}</p>
-              </div>
-            </Col>
+         
           </Row>
           <hr className="my-4" />
           <div className="text-center" data-aos="fade-up" data-aos-delay="200">
             <Button
               variant="secondary"
-              onClick={() => setActiveComponent("accomplishments")}
+              onClick={() => navigate(`/tutor/dashboard/listaccomplishment`)}
               style={{ background: 'linear-gradient(90deg, #6c757d, #adb5bd)', border: 'none' }}
             >
               Quay lại danh sách
