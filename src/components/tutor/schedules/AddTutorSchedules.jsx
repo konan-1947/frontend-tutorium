@@ -4,8 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import { useCreateWorkingTime } from '../../../hooks/tutor/createWorkingTime';
-
+import { useNavigate } from "react-router-dom";
 const AddTutorSchedule = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -91,6 +92,7 @@ const AddTutorSchedule = () => {
 
     mutate(formData);
     console.log(formData);
+
   };
 
   return (
@@ -209,13 +211,15 @@ const AddTutorSchedule = () => {
                   )}
                   {isError && (
                     <Alert variant="danger" className="text-center">
-                      Lỗi: Không thể đặt lịch vào quá khứ
+                      Đặt lịch không thành công
                     </Alert>
                   )}
                   {isSuccess && (
-                    <Alert variant="success" className="text-center">
+                    <Alert variant="success" className="text-center"
+ 
+                    >
                       Lịch dạy đã được lưu thành công!
-                      <Link to="/tutor/dashboard/schedule"> Xem lịch dạy</Link>
+                  
                     </Alert>
                   )}
 

@@ -62,13 +62,11 @@ const UpdateTutorForm = () => {
 
   return (
     <Box m="20px">
-      <Header title="UPDATE TUTOR" subtitle="Update Tutor Details" />
+      <Header title="Cập nhật gia sư" subtitle="" />
 
       <form onSubmit={handleSubmit}>
         <Box display="grid" gap="30px" gridTemplateColumns="repeat(4, minmax(0, 1fr))">
-          <p><strong>ID:</strong> {userid}</p> {/* Display tutorId */}
-          <p><strong>Current Name:</strong> {tutorName || "Loading..."}</p>
-
+      
           {/* Username */}
           <TextField
             fullWidth

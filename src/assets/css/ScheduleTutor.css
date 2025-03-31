@@ -5,11 +5,12 @@
   .calendar__sidebar {
     background: linear-gradient(135deg, #f8f9fa, #e9ecef);
     padding: 20px;
-    margin-left: 70px;
+
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: fit-content;
- 
+    width: 85%;
+    
     
   }
 
@@ -54,7 +55,7 @@
   .calendar__days {
     background: #fff;
     padding: 20px;
-    margin-left: -18px;
+    margin-left: 3.4rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 49rem;

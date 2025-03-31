@@ -251,32 +251,38 @@ const BookTutorSchedule = () => {
                       Lỗi: {error.message || "Không thể gửi yêu cầu. Vui lòng thử lại!"}
                     </Alert>
                   )}
-                  {isSuccess && (
-                    <Alert variant="success" className="text-center">
-                      Yêu cầu đăng ký lịch học đã được gửi thành công!
-                      <div className="mt-3">
-                        <Button
-                          variant="primary"
-                          onClick={handleConfirmSuccess}
-                          style={{ background: 'linear-gradient(90deg, #007bff, #00c4ff)', border: 'none' }}
-                        >
-                          Xác nhận
-                        </Button>
-                      </div>
-                    </Alert>
-                  )}
-
-                  {/* Nút gửi */}
+                  {/* Nút gửi hoặc xác nhận */}
                   <div className="text-center" data-aos="fade-up" data-aos-delay="200">
-                    <Button
-                      type="submit"
-                      className="btn btn-primary btn-lg"
-                      style={{ background: 'linear-gradient(90deg, #007bff, #00c4ff)', border: 'none', padding: '12px 40px' }}
-                      disabled={isPending || !isCommitted || !!timeError}
-                    >
-                      Gửi yêu cầu
-                    </Button>
+                    {!isSuccess ? (
+                      <Button
+                        type="submit"
+                        className="btn btn-primary btn-lg"
+                        style={{
+                          background: 'linear-gradient(90deg, #007bff, #00c4ff)',
+                          border: 'none',
+                          padding: '12px 40px'
+                        }}
+                        disabled={isPending || !isCommitted || !!timeError}
+                      >
+                        Gửi yêu cầu
+                      </Button>
+                    ) : (
+                     
+                      <Button
+                        variant="success"
+                        onClick={handleConfirmSuccess}
+                        className="btn btn-lg"
+                        style={{
+                          background: 'linear-gradient(90deg, #28a745, #32cd32)',
+                          border: 'none',
+                          padding: '12px 40px'
+                        }}
+                      >
+                        Xác nhận
+                      </Button>
+                    )}
                   </div>
+
                 </Form>
               </Card.Body>
             </Card>

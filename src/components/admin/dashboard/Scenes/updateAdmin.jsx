@@ -3,11 +3,11 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom"; // Import useLocation to access passed state data
 import Header from "../Header";
 import { useUpdateAdmin } from "../../../../hooks/admin/updateAdmin"; // Hook để cập nhật admin
-
+import { useNavigate } from "react-router-dom";
 const UpdateAdminForm = () => {
   const location = useLocation(); // Lấy dữ liệu từ state
   const { adminId, displayname, username, address, email, dateofbirth } = location.state || {}; // Lấy dữ liệu admin từ state
-
+  const Navigate = useNavigate();
   // Sử dụng hook useUpdateAdmin
   const updateMutation = useUpdateAdmin();
 
@@ -51,6 +51,7 @@ const UpdateAdminForm = () => {
       });
       setAlertMessage("Admin updated successfully!");
       setAlertType("success");
+      Navigate(`/admin/admin`);
     } catch (err) {
       setAlertMessage("Failed to update admin: " + err.message);
       setAlertType("error");
@@ -59,7 +60,7 @@ const UpdateAdminForm = () => {
 
   return (
     <Box m="20px">
-      <Header title="UPDATE ADMIN" subtitle="Update Admin Details" />
+      <Header title="Cập nhật Admin" subtitle="" />
 
       <form onSubmit={handleSubmit}>
         <Box
@@ -67,9 +68,7 @@ const UpdateAdminForm = () => {
           gap="30px"
           gridTemplateColumns="repeat(4, minmax(0, 1fr))"
         >
-          <p><strong>ID:</strong> {adminId || "N/A"}</p> {/* Hiển thị ID admin */}
-          <p><strong>Current Name:</strong> {displayname || "Loading..."}</p>
-
+       
           <TextField
             fullWidth
             variant="filled"

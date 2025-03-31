@@ -128,7 +128,7 @@ const Team = () => {
 
   return (
     <Box m="20px">
-      <Header title="ADMIN LIST" subtitle="Managing the Admins" />
+      <Header title="Danh sách Admin" subtitle="Quản lý Admin" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -148,10 +148,12 @@ const Team = () => {
           },
           "& .MuiDataGrid-virtualScroller": {
             backgroundColor: colors.primary[400],
+          
           },
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",
             backgroundColor: colors.blueAccent[700],
+              display:'none'
           },
           "& .MuiCheckbox-root": {
             color: `${colors.greenAccent[200]} !important`,

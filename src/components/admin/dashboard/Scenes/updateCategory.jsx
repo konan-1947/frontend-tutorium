@@ -35,7 +35,7 @@ console.log(categoryId)
         description,
       });
     } catch (err) {
-      setError("Có lỗi xảy ra khi tạo thể loại.");
+      setError("Có lỗi xảy ra khi cập nhật danh mục.");
     } finally {
       setLoading(false);
     
@@ -44,7 +44,7 @@ console.log(categoryId)
 
   return (
     <Box m="20px">
-      <Header title="CREATE CATEGORY" subtitle="Create a New Category" />
+      <Header title="Cập nhật danh mục" subtitle="" />
       <form onSubmit={handleSubmit}>
         <Box
           display="grid"
@@ -58,12 +58,12 @@ console.log(categoryId)
             fullWidth
             variant="filled"
             type="text"
-            label="Tên thể loại"
+            label="Tên danh mục"
             name="categoryname"
             value={categoryname}
             onChange={(e) => setCategoryname(e.target.value)}
             error={Boolean(error && !categoryname)}
-            helperText={error && !categoryname ? "Tên thể loại là bắt buộc" : ""}
+            helperText={error && !categoryname ? "Tên danh mục là bắt buộc" : ""}
             sx={{ gridColumn: "span 2" }}
           />
 
@@ -89,7 +89,7 @@ console.log(categoryId)
             variant="contained"
             disabled={loading}
           >
-            {loading ? "Đang tạo..." : "Tạo thể loại"}
+            {loading ? "Đang tạo..." : "Cập nhật danh mục"}
           </Button>
         </Box>
       </form>

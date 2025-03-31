@@ -116,9 +116,7 @@ function NavBar() {
               <NavDropdown.Item as={Link} to="#" onClick={handleNavigate}>
                 Diễn đàn
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/contact">
-                Liên hệ với chúng tôi
-              </NavDropdown.Item>
+      
               <NavDropdown.Divider />
               <NavDropdown.Item as={Link} to="/help">
                 Help

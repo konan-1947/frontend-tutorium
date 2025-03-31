@@ -15,12 +15,15 @@ export const useCreateWorkingTime = () => {
       const data = await response.json();
     
       if (!response.ok) {
-        console.log(); // In lỗi rõ ràng
-        throw new Error(); // Ném lỗi ra ngoài để xử lý tiếp
+       
+        alert(data.message);
+        throw new Error(error); // Ném lỗi ra ngoài để xử lý tiếp
+    
       }
     
       return data;
     },
+
     onSuccess: (data) => {
       console.log(":", data);
     },

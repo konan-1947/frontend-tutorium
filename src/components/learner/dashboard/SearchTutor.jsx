@@ -142,7 +142,7 @@ const TutorSearch = () => {
                     }}
                 />
 
-              
+
 
                 <Box sx={{ width: '100%', padding: '10px 0' }}>
                     <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
@@ -206,9 +206,16 @@ const TutorSearch = () => {
                                 src={tutor.User?.imgurl || Uia}
                                 alt="Tutor"
                                 className="tutor-avatar rounded img-fluid"
-                                style={{ cursor: 'pointer', maxWidth: '100px' }}
+                                style={{
+                                    cursor: 'pointer',
+                                    width: '100px', // Đặt kích thước cố định
+                                    height: '100px', // Đặt kích thước cố định
+                                    objectFit: 'cover', // Cắt ảnh để vừa khung
+                                    borderRadius: '50%', // Nếu muốn ảnh tròn
+                                }}
                             />
                         </div>
+
                         <div className="col-md-6">
                             <div className="d-flex align-items-center">
                                 <h4 className="fw-bold mb-2 me-3">{tutor.User?.displayname}</h4>

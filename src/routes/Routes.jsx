@@ -39,6 +39,7 @@ const AppRoutes = () => {
     <QueryClientProvider client={queryClient}>
       <Routes>
         {/* Routes công khai - Không cần đăng nhập */}
+        <Route path="*" element={<Error404/>} />  {/* Trang 404 */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Auth />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
@@ -119,9 +120,9 @@ const AppRoutes = () => {
         <Route
           path="/learner/detailTutor/:username"
           element={
-            <ProtectedRoute allowedRoles={["learner"]}>
+    
               <Detail />
-            </ProtectedRoute>
+        
           }
         />
         <Route

@@ -58,7 +58,7 @@ const ActiveContractsList = () => {
             <th>Thời gian bắt đầu</th>
             <th>Thời gian kết thúc</th>
             <th>Trạng thái</th>
-            <th>Tên gia sư</th>
+          
             <th>Hành động</th>
           </tr>
         </thead>
@@ -72,7 +72,7 @@ const ActiveContractsList = () => {
                 <td>{new Date(contract.timestart).toLocaleDateString("vi-VN")}</td>
                 <td>{new Date(contract.timeend).toLocaleDateString("vi-VN")}</td>
                 <td>{contract.status}</td>
-                <td>{contract.tutor_name}</td>
+             
                 <td>
                   <Button
                     onClick={() =>  completeContract(contract.contractid) }
@@ -84,7 +84,7 @@ const ActiveContractsList = () => {
                       border: "none",
                     }}
                   >
-                    Completed
+                    {expired ? "Chưa đến hạn" : "Hoàn thành"}
                   </Button>
                 </td>
               </tr>

@@ -134,6 +134,7 @@ const Learner = () => {
           },
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",
+              display:'none',
             backgroundColor: colors.blueAccent[700],
           },
           "& .MuiCheckbox-root": {

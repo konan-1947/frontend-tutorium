@@ -20,7 +20,18 @@ const Category = () => {
   const { mutate: deleteCategoryMutation, isLoading: deleting } = useDeleteCategory({
    
   });
-
+  const handleDelete = (id) => {
+    deleteCategoryMutation(id, {
+      onSuccess: () => {
+        setCategoryData((prev) => prev.filter((item) => item.id !== id));
+        alert("Xoá thành công!");
+      },
+      onError: (error) => {
+        console.error("Lỗi khi xóa category:", error);
+        alert( error.message);
+      },
+    });
+  }
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
     { field: "name", headerName: "Tên", flex: 1, cellClassName: "name-column--cell" },
@@ -53,7 +64,7 @@ const Category = () => {
           <Button
             color="error"
             variant="contained"
-            onClick={() => deleteCategoryMutation(params.row.id)} // Gọi deleteMutation với category ID
+            onClick={() => handleDelete(params.row.id)} // Gọi deleteMutation với category ID
             disabled={deleting}
           >
             {deleting ? "Đang xoá..." : "Xoá"}
@@ -97,7 +108,7 @@ const Category = () => {
 
   return (
     <Box m="20px">
-      <Header title="" subtitle="" />
+      <Header title="Danh mục" subtitle="" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -121,6 +132,7 @@ const Category = () => {
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",
             backgroundColor: colors.blueAccent[700],
+              display:'none'
           },
           "& .MuiCheckbox-root": {
             color: `${colors.greenAccent[200]} !important`,

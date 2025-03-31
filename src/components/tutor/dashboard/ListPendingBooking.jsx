@@ -54,16 +54,15 @@ const ListPendingBooking = () => {
   return (
     <Box sx={{ p: 3 }}>
       <Typography variant="h5" gutterBottom>
-        Pending Bookings
+        Hợp đồng đang chờ
       </Typography>
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>#</th>
-            <th>Contract ID</th>
-            <th>Learner Name</th>
-            <th>Start Time</th>
-            <th>End Time</th>
+
+            <th>Tên người học</th>
+            <th>Thời gian bắt đầu</th>
+            <th>Thời gian kết thúc</th>
             <th>Payment</th>
             <th>Action</th>
           </tr>
@@ -71,8 +70,7 @@ const ListPendingBooking = () => {
         <tbody>
           {data.map((booking, index) => (
             <tr key={booking?.contractid || index}>
-              <td>{index + 1}</td>
-              <td>{booking?.contractid || 'N/A'}</td>
+
               <td>{booking?.learnerName || 'Unknown'}</td>
               <td>{formatDateTime(booking?.timestart)}</td>
               <td>{formatDateTime(booking?.timeend)}</td>
@@ -81,7 +79,7 @@ const ListPendingBooking = () => {
                 <Button
                   variant="contained"
                   size="small"
-                  onClick={() =>  navigate(`/tutor/dashboard/pending-booking/${booking?.contractid}`,{state:booking?.contractid})}
+                  onClick={() => navigate(`/tutor/dashboard/pending-booking/${booking?.contractid}`, { state: booking?.contractid })}
                 >
                   Xem chi tiết
                 </Button>

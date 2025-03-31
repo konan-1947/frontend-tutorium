@@ -3,11 +3,11 @@ import { useState } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../Header";
 import { useAddCategory } from "../../../../hooks/admin/addCategory";
-
+import { useNavigate } from "react-router-dom";
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const addMutation = useAddCategory();
-
+  const navigate = useNavigate();
   const [categoryname, setCategoryname] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState(null);
@@ -35,6 +35,7 @@ const Form = () => {
       setError("Có lỗi xảy ra khi tạo thể loại.");
     } finally {
       setLoading(false);
+      navigate("/admin/category");
     
     }
   };

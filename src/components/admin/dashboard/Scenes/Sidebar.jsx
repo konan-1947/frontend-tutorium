@@ -111,7 +111,7 @@ const Sidebar = () => {
                   Tutorium
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  Welcome
+              Xin chào!
                 </Typography>
               </Box>
             </Box>
@@ -135,14 +135,14 @@ const Sidebar = () => {
             </Typography>
             <Item
               title="Quản lý Admin"
-              to="/admin/ad"
+              to="/admin/admin"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Quản lý gia sư"
-              to="/admin/team"
+              to="/admin/tutor"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -150,14 +150,14 @@ const Sidebar = () => {
 
             <Item
               title="Quản lý học viên"
-              to="/admin/contacts"
+              to="/admin/learner"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Quản lý danh mục"
-              to="/admin/invoices"
+              to="/admin/category"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -206,7 +206,7 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Charts
+             
             </Typography>
 
             {/* <Item

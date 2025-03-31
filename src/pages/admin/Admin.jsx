@@ -52,10 +52,10 @@ function Admin() {
               <Route path="updatelearner/:userid" element={<UpdateLearnerForm/>} />
               <Route path="updatecategory/:categoryId" element={<UpdateCategoryForm/>} />
               <Route path="accomlish" element={<PendingAccomplishments/>} />
-              <Route path="ad" element={<Ad/>} />
-              <Route path="team" element={<Tutor />} />
-              <Route path="contacts" element={<Learner />} />
-              <Route path="invoices" element={<Course />} />
+              <Route path="admin" element={<Ad/>} />
+              <Route path="tutor" element={<Tutor />} />
+              <Route path="learner" element={<Learner />} />
+              <Route path="category" element={<Course />} />
               <Route path="createAdmin" element={<CreateAdmin />} />
               <Route path="form" element={<Form />} />
               <Route path="bar" element={<Bar />} />

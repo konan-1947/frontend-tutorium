@@ -113,7 +113,7 @@ const Team = () => {
 
   return (
     <Box m="20px">
-      <Header title="" subtitle="" />
+      <Header title="Gia sư" subtitle="" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -136,6 +136,7 @@ const Team = () => {
           },
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",
+              display:'none',
             backgroundColor: colors.blueAccent[700],
           },
           "& .MuiCheckbox-root": {

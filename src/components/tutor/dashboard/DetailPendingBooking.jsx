@@ -13,6 +13,7 @@ const DetailPendingBooking = () => {
   }, [contractId, getBookingDetails]);
 const HandldApprove = () => {
     approveContract(contractId);
+    navigate('/tutor/dashboard/bookinglist');
   
 }
   // Hàm định dạng thời gian: dd/mm/yyyy, hh:mm
@@ -58,7 +59,7 @@ const HandldApprove = () => {
           <strong>Thanh Toán:</strong> {formatCurrency(contractDetail.payment)}
         </Typography>
         <Typography variant="body1">
-          <strong>Mã Gia Sư:</strong> {contractDetail.tutorid}
+
         </Typography>
       </Box>
     );
@@ -158,14 +159,12 @@ const HandldApprove = () => {
           color="primary"
           onClick={() => {
             HandldApprove();
-            window.location.reload();
+       
           }}
         >
           Chấp Nhận Hợp Đồng
         </Button>
-        <Button variant="contained" color="error">
-          Từ Chối Hợp Đồng
-        </Button>
+    
       </Box>
     </Box>
   );
