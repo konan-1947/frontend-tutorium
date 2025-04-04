@@ -6,7 +6,10 @@ import { useUpdateLearner } from "../../../../hooks/admin/updateLearner";
 
 const UpdateLearnerForm = () => {
   const location = useLocation();
+  console.log("Location state:", location.state); // Kiểm tra dữ liệu nhận từ location.state
+  
   const { userid, displayname, address, email, learneringgoal, dateofbirth } = location.state || {};
+  console.log("Extracted data:", { userid, displayname, address, email, learneringgoal, dateofbirth });
 
   const updateMutation = useUpdateLearner();
 
@@ -31,13 +34,21 @@ const UpdateLearnerForm = () => {
       learneringgoal,
       dateofbirth,
     });
+
+    console.log("Initial form values:", {
+      learnerName,
+      learnerAddress,
+      learnerEmail,
+      learnerLearningGoal,
+      learnerDob,
+    });
   }, [userid, displayname, address, email, learneringgoal, dateofbirth]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     console.log("Form submission triggered");
-    console.log("Current form values:", {
+    console.log("Current form values before validation:", {
       learnerName,
       learnerAddress,
       learnerEmail,

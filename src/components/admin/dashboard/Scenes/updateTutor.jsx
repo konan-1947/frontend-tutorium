@@ -1,21 +1,24 @@
 import { Box, Button, TextField, Alert } from "@mui/material";
 import { useState } from "react";
-import { useLocation } from "react-router-dom"; // Import useLocation to access passed state data
+import { useLocation } from "react-router-dom";
 import Header from "../Header";
-import { useUpdateTutor } from "../../../../hooks/admin/updateTutor"; // Assuming you have a hook for updating tutor data
+import { useUpdateTutor } from "../../../../hooks/admin/updateTutor";
 
 const UpdateTutorForm = () => {
-  const location = useLocation(); // Get the location object
-  const { userid, username, displayname, address, email, dateofbirth, description, descriptionvideolink, expectedsalary } = location.state || {}; // Retrieve tutor data from state
+  const location = useLocation();
+  console.log("Location State:", location.state); // Log dữ liệu nhận từ state
+
+  const { userid, username, displayname, address, email, dateofbirth, description, descriptionvideolink, expectedsalary } = location.state || {};
   const updateMutation = useUpdateTutor();
-  const [tutorUsername, setTutorUsername] = useState(username || ""); // Set initial value from state
-  const [tutorName, setTutorName] = useState(displayname || ""); // Set initial value from state
-  const [tutorAddress, setTutorAddress] = useState(address || ""); // Set initial value from state
-  const [tutorEmail, setTutorEmail] = useState(email || ""); // Set initial value from state
-  const [tutorDob, setTutorDob] = useState(dateofbirth || ""); // Set initial value from state
-  const [tutorDescription, setTutorDescription] = useState(description || ""); // Set initial value from state
-  const [tutorDescriptionVideoLink, setTutorDescriptionVideoLink] = useState(descriptionvideolink || ""); // Set initial value from state
-  const [tutorExpectedSalary, setTutorExpectedSalary] = useState(expectedsalary || ""); // Set initial value from state
+
+  const [tutorUsername, setTutorUsername] = useState(username || "");
+  const [tutorName, setTutorName] = useState(displayname || "");
+  const [tutorAddress, setTutorAddress] = useState(address || "");
+  const [tutorEmail, setTutorEmail] = useState(email || "");
+  const [tutorDob, setTutorDob] = useState(dateofbirth || "");
+  const [tutorDescription, setTutorDescription] = useState(description || "");
+  const [tutorDescriptionVideoLink, setTutorDescriptionVideoLink] = useState(descriptionvideolink || "");
+  const [tutorExpectedSalary, setTutorExpectedSalary] = useState(expectedsalary || "");
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -24,22 +27,21 @@ const UpdateTutorForm = () => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    console.log("Sending data:", {
+    e.preventDefault();
+    console.log("Form submitted with values:", {
       userid, tutorUsername, tutorName, tutorEmail, tutorDob, tutorAddress,
       tutorDescription, tutorDescriptionVideoLink, tutorExpectedSalary
     });
-    e.preventDefault();
 
-    // Validate input
     setLoading(true);
     setError(null);
 
-    // Call update tutor API
     try {
+      console.log("Calling update API...");
       await updateMutation.mutateAsync({
         userid,
         username: tutorUsername,
-        imgurl: "", // Removed image field
+        imgurl: "",
         displayname: tutorName,
         address: tutorAddress,
         email: tutorEmail,
@@ -47,12 +49,13 @@ const UpdateTutorForm = () => {
         description: tutorDescription,
         descriptionvideolink: tutorDescriptionVideoLink,
         expectedsalary: tutorExpectedSalary,
-        contracts: [] // Removed contracts
+        contracts: []
       });
-
+      console.log("Tutor updated successfully!");
       setAlertMessage("Tutor updated successfully!");
       setAlertType("success");
     } catch (err) {
+      console.error("Error updating tutor:", err);
       setAlertMessage("Failed to update tutor.");
       setAlertType("error");
     } finally {
@@ -66,133 +69,116 @@ const UpdateTutorForm = () => {
 
       <form onSubmit={handleSubmit}>
         <Box display="grid" gap="30px" gridTemplateColumns="repeat(4, minmax(0, 1fr))">
-          <p><strong>ID:</strong> {userid}</p> {/* Display tutorId */}
+          <p><strong>ID:</strong> {userid}</p>
           <p><strong>Current Name:</strong> {tutorName || "Loading..."}</p>
 
-          {/* Username */}
           <TextField
             fullWidth
             variant="filled"
             type="text"
             label="Username"
-            name="tutorUsername"
             value={tutorUsername}
-            onChange={(e) => setTutorUsername(e.target.value)}
-            error={Boolean(error && !tutorUsername)}
-            helperText={error && !tutorUsername ? "Username is required" : ""}
+            onChange={(e) => {
+              setTutorUsername(e.target.value);
+              console.log("Updated tutorUsername:", e.target.value);
+            }}
             sx={{ gridColumn: "span 2" }}
           />
 
-          {/* Name */}
           <TextField
             fullWidth
             variant="filled"
             type="text"
             label="Tutor Name"
-            name="tutorName"
             value={tutorName}
-            onChange={(e) => setTutorName(e.target.value)}
-            error={Boolean(error && !tutorName)}
-            helperText={error && !tutorName ? "Tutor name is required" : ""}
+            onChange={(e) => {
+              setTutorName(e.target.value);
+              console.log("Updated tutorName:", e.target.value);
+            }}
             sx={{ gridColumn: "span 2" }}
           />
 
-          {/* Address */}
           <TextField
             fullWidth
             variant="filled"
             type="text"
             label="Address"
-            name="tutorAddress"
             value={tutorAddress}
-            onChange={(e) => setTutorAddress(e.target.value)}
-            error={Boolean(error && !tutorAddress)}
-            helperText={error && !tutorAddress ? "Address is required" : ""}
+            onChange={(e) => {
+              setTutorAddress(e.target.value);
+              console.log("Updated tutorAddress:", e.target.value);
+            }}
             sx={{ gridColumn: "span 2" }}
           />
 
-          {/* Email */}
           <TextField
             fullWidth
             variant="filled"
             type="email"
             label="Email"
-            name="tutorEmail"
             value={tutorEmail}
-            onChange={(e) => setTutorEmail(e.target.value)}
-            error={Boolean(error && !tutorEmail)}
-            helperText={error && !tutorEmail ? "Email is required" : ""}
+            onChange={(e) => {
+              setTutorEmail(e.target.value);
+              console.log("Updated tutorEmail:", e.target.value);
+            }}
             sx={{ gridColumn: "span 2" }}
           />
 
-          {/* Date of Birth */}
           <TextField
             fullWidth
             variant="filled"
             type="date"
             label="Date of Birth"
-            name="tutorDob"
             value={tutorDob}
-            onChange={(e) => setTutorDob(e.target.value)}
-            error={Boolean(error && !tutorDob)}
-            helperText={error && !tutorDob ? "Date of birth is required" : ""}
-            sx={{ gridColumn: "span 2" }}
-            InputLabelProps={{
-              shrink: true,
+            onChange={(e) => {
+              setTutorDob(e.target.value);
+              console.log("Updated tutorDob:", e.target.value);
             }}
+            sx={{ gridColumn: "span 2" }}
+            InputLabelProps={{ shrink: true }}
           />
 
-          {/* Description */}
           <TextField
             fullWidth
             variant="filled"
             type="text"
             label="Description"
-            name="tutorDescription"
             value={tutorDescription}
-            onChange={(e) => setTutorDescription(e.target.value)}
-            error={Boolean(error && !tutorDescription)}
-            helperText={error && !tutorDescription ? "Description is required" : ""}
+            onChange={(e) => {
+              setTutorDescription(e.target.value);
+              console.log("Updated tutorDescription:", e.target.value);
+            }}
             sx={{ gridColumn: "span 2" }}
           />
 
-          {/* Description Video Link */}
           <TextField
             fullWidth
             variant="filled"
             type="url"
             label="Description Video Link"
-            name="tutorDescriptionVideoLink"
             value={tutorDescriptionVideoLink}
-            onChange={(e) => setTutorDescriptionVideoLink(e.target.value)}
-            error={Boolean(error && !tutorDescriptionVideoLink)}
-            helperText={error && !tutorDescriptionVideoLink ? "Description video link is required" : ""}
+            onChange={(e) => {
+              setTutorDescriptionVideoLink(e.target.value);
+              console.log("Updated tutorDescriptionVideoLink:", e.target.value);
+            }}
             sx={{ gridColumn: "span 2" }}
           />
 
-          {/* Expected Salary */}
           <TextField
             fullWidth
             variant="filled"
             type="number"
             label="Expected Salary"
-            name="tutorExpectedSalary"
             value={tutorExpectedSalary}
-            onChange={(e) => setTutorExpectedSalary(e.target.value)}
-            error={Boolean(error && !tutorExpectedSalary)}
-            helperText={error && !tutorExpectedSalary ? "Expected salary is required" : ""}
+            onChange={(e) => {
+              setTutorExpectedSalary(e.target.value);
+              console.log("Updated tutorExpectedSalary:", e.target.value);
+            }}
             sx={{ gridColumn: "span 2" }}
           />
         </Box>
 
-        {/* Submit Button */}
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          sx={{ mt: 3 }}
-          disabled={loading}
-        >
+        <Button type="submit" variant="contained" color="primary" sx={{ mt: 3 }} disabled={loading}>
           {loading ? "Updating..." : "Update Tutor"}
         </Button>
       </form>
