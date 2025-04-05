@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../../../data/theme";
-import getTutorList from '../../../../hooks/admin/getTutorList'; // Hàm lấy dữ liệu giảng viên
+import getTutorList from '../../../../hooks/admin/getTutorList';
 import Header from "../Header";
-import { useNavigate } from 'react-router-dom'; // Hook để điều hướng
+import { useNavigate } from 'react-router-dom';
 
 const Team = () => {
   const [tutorData, setTutorData] = useState(null);
@@ -21,34 +21,38 @@ const Team = () => {
     { field: "name", headerName: "Tên", flex: 1, cellClassName: "name-column--cell" },
     { field: "address", headerName: "Địa chỉ", flex: 1 },
     { field: "email", headerName: "Email", flex: 1 },
-
     {
-      field: "edit", 
-      headerName: "xác minh", 
-      flex: 0.5, 
-      renderCell: (params ) => {
+      field: "edit",
+      headerName: "xác minh",
+      flex: 0.5,
+      renderCell: (params) => {
         const tutorData = {
-          userid: params.row.id, // Ensure categoryId is correctly passed
-        }
+          userid: params.row.id,
+        };
+
+        console.log("Click vào giảng viên:", tutorData); // Log thông tin khi nhấn nút xem chi tiết
+
         return (
-          
-      
-        <Button 
-          variant="contained"
-          color="primary"
-          onClick={() =>navigate(`/admin/verifytutordetail/${params.row.id}`,{state:tutorData})}  // Xử lý nhấn nút Sửa
-        >
-          xem chi tiết
-        </Button>
-      );
-    }
-    }
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() =>
+              navigate(`/admin/verifytutordetail/${params.row.id}`, { state: tutorData })
+            }
+          >
+            xem chi tiết
+          </Button>
+        );
+      },
+    },
   ];
 
-  // Hàm để lấy dữ liệu trước khi render
   const fetchData = async () => {
     try {
+      console.log("Đang lấy dữ liệu giảng viên...");
       const data = await getTutorList();
+      console.log("Dữ liệu nhận được từ API:", data); // Log dữ liệu thô từ API
+
       setTutorData(data);
       setLoading(false);
     } catch (error) {
@@ -57,9 +61,6 @@ const Team = () => {
       setLoading(false);
     }
   };
-
-  // Hàm xử lý sự kiện khi nhấn nút Sửa
-  
 
   useEffect(() => {
     fetchData();
@@ -73,18 +74,23 @@ const Team = () => {
     return <div>{error}</div>;
   }
 
-  // Chuyển đổi dữ liệu từ API thành định dạng mà DataGrid cần
-  const rows = tutorData?.data?.map(tutor => ({
-    id: tutor.userid,
-    name: tutor.User.displayname,
-    specialization: tutor.description,
-    address: tutor.User.address,
-    email: tutor.User.email,
-    dateOfBirth: new Date(tutor.User.dateofbirth).toLocaleDateString(),
-    expectedSalary: tutor.expectedsalary,
-    socialCredit: tutor.socialcredit,
-    videoLink: tutor.descriptionvideolink,
-  }));
+  const rows = tutorData?.data?.map(tutor => {
+    const transformedTutor = {
+      id: tutor.userid,
+      name: tutor.User.displayname,
+      specialization: tutor.description,
+      address: tutor.User.address,
+      email: tutor.User.email,
+      dateOfBirth: new Date(tutor.User.dateofbirth).toLocaleDateString(),
+      expectedSalary: tutor.expectedsalary,
+      socialCredit: tutor.socialcredit,
+      videoLink: tutor.descriptionvideolink,
+    };
+
+    console.log("Giảng viên sau khi chuyển đổi:", transformedTutor); // Log mỗi bản ghi sau khi format
+
+    return transformedTutor;
+  });
 
   return (
     <Box m="20px">

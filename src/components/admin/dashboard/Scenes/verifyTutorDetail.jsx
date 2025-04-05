@@ -1,40 +1,49 @@
 import { Box, Button, TextField, Alert } from "@mui/material";
 import { useState } from "react";
-import { useLocation } from "react-router-dom"; // Import useLocation to access passed state data
+import { useLocation } from "react-router-dom";
 import Header from "../Header";
-import { useUpdateLearner } from "../../../../hooks/admin/updateLearner"; // Assuming you have a hook for updating learner data
+import { useUpdateLearner } from "../../../../hooks/admin/updateLearner";
 
 const VerifyTutorDetail = () => {
-  const location = useLocation(); // Get the location object
-  const { userid, displayname, address, email,learneringgoal, dateofbirth} = location.state || {}; // Retrieve learner data from state
+  const location = useLocation();
+  const { userid, displayname, address, email, learneringgoal, dateofbirth } = location.state || {};
+
+  console.log("Dữ liệu truyền qua từ state:", location.state); // Log dữ liệu nhận được
 
   const updateMutation = useUpdateLearner();
 
-  const [learnerName, setLearnerName] = useState(displayname || ""); // Set initial value from state
-  const [learnerAddress, setLearnerAddress] = useState(address || ""); // Set initial value from state
-  const [learnerEmail, setLearnerEmail] = useState(email || ""); // Set initial value from state
-  const [learnerLearningGoal, setLearnerLearningGoal] = useState(learneringgoal || ""); // Set initial value from state
-  const [learnerDob, setLearnerDob] = useState(dateofbirth || ""); // Set initial value from state
+  const [learnerName, setLearnerName] = useState(displayname || "");
+  const [learnerAddress, setLearnerAddress] = useState(address || "");
+  const [learnerEmail, setLearnerEmail] = useState(email || "");
+  const [learnerLearningGoal, setLearnerLearningGoal] = useState(learneringgoal || "");
+  const [learnerDob, setLearnerDob] = useState(dateofbirth || "");
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [alertMessage, setAlertMessage] = useState(null);
   const [alertType, setAlertType] = useState("success");
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate input
+    console.log("Giá trị form trước khi gửi:", {
+      userid,
+      learnerName,
+      learnerAddress,
+      learnerEmail,
+      learnerLearningGoal,
+      learnerDob,
+    });
+
     if (!learnerName || !learnerAddress || !learnerEmail || !learnerLearningGoal || !learnerDob) {
       setError("All fields are required.");
+      console.warn("Lỗi: Thiếu trường bắt buộc");
       return;
     }
 
     setLoading(true);
     setError(null);
 
-    // Call update learner API
     try {
       await updateMutation.mutateAsync({
         userid: userid,
@@ -45,9 +54,11 @@ const VerifyTutorDetail = () => {
         dateofbirth: learnerDob,
       });
 
+      console.log("Cập nhật thành công!");
       setAlertMessage("Learner updated successfully!");
       setAlertType("success");
     } catch (err) {
+      console.error("Lỗi khi cập nhật learner:", err);
       setAlertMessage("Failed to update learner.");
       setAlertType("error");
     } finally {
@@ -61,11 +72,8 @@ const VerifyTutorDetail = () => {
 
       <form onSubmit={handleSubmit}>
         <Box display="grid" gap="30px" gridTemplateColumns="repeat(4, minmax(0, 1fr))">
-          <p><strong>ID:</strong> {userid}</p> {/* Display learnerId */}
-          <p><strong>Name:</strong> {learnerName}</p> 
-
-          {/* Name */}
-     
+          <p><strong>ID:</strong> {userid}</p>
+          <p><strong>Name:</strong> {learnerName}</p>
         </Box>
 
         <Box display="flex" justifyContent="end" mt="20px">
@@ -75,11 +83,11 @@ const VerifyTutorDetail = () => {
               {alertMessage}
             </Alert>
           )}
-          <Button sx={{ margin: "20px"  }} type="submit" color="secondary" variant="contained" disabled={loading}>
+          <Button sx={{ margin: "20px" }} type="submit" color="secondary" variant="contained" disabled={loading}>
             {loading ? "Đang xác minh" : "xác minh "}
           </Button>
-          <Button sx={{ margin: "20px" }} type="submit" color="secondary" variant="contained" disabled={loading}>
-            {loading ? "Đang xác minh" : "Huỷ"}
+          <Button sx={{ margin: "20px" }} type="button" color="secondary" variant="contained" disabled={loading}>
+            Huỷ
           </Button>
         </Box>
       </form>
