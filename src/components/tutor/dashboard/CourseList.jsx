@@ -8,6 +8,9 @@ const courses = [
 ];
 
 const CourseList = () => {
+  console.log("Rendering CourseList component...");
+  console.log("Danh sách khoá học:", courses);
+
   return (
     <div className="mt-4">
       <h4>Khoá học của tôi</h4>
@@ -20,13 +23,16 @@ const CourseList = () => {
           </tr>
         </thead>
         <tbody>
-          {courses.map((course, index) => (
-            <tr key={index}>
-              <td>{course.name}</td>
-              <td>{course.enrolled}</td>
-              <td>⭐ {course.rating}</td>
-            </tr>
-          ))}
+          {courses.map((course, index) => {
+            console.log(`Rendering course row ${index + 1}:`, course);
+            return (
+              <tr key={index}>
+                <td>{course.name}</td>
+                <td>{course.enrolled}</td>
+                <td>⭐ {course.rating}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </Table>
     </div>

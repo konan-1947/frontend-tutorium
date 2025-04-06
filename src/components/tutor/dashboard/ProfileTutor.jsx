@@ -5,7 +5,6 @@ import '../../../assets/css/schedule.css';
 import { Button, Form, Row, Col } from 'react-bootstrap';
 
 const TutorProfile = () => {
-  // State để lưu thông tin gia sư
   const [tutorData, setTutorData] = useState({
     name: "Vũ Đình Đăng",
     location: "Hà Nội",
@@ -19,30 +18,33 @@ const TutorProfile = () => {
     hometown: "Hà Nam",
   });
 
-  const [isEditing, setIsEditing] = useState(false); // Để điều khiển chế độ chỉnh sửa
+  const [isEditing, setIsEditing] = useState(false);
 
-  // Hàm xử lý khi lưu thông tin chỉnh sửa
   const handleSave = (event) => {
-    event.preventDefault(); // Ngừng sự kiện mặc định của form
-    setIsEditing(false); // Thoát khỏi chế độ chỉnh sửa
-    // Có thể lưu thông tin vào backend hoặc localStorage ở đây nếu cần
+    event.preventDefault();
+    console.log("Lưu thông tin:", tutorData);
+    setIsEditing(false);
+    // Gọi API hoặc lưu vào localStorage ở đây nếu cần
   };
 
-  // Hàm xử lý thay đổi thông tin
   const handleChange = (event) => {
     const { name, value } = event.target;
+    console.log(`Thay đổi trường ${name}: ${value}`);
     setTutorData(prevData => ({
       ...prevData,
       [name]: value
     }));
   };
 
+  console.log("Trạng thái chỉnh sửa:", isEditing);
+  console.log("Dữ liệu gia sư hiện tại:", tutorData);
+
   return (
     <div className="container mt-5">
       <div className="row">
         <div className="col-md-3 text-center">
           <img 
-            src="https://media.tenor.com/sbfBfp3FeY8AAAAj/oia-uia.gif" // Thay bằng URL ảnh của gia sư
+            src="https://media.tenor.com/sbfBfp3FeY8AAAAj/oia-uia.gif"
             alt="Tutor"
             className="img-fluid rounded-circle" 
           />
@@ -51,7 +53,7 @@ const TutorProfile = () => {
           <h3>{tutorData.name}</h3>
           <p>{tutorData.location}</p>
           <p><strong>Chuyên môn:</strong> {tutorData.category}</p>
-         
+
           <div>
             <strong>Mô tả:</strong>
             {isEditing ? (
@@ -73,7 +75,6 @@ const TutorProfile = () => {
             )}
           </div>
 
-          {/* Thêm các thông tin khác */}
           <div>
             <strong>Trình độ:</strong> 
             {isEditing ? (
@@ -129,17 +130,22 @@ const TutorProfile = () => {
               <p>{tutorData.hometown}</p>
             )}
           </div>
-          <div> 
-           <hr></hr>
-          </div>
+
+          <div><hr /></div>
 
           {isEditing ? (
             <div>
               <Button variant="success" onClick={handleSave}>Lưu thay đổi</Button>
-              <Button variant="secondary"  onClick={() => setIsEditing(false)} className="ms-2 custom-btn">Hủy bỏ</Button>
+              <Button variant="secondary" onClick={() => {
+                console.log("Hủy chỉnh sửa");
+                setIsEditing(false);
+              }} className="ms-2 custom-btn">Hủy bỏ</Button>
             </div>
           ) : (
-            <Button variant="primary" onClick={() => setIsEditing(true)}>Chỉnh sửa thông tin</Button>
+            <Button variant="primary" onClick={() => {
+              console.log("Bắt đầu chỉnh sửa");
+              setIsEditing(true);
+            }}>Chỉnh sửa thông tin</Button>
           )}
         </div>
       </div>
