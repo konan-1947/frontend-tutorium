@@ -1,5 +1,7 @@
 import { tokens } from "./theme";
 
+
+//đây là file mockData.js, nơi chứa dữ liệu giả lập cho các component trong ứng dụng
 export const mockDataTeam = [
   {
     id: 1,
