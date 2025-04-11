@@ -10,9 +10,10 @@ export const useAddCategory = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                 
                 body: JSON.stringify({ categoryname, description }),
             });
-        
+            console.log("hahahah");
             const data = await response.json();
             
             if (!response.ok) {

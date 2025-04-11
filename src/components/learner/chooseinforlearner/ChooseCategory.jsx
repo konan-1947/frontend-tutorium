@@ -56,6 +56,7 @@ const Step1 = ({ formData, setFormData, nextStep }) => {
                 <MenuItem value="Chọn Category">Chọn Category</MenuItem>
                 <MenuItem value="Tiếng Anh">Tiếng Anh</MenuItem>
                 <MenuItem value="Toán">Toán</MenuItem>
+              
               </Select>
             </div>
 
