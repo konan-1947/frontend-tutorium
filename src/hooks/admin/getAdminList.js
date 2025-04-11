@@ -18,7 +18,7 @@ export const useFetchTutors = async () => {
         console.log('Fetch request completed');
         console.log('Response status:', response.status);
         console.log('Response ok:', response.ok);
-        
+        console.log('hhahahahah');
         //lỗi của api
         if (!response.ok) {
             console.log('Response not ok, preparing to throw error');

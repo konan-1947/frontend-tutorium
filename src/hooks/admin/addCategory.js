@@ -13,7 +13,7 @@ export const useAddCategory = () => {
                  
                 body: JSON.stringify({ categoryname, description }),
             });
-            console.log("hahahahaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            console.log("hahahahaaaaa");
             const data = await response.json();
             
             if (!response.ok) {
