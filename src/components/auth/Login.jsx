@@ -51,6 +51,7 @@ const LoginPage = () => {
 
   const handleGoogleLogin = () => {
     window.location.href = "/auth/google";
+    //console.log("Google login clicked");
   };
 
 
