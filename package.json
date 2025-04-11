@@ -25,6 +25,7 @@
     "@tanstack/react-query": "^5.66.9",
     "animate.css": "^4.1.1",
     "aos": "^2.3.4",
+    "axios": "^1.8.4",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.7",
     "confetti": "^2.0.6",
