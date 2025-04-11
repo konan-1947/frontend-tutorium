@@ -34,6 +34,7 @@ const LoginPage = () => {
     const email = formData.get('email');
     const password = formData.get('password');
     loginMutation.mutate({ email, password });
+    //login logic
   };
 
   const handleSubmitRegister = (e) => {
