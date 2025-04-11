@@ -16,6 +16,7 @@ import SearchTutor from "../pages/learner/SearchTutor";
 import ChooseCustomLearnerInfo from "../pages/learner/ChooseCustomLearnerInfo";
 // Import Admin (trang `App.js` của bạn)
 import Admin from "../pages/admin/Admin"; 
+//console.log("admin", Admin);
 const AppRoutes = () => {
   return (
     <Routes>
