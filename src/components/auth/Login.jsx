@@ -62,7 +62,7 @@ const LoginPage = () => {
           <h2 className="text-center fw-bold">Đăng nhập</h2>
           <div className="social-login">
             <button className="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center" onClick={handleGoogleLogin}>
-              <FaGoogle className="me-2" /> Tiếp tục với Google
+              <FaGoogle className="me-2" /> Đăng nhập với Google
             </button>
           </div>
           <div className="separator d-flex align-items-center my-3">
